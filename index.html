@@ -1,1 +1,61 @@
-hola
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Grado 9 - Menú</title>
+  <style>
+    :root{--bg:#0b1220;--card:#0f1b33;--txt:#eaf0ff;--mut:#b7c3e6;--bd:rgba(255,255,255,.10);--btn:#1f3b8a}
+    *{box-sizing:border-box} body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;background:radial-gradient(1200px 700px at 20% 10%,#172a55,transparent 60%),radial-gradient(900px 600px at 90% 30%,#2a1b5f,transparent 60%),var(--bg);color:var(--txt)}
+    .wrap{max-width:980px;margin:0 auto;padding:28px 16px 48px}
+    .top{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+    .badge{padding:6px 10px;border:1px solid var(--bd);border-radius:999px;color:var(--mut);font-size:13px}
+    h1{margin:10px 0 4px;font-size:28px}
+    p{margin:0;color:var(--mut)}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:18px}
+    @media (max-width:640px){.grid{grid-template-columns:1fr}}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));border:1px solid var(--bd);border-radius:16px;padding:16px}
+    .card h2{margin:0 0 6px;font-size:18px}
+    .card .desc{color:var(--mut);font-size:14px;margin-bottom:12px}
+    .btn{display:inline-block;text-decoration:none;background:rgba(31,59,138,.35);border:1px solid rgba(31,59,138,.55);color:var(--txt);padding:10px 12px;border-radius:12px;font-weight:600}
+    .btn:hover{filter:brightness(1.08)}
+    .foot{margin-top:18px;color:var(--mut);font-size:13px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <div class="badge">📚 Menú principal</div>
+      <div class="badge">Grado 9 • Bachillerato</div>
+    </div>
+
+    <h1>Grado 9 — Tecnología e Informática</h1>
+    <p>Selecciona un periodo para ver las semanas (10 por periodo).</p>
+
+    <div class="grid">
+      <div class="card">
+        <h2>Periodo 1</h2>
+        <div class="desc">Semanas 01 a 10</div>
+        <a class="btn" href="periodo-01/">Abrir periodo 1 →</a>
+      </div>
+      <div class="card">
+        <h2>Periodo 2</h2>
+        <div class="desc">Semanas 01 a 10</div>
+        <a class="btn" href="periodo-02/">Abrir periodo 2 →</a>
+      </div>
+      <div class="card">
+        <h2>Periodo 3</h2>
+        <div class="desc">Semanas 01 a 10</div>
+        <a class="btn" href="periodo-03/">Abrir periodo 3 →</a>
+      </div>
+      <div class="card">
+        <h2>Periodo 4</h2>
+        <div class="desc">Semanas 01 a 10</div>
+        <a class="btn" href="periodo-04/">Abrir periodo 4 →</a>
+      </div>
+    </div>
+
+    <div class="foot">✅ Estructura esperada: periodo-0x/semana-0y/index.html</div>
+  </div>
+</body>
+</html>
