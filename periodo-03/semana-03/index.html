@@ -1,1 +1,306 @@
-hola
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semana 3: Roles de Equipo - Prof. William Bernal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .card-hover:hover {
+            transform: translateY(-10px) scale(1.02);
+            transition: all 0.3s ease;
+        }
+
+        .quiz-option:active {
+            transform: scale(0.95);
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-indigo-100 via-white to-blue-200 min-h-screen">
+
+    <header class="relative h-[60vh] flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute top-10 left-10 w-32 h-32 bg-purple-400 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float"></div>
+            <div class="absolute bottom-10 right-10 w-44 h-44 bg-blue-400 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float" style="animation-delay: 2s;"></div>
+        </div>
+
+        <div class="z-10 text-center px-4">
+            <h2 class="text-blue-600 font-bold tracking-widest uppercase text-sm mb-2">Colegio Santa Mariana de Jesús (Buga)</h2>
+            <h1 class="text-5xl md:text-7xl font-extrabold text-slate-800 mb-4 tracking-tight">
+                Roles de <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Trabajo</span>
+            </h1>
+            <p class="text-xl text-slate-600 mb-8 font-light">Prof. William Fdo Bernal | Tecnología e Informática</p>
+            
+            <div class="glass p-6 rounded-3xl max-w-2xl mx-auto shadow-xl border border-white/50">
+                <h3 class="font-bold text-indigo-800 uppercase text-xs tracking-widest mb-2">Objetivo de Aprendizaje</h3>
+                <p class="text-slate-700 text-lg italic">"Identificar las habilidades personales para potenciar el trabajo colectivo a través de roles definidos."</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-12 space-y-24">
+
+        <section id="roles" class="space-y-10">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold text-slate-800">¿Quién eres en el equipo?</h2>
+                <p class="text-slate-500">Haz clic en cada tarjeta para descubrir sus habilidades</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="group h-80 [perspective:1000px]">
+                    <div class="relative h-full w-full rounded-2xl shadow-xl transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] cursor-pointer">
+                        <div class="absolute inset-0 h-full w-full rounded-2xl bg-blue-600 flex flex-col items-center justify-center text-white p-6 backface-hidden">
+                            <span class="text-5xl mb-4">👑</span>
+                            <h3 class="text-2xl font-bold">Líder</h3>
+                        </div>
+                        <div class="absolute inset-0 h-full w-full rounded-2xl bg-white p-8 text-slate-800 [transform:rotateY(180deg)] [backface-visibility:hidden] flex flex-col justify-center">
+                            <h4 class="font-bold text-blue-600 mb-2 underline">Superpoder:</h4>
+                            <p class="text-sm">Mantiene al grupo motivado, escucha a todos y toma decisiones difíciles para avanzar.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group h-80 [perspective:1000px]">
+                    <div class="relative h-full w-full rounded-2xl shadow-xl transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] cursor-pointer">
+                        <div class="absolute inset-0 h-full w-full rounded-2xl bg-emerald-500 flex flex-col items-center justify-center text-white p-6 backface-hidden">
+                            <span class="text-5xl mb-4">📅</span>
+                            <h3 class="text-2xl font-bold">Coordinador</h3>
+                        </div>
+                        <div class="absolute inset-0 h-full w-full rounded-2xl bg-white p-8 text-slate-800 [transform:rotateY(180deg)] [backface-visibility:hidden] flex flex-col justify-center">
+                            <h4 class="font-bold text-emerald-600 mb-2 underline">Superpoder:</h4>
+                            <p class="text-sm">El guardián del tiempo y el orden. Asegura que cada tarea se entregue a tiempo.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group h-80 [perspective:1000px]">
+                    <div class="relative h-full w-full rounded-2xl shadow-xl transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] cursor-pointer">
+                        <div class="absolute inset-0 h-full w-full rounded-2xl bg-amber-400 flex flex-col items-center justify-center text-white p-6 backface-hidden">
+                            <span class="text-5xl mb-4">💡</span>
+                            <h3 class="text-2xl font-bold">Creativo</h3>
+                        </div>
+                        <div class="absolute inset-0 h-full w-full rounded-2xl bg-white p-8 text-slate-800 [transform:rotateY(180deg)] [backface-visibility:hidden] flex flex-col justify-center">
+                            <h4 class="font-bold text-amber-600 mb-2 underline">Superpoder:</h4>
+                            <p class="text-sm">Aporta las ideas locas y diferentes. Resuelve problemas con mucha imaginación.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group h-80 [perspective:1000px]">
+                    <div class="relative h-full w-full rounded-2xl shadow-xl transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] cursor-pointer">
+                        <div class="absolute inset-0 h-full w-full rounded-2xl bg-rose-500 flex flex-col items-center justify-center text-white p-6 backface-hidden">
+                            <span class="text-5xl mb-4">🛠️</span>
+                            <h3 class="text-2xl font-bold">Ejecutor</h3>
+                        </div>
+                        <div class="absolute inset-0 h-full w-full rounded-2xl bg-white p-8 text-slate-800 [transform:rotateY(180deg)] [backface-visibility:hidden] flex flex-col justify-center">
+                            <h4 class="font-bold text-rose-600 mb-2 underline">Superpoder:</h4>
+                            <p class="text-sm">El motor del equipo. Traduce las ideas en realidades concretas y tangibles.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="glass p-10 rounded-[3rem] shadow-2xl overflow-hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-4xl font-extrabold text-slate-800 mb-6 leading-tight">Balance de <br><span class="text-indigo-600">Habilidades</span></h2>
+                    <p class="text-slate-600 mb-8 leading-relaxed">
+                        Un equipo perfecto no es el que tiene 4 líderes, sino el que equilibra sus talentos. Observa cómo cambia el gráfico al simular diferentes tipos de grupos.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <button onclick="updateChart('equilibrado')" class="px-6 py-3 bg-indigo-600 text-white rounded-full font-bold hover:bg-indigo-700 transition-all shadow-lg hover:shadow-indigo-200">Equipo Ideal</button>
+                        <button onclick="updateChart('desordenado')" class="px-6 py-3 bg-white text-indigo-600 border-2 border-indigo-600 rounded-full font-bold hover:bg-indigo-50 transition-all">Solo Creativos</button>
+                    </div>
+                </div>
+                <div class="relative bg-white/50 p-6 rounded-3xl">
+                    <canvas id="rolesChart" width="400" height="400"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section class="space-y-10">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold text-slate-800 italic">¿Qué rol encaja contigo?</h2>
+                <p class="text-slate-500">Responde estas preguntas rápidas para descubrir tu perfil</p>
+            </div>
+
+            <div id="quiz-container" class="max-w-3xl mx-auto glass p-10 rounded-3xl shadow-xl border-t-8 border-indigo-500">
+                <div id="question-box" class="space-y-6">
+                    </div>
+                <div id="result-box" class="hidden text-center space-y-4">
+                    <h3 class="text-4xl font-black text-indigo-600" id="result-title"></h3>
+                    <p class="text-slate-600 text-lg" id="result-desc"></p>
+                    <button onclick="resetQuiz()" class="mt-4 text-indigo-500 font-bold underline">Intentar de nuevo</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-slate-900 text-white p-12 rounded-[4rem] shadow-3xl border-4 border-indigo-500/30">
+            <div class="flex flex-col md:flex-row items-center gap-10">
+                <div class="text-6xl animate-pulse">📝</div>
+                <div class="flex-1">
+                    <h2 class="text-3xl font-bold mb-4">Misión Especial: Mi Perfil Real</h2>
+                    <p class="text-slate-300 mb-6 text-lg">
+                        Deberás entregar una tarea física para la próxima clase cumpliendo estrictamente estas normas:
+                    </p>
+                    <div class="bg-white/10 p-6 rounded-2xl space-y-4 border-l-4 border-amber-400">
+                        <ul class="list-disc list-inside space-y-2 text-slate-100">
+                            <li><strong>Formato:</strong> Entregar en una <span class="text-amber-400">hoja en blanco</span> (tamaño carta u oficio).</li>
+                            <li><strong>Encabezado:</strong> Nombre completo, Grado y Fecha actual.</li>
+                            <li><strong>Contenido:</strong> Dibuja el símbolo que más te represente de los 4 roles vistos y escribe un párrafo de 5 líneas explicando por qué ese es tu rol dominante.</li>
+                            <li><strong>Reflexión:</strong> Escribe el nombre de 3 compañeros con los que te gustaría formar equipo y qué rol crees que tiene cada uno de ellos.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-950 text-slate-400 py-12 px-4">
+        <div class="max-w-6xl mx-auto text-center space-y-4">
+            <div class="flex justify-center gap-6 mb-6">
+                <div class="w-12 h-1 h-bg-indigo-600 bg-indigo-500 rounded-full"></div>
+                <div class="w-12 h-1 h-bg-blue-600 bg-blue-500 rounded-full"></div>
+            </div>
+            <p class="text-sm tracking-widest uppercase">Tecnología e Informática - Grado 9°</p>
+            <p class="text-lg font-bold text-white">© 2026 | Prof. William Fdo Bernal</p>
+            <p class="text-xs text-slate-500">Colegio Santa Mariana de Jesús - Buga, Valle del Cauca</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- DATA LAB: Lógica de Chart.js ---
+        const ctx = document.getElementById('rolesChart').getContext('2d');
+        let currentChart;
+
+        const dataSets = {
+            equilibrado: [25, 25, 25, 25],
+            desordenado: [10, 10, 70, 10]
+        };
+
+        function initChart() {
+            currentChart = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['Liderazgo', 'Organización', 'Creatividad', 'Ejecución'],
+                    datasets: [{
+                        label: 'Balance del Equipo',
+                        data: dataSets.equilibrado,
+                        backgroundColor: 'rgba(79, 70, 229, 0.2)',
+                        borderColor: 'rgba(79, 70, 229, 1)',
+                        borderWidth: 3,
+                        pointBackgroundColor: 'rgba(79, 70, 229, 1)'
+                    }]
+                },
+                options: {
+                    scales: {
+                        r: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: { display: false }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    animation: { duration: 1500 }
+                }
+            });
+        }
+
+        function updateChart(type) {
+            currentChart.data.datasets[0].data = dataSets[type];
+            currentChart.update();
+        }
+
+        // --- GAMIFICACIÓN: Lógica del Quiz ---
+        const questions = [
+            {
+                q: "¿Qué prefieres hacer cuando el profesor deja un trabajo grupal?",
+                options: [
+                    { t: "Organizar quién hace qué y poner fechas", r: "Coordinador" },
+                    { t: "Empezar a buscar ideas diferentes y colores", r: "Creativo" },
+                    { t: "Animar a todos y tomar la iniciativa", r: "Líder" },
+                    { t: "Empezar a escribir o diseñar de una vez", r: "Ejecutor" }
+                ]
+            }
+        ];
+
+        function loadQuiz() {
+            const container = document.getElementById('question-box');
+            container.innerHTML = `
+                <p class="text-2xl font-semibold text-slate-800 mb-8">${questions[0].q}</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    ${questions[0].options.map((opt, i) => `
+                        <button onclick="finishQuiz('${opt.r}')" class="quiz-option text-left p-6 rounded-2xl border-2 border-slate-200 hover:border-indigo-500 hover:bg-indigo-50 transition-all font-medium text-slate-700 shadow-sm">
+                            ${opt.t}
+                        </button>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        function finishQuiz(role) {
+            document.getElementById('question-box').classList.add('hidden');
+            const resultBox = document.getElementById('result-box');
+            resultBox.classList.remove('hidden');
+            
+            const titles = {
+                'Líder': '¡Eres un Guía Natural! 👑',
+                'Coordinador': '¡El Maestro del Orden! 📅',
+                'Creativo': '¡Una Fábrica de Ideas! 💡',
+                'Ejecutor': '¡El Motor del Cambio! 🛠️'
+            };
+
+            const descs = {
+                'Líder': 'Tienes la capacidad de ver el panorama completo y ayudar a los demás a brillar.',
+                'Coordinador': 'Sin ti el equipo sería un caos. Eres la estructura que todos necesitan.',
+                'Creativo': 'Ves soluciones donde otros ven problemas. Tu mente no tiene límites.',
+                'Ejecutor': 'Eres quien hace que las cosas pasen. Tu eficiencia es el arma secreta del grupo.'
+            };
+
+            document.getElementById('result-title').innerText = titles[role];
+            document.getElementById('result-desc').innerText = descs[role];
+        }
+
+        function resetQuiz() {
+            document.getElementById('question-box').classList.remove('hidden');
+            document.getElementById('result-box').classList.add('hidden');
+            loadQuiz();
+        }
+
+        // Inicialización
+        window.onload = () => {
+            initChart();
+            loadQuiz();
+        };
+    </script>
+</body>
+</html>
