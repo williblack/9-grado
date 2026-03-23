@@ -1,1 +1,298 @@
-hola
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semana 6: Plan de Acción - Prof. William Fdo Bernal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(circle at top left, #1e293b, #0f172a);
+            color: #f8fafc;
+            scroll-behavior: smooth;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1.5rem;
+        }
+
+        .hover-scale {
+            transition: all 0.3s ease;
+        }
+
+        .hover-scale:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Animación suave para el toast */
+        #toastCopiado.show {
+            display: block;
+            animation: fadeInOut 2s ease-in-out;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateY(20px); }
+            15% { opacity: 1; transform: translateY(0); }
+            85% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-20px); }
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <div class="max-w-5xl mx-auto flex flex-wrap justify-end gap-3 mb-8">
+        <a href="../../../index.html"
+           class="bg-slate-800/70 text-white px-5 py-2.5 rounded-xl shadow-lg hover:scale-105 transition-all duration-300 backdrop-blur border border-white/10 text-sm font-semibold">
+            ⬅ Inicio (Grado)
+        </a>
+
+        <a href="../../index.html"
+           class="bg-purple-600 text-white px-5 py-2.5 rounded-xl shadow-lg hover:scale-105 transition-all duration-300 text-sm font-semibold">
+            ⬅ Menú del Periodo
+        </a>
+
+        <button type="button" onclick="copiarEnlace()"
+                class="bg-emerald-600 text-white px-5 py-2.5 rounded-xl shadow-lg hover:scale-105 transition-all duration-300 text-sm font-semibold">
+            🔗 Copiar enlace
+        </button>
+    </div>
+
+    <div id="toastCopiado" class="fixed top-6 right-6 hidden bg-emerald-500 text-white px-6 py-3 rounded-2xl shadow-2xl backdrop-blur-md z-50 font-bold border border-emerald-400">
+        Enlace copiado al portapapeles ✅
+    </div>
+
+    <main class="max-w-5xl mx-auto space-y-12">
+        
+        <header class="text-center space-y-4 py-10">
+            <span class="bg-blue-500/20 text-blue-400 px-4 py-1 rounded-full text-xs font-bold tracking-widest uppercase border border-blue-500/30">
+                Semana 7 • Periodo 1
+            </span>
+            <h1 class="text-5xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white via-blue-200 to-slate-500">
+                El Plan de Acción
+            </h1>
+            <p class="text-xl text-slate-400 font-light italic">"De la Idea a la Realidad"</p>
+            
+            <div class="flex flex-col md:flex-row justify-center items-center gap-4 mt-8">
+                <div class="glass-card p-4 flex items-center gap-3">
+                    <div class="w-10 h-10 bg-indigo-500 rounded-full flex items-center justify-center font-bold">W</div>
+                    <div class="text-left">
+                        <p class="text-xs text-slate-400">Profesor</p>
+                        <p class="text-sm font-bold">William Fdo Bernal</p>
+                    </div>
+                </div>
+                <div class="glass-card p-4 flex items-center gap-3 border-l-4 border-l-blue-500">
+                    <p class="text-sm"><strong>Objetivo:</strong> Estructurar metas empresariales medibles y definir la ruta técnica para alcanzarlas.</p>
+                </div>
+            </div>
+        </header>
+
+        <section class="glass-card p-8 hover-scale">
+            <span class="bg-amber-500 text-black text-xs font-bold px-3 py-1 rounded-full mb-4 inline-block">
+                📝 COPIAR AL CUADERNO
+            </span>
+            <h2 class="text-2xl font-bold mb-6 text-amber-200">Fundamentos del Plan de Acción</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8 text-slate-300 leading-relaxed">
+                <div class="space-y-4">
+                    <p class="border-l-2 border-amber-500/50 pl-4">
+                        <strong class="text-white">Conexión:</strong> En la clase anterior vimos qué es una empresa. Ahora aprenderemos a darle una <strong>hoja de ruta</strong>. Sin un plan, una empresa es solo un deseo.
+                    </p>
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-2">
+                            <span class="text-amber-500 font-bold">1.</span>
+                            <span><strong>Objetivos:</strong> Son los logros que la empresa quiere alcanzar (deben ser específicos).</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-amber-500 font-bold">2.</span>
+                            <span><strong>Metas por tiempo:</strong> Corto (0-6 meses), Mediano (6-12 meses) y Largo Plazo (1-5 años).</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-black/20 p-6 rounded-2xl border border-white/5">
+                    <h3 class="font-bold text-white mb-3">La fórmula del éxito:</h3>
+                    <p class="text-sm italic mb-4">Estrategia + Actividad + Indicador = Resultado</p>
+                    <ul class="text-sm space-y-2">
+                        <li>🎯 <strong>Estrategia:</strong> El "Qué" vamos a hacer.</li>
+                        <li>⚙️ <strong>Actividad:</strong> El "Cómo" lo ejecutamos.</li>
+                        <li>📊 <strong>Indicador:</strong> El dato que mide si ganamos.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="glass-card p-8">
+            <span class="bg-indigo-500 text-white text-xs font-bold px-3 py-1 rounded-full mb-4 inline-block">
+                💻 INTERACTUAR EN EL PC
+            </span>
+            <h2 class="text-2xl font-bold mb-2">Simulador de Metas y Resultados</h2>
+            <p class="text-slate-400 mb-8 italic">Haz clic en los botones para simular cómo diferentes estrategias afectan el crecimiento de tu empresa.</p>
+            
+            <div class="grid md:grid-cols-3 gap-6 mb-8">
+                <button onclick="updateChart('marketing')" class="p-4 rounded-xl bg-blue-600/20 border border-blue-500/40 hover:bg-blue-600/40 transition-all text-sm font-bold">
+                    🚀 Estrategia: Marketing IA
+                </button>
+                <button onclick="updateChart('calidad')" class="p-4 rounded-xl bg-purple-600/20 border border-purple-500/40 hover:bg-purple-600/40 transition-all text-sm font-bold">
+                    💎 Estrategia: Calidad Premium
+                </button>
+                <button onclick="updateChart('ahorro')" class="p-4 rounded-xl bg-emerald-600/20 border border-emerald-500/40 hover:bg-emerald-600/40 transition-all text-sm font-bold">
+                    💰 Estrategia: Reducción Costos
+                </button>
+            </div>
+
+            <div class="bg-slate-900/50 p-6 rounded-2xl h-[400px]">
+                <canvas id="businessChart"></canvas>
+            </div>
+        </section>
+
+        <section class="glass-card p-8 border-t-4 border-t-emerald-500">
+            <span class="bg-emerald-500 text-black text-xs font-bold px-3 py-1 rounded-full mb-4 inline-block">
+                🖥️ TRABAJO EN LA SALA
+            </span>
+            <h2 class="text-2xl font-bold mb-6">Laboratorio de Datos con IA y Excel</h2>
+            
+            <div class="bg-emerald-500/10 border border-emerald-500/20 p-6 rounded-2xl mb-8">
+                <h3 class="text-emerald-400 font-bold flex items-center gap-2 mb-4">
+                    🤖 PASO 1: Copia este Prompt para la IA
+                </h3>
+                <div class="bg-black/40 p-4 rounded-xl font-mono text-sm relative group">
+                    <p id="promptText">Actúa como experto en planificación empresarial. Genera una tabla de plan de acción para una empresa de tecnología educativa. La tabla debe tener 5 columnas: "ID", "Objetivo Estratégico", "Actividad Clave", "Plazo (Meses)" e "Indicador de Éxito". Genera 8 filas con datos realistas y estructurados para que yo los pegue en Excel.</p>
+                    <button onclick="copiarPrompt()" class="absolute top-2 right-2 bg-emerald-600 p-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity">
+                        📋
+                    </button>
+                </div>
+            </div>
+
+            <div class="space-y-6">
+                <h3 class="text-white font-bold">🛠️ PASO 2: Diseño Profesional en Excel</h3>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-white/5 p-4 rounded-xl border border-white/10">
+                        <p class="text-amber-400 font-bold text-sm mb-2">Requisitos Estéticos:</p>
+                        <ul class="text-xs space-y-2 text-slate-300">
+                            <li>🎨 <strong>Encabezados:</strong> Color de fondo oscuro y letra blanca en negrita.</li>
+                            <li>📏 <strong>Ajuste:</strong> Usa "Ajustar texto" para que nada se corte.</li>
+                            <li>🔡 <strong>Fuentes:</strong> Usa tipografías modernas (ej. Calibri o Segoe UI).</li>
+                            <li>🚥 <strong>Celdas:</strong> Aplica colores alternos por fila (Filas con bandas).</li>
+                        </ul>
+                    </div>
+                    <div class="flex items-center justify-center border-2 border-dashed border-white/20 rounded-xl p-4">
+                        <p class="text-slate-500 text-center italic text-sm">El archivo debe guardarse como:<br><span class="text-white">Plan_Accion_Apellido_Grado9.xlsx</span></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="glass-card p-8 bg-gradient-to-br from-slate-800/50 to-blue-900/20">
+            <span class="bg-blue-400 text-black text-xs font-bold px-3 py-1 rounded-full mb-4 inline-block">
+                🔍 INVESTIGACIÓN
+            </span>
+            <h2 class="text-xl font-bold mb-4">Exploración Digital</h2>
+            <p class="text-slate-300">
+                Investiga en Google: <strong>"¿Qué son los objetivos SMART y cómo ayudan a un emprendedor?"</strong>. Escribe en tu cuaderno un ejemplo de un objetivo que NO es SMART y transfórmalo en uno que SÍ lo sea.
+            </p>
+        </section>
+
+        <section class="glass-card p-8 border-2 border-purple-500/30">
+            <h2 class="text-2xl font-bold mb-6 text-center text-purple-300">⚡ Reto Relámpago</h2>
+            <div id="quizContainer" class="space-y-4">
+                <div class="p-4 bg-white/5 rounded-xl border border-white/10">
+                    <p class="mb-4">1. Si mi meta es a 3 años, ¿qué tipo de plazo es?</p>
+                    <div class="flex flex-wrap gap-3">
+                        <button onclick="checkAnswer(this, false)" class="px-4 py-2 bg-slate-700 rounded-lg text-sm hover:bg-slate-600">Corto Plazo</button>
+                        <button onclick="checkAnswer(this, true)" class="px-4 py-2 bg-slate-700 rounded-lg text-sm hover:bg-slate-600">Largo Plazo</button>
+                        <button onclick="checkAnswer(this, false)" class="px-4 py-2 bg-slate-700 rounded-lg text-sm hover:bg-slate-600">Flash Plazo</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center py-10 opacity-60">
+            <p class="text-sm">© 2026 | Prof. William Fdo Bernal - Área de Tecnología e Informática</p>
+            <p class="text-xs mt-2">Colegio Santa Mariana de Jesús - Buga</p>
+        </footer>
+
+    </main>
+
+    <script>
+        // Lógica de Gráfico Interactiva
+        const ctx = document.getElementById('businessChart').getContext('2d');
+        let currentData = [10, 25, 45, 70, 85, 100];
+        
+        const myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Mes 1', 'Mes 2', 'Mes 3', 'Mes 4', 'Mes 5', 'Mes 6'],
+                datasets: [{
+                    label: 'Crecimiento Estimado %',
+                    data: currentData,
+                    borderColor: '#3b82f6',
+                    backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 6,
+                    pointBackgroundColor: '#fff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { labels: { color: '#cbd5e1' } }
+                },
+                scales: {
+                    y: { beginAtZero: true, grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#cbd5e1' } },
+                    x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#cbd5e1' } }
+                }
+            }
+        });
+
+        function updateChart(strategy) {
+            let newData;
+            if(strategy === 'marketing') newData = [10, 40, 80, 120, 180, 250];
+            if(strategy === 'calidad') newData = [10, 20, 35, 60, 95, 140];
+            if(strategy === 'ahorro') newData = [10, 30, 45, 55, 65, 80];
+            
+            myChart.data.datasets[0].data = newData;
+            myChart.update();
+        }
+
+        // Lógica de Copiado
+        function copiarEnlace(){
+            const url = window.location.href;
+            navigator.clipboard.writeText(url).then(() => {
+                const t = document.getElementById('toastCopiado');
+                t.classList.remove('hidden');
+                t.classList.add('show');
+                setTimeout(() => {
+                    t.classList.remove('show');
+                    t.classList.add('hidden');
+                }, 2000);
+            });
+        }
+
+        function copiarPrompt() {
+            const text = document.getElementById('promptText').innerText;
+            navigator.clipboard.writeText(text);
+            alert("¡Prompt copiado! Pégalo en ChatGPT o Gemini.");
+        }
+
+        // Quiz
+        function checkAnswer(btn, isCorrect) {
+            if(isCorrect) {
+                btn.classList.add('bg-emerald-600', 'animate-bounce');
+                btn.innerText = "¡Correcto! 🎯";
+            } else {
+                btn.classList.add('bg-red-600', 'animate-shake');
+                btn.innerText = "Sigue intentando ❌";
+            }
+        }
+    </script>
+</body>
+</html>
