@@ -3,283 +3,269 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clase Interactiva | El Producto Tecnológico y su Ciclo de Vida</title>
+    <title>Producto Tecnológico | Prof. William Fdo Bernal</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
         body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            font-family: 'Poppins', sans-serif;
+            background-color: #0f172a;
+            background-image: 
+                radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
+                radial-gradient(at 50% 0%, hsla(225,39%,30%,0.3) 0, transparent 50%), 
+                radial-gradient(at 100% 0%, hsla(339,49%,30%,0.3) 0, transparent 50%);
+            background-attachment: fixed;
             color: #f8fafc;
-            min-height: 100vh;
         }
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.05);
+        
+        .glass-card {
+            background: rgba(30, 41, 59, 0.6);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
-        .custom-scrollbar::-webkit-scrollbar {
-            height: 8px;
-            width: 8px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: rgba(255,255,255,0.05);
-            border-radius: 4px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: rgba(139, 92, 246, 0.5);
-            border-radius: 4px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background: rgba(139, 92, 246, 0.8);
-        }
-        .timeline-node {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .timeline-node:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px -5px rgba(139, 92, 246, 0.5);
-        }
+
+        .custom-scrollbar::-webkit-scrollbar { width: 8px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #1e293b; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #8b5cf6; border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #7c3aed; }
+
+        .quiz-option { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .quiz-option.correct { background-color: rgba(16, 185, 129, 0.2); border-color: #10b981; }
+        .quiz-option.incorrect { background-color: rgba(239, 68, 68, 0.2); border-color: #ef4444; }
+        
+        /* Animación suave para el renderizado del Chart.js */
+        #chartContainer { transition: all 0.5s ease-in-out; }
     </style>
 </head>
-<body class="p-4 md:p-8 relative custom-scrollbar">
+<body class="custom-scrollbar min-h-screen flex flex-col relative pb-10">
 
-    <div class="max-w-5xl mx-auto flex flex-wrap justify-end gap-3 mb-6 relative z-50">
+    <div class="max-w-5xl mx-auto w-full flex justify-end gap-3 mt-6 px-4 relative z-50">
         <a href="../../../index.html"
-           class="bg-slate-800/70 text-white px-4 py-2 rounded-xl shadow border border-slate-600 hover:scale-105 transition-all duration-300 backdrop-blur text-sm font-semibold">
-           ⬅ Inicio (Grado)
+           class="bg-slate-800/70 text-white px-4 py-2 rounded-xl shadow hover:scale-105 transition-all duration-300 backdrop-blur border border-slate-600">
+           <i class="fa-solid fa-house mr-1"></i> Inicio (Grado)
         </a>
       
         <a href="../../index.html"
-           class="bg-purple-600/80 text-white px-4 py-2 rounded-xl shadow border border-purple-500 hover:scale-105 transition-all duration-300 backdrop-blur text-sm font-semibold">
-           ⬅ Menú del Periodo
+           class="bg-purple-600 text-white px-4 py-2 rounded-xl shadow-lg shadow-purple-500/30 hover:scale-105 transition-all duration-300">
+           <i class="fa-solid fa-folder-open mr-1"></i> Menú del Periodo
         </a>
       
         <button type="button" onclick="copiarEnlace()"
-           class="bg-emerald-600/80 text-white px-4 py-2 rounded-xl shadow border border-emerald-500 hover:scale-105 transition-all duration-300 backdrop-blur text-sm font-semibold">
-           🔗 Copiar enlace
+           class="bg-emerald-600 text-white px-4 py-2 rounded-xl shadow-lg shadow-emerald-500/30 hover:scale-105 transition-all duration-300">
+           <i class="fa-solid fa-link mr-1"></i> Copiar enlace
         </button>
     </div>
-      
-    <div id="toastCopiado" class="fixed top-6 right-6 hidden bg-emerald-500 text-white px-6 py-3 rounded-xl shadow-2xl backdrop-blur font-bold z-[100] transition-opacity duration-300">
-        Enlace copiado ✅
+
+    <div id="toastCopiado" class="fixed top-6 right-6 z-50 hidden bg-black/90 text-emerald-400 px-6 py-3 rounded-xl shadow-2xl backdrop-blur border border-emerald-500/30 transition-all duration-300">
+        Enlace copiado al portapapeles ✅
     </div>
 
-    <header class="max-w-5xl mx-auto mb-10">
-        <div class="glass-panel rounded-3xl p-8 md:p-12 shadow-2xl relative overflow-hidden">
-            <div class="absolute top-0 right-0 w-64 h-64 bg-purple-600/20 rounded-full mix-blend-screen filter blur-3xl opacity-50 animate-pulse"></div>
-            <div class="absolute bottom-0 left-0 w-64 h-64 bg-blue-600/20 rounded-full mix-blend-screen filter blur-3xl opacity-50 animate-pulse" style="animation-delay: 2s;"></div>
+    <main class="max-w-5xl mx-auto w-full px-4 mt-8 space-y-10 flex-grow">
+
+        <header class="text-center space-y-6">
+            <h2 class="text-purple-400 font-bold uppercase tracking-widest text-sm">Tecnología e Informática - Grado 9°</h2>
+            <h1 class="text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-emerald-400 drop-shadow-lg">
+                El Producto Tecnológico
+            </h1>
+            <p class="text-xl text-slate-300 font-light max-w-2xl mx-auto">
+                ¿De dónde vienen los objetos que usamos y a dónde van cuando los desechamos?
+            </p>
             
-            <div class="relative z-10 flex flex-col items-center text-center">
-                <span class="px-4 py-1 bg-purple-500/30 text-purple-200 text-xs font-bold rounded-full mb-4 border border-purple-500/50 uppercase tracking-widest">
-                    Tecnología e Informática | Grado 9° | Semana 1
+            <div class="glass-card max-w-3xl mx-auto rounded-2xl p-6 mt-6 transform hover:scale-[1.02] transition-transform duration-300">
+                <div class="flex items-center gap-4">
+                    <div class="bg-purple-500/20 p-4 rounded-full text-purple-400">
+                        <i class="fa-solid fa-bullseye text-2xl"></i>
+                    </div>
+                    <div class="text-left">
+                        <h3 class="text-lg font-bold text-white mb-1">Objetivo de Aprendizaje</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            Identificar qué es un producto tecnológico, comprender sus características principales y analizar críticamente su ciclo de vida y el impacto ambiental asociado a cada etapa.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section class="glass-card rounded-3xl p-8 relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-2 h-full bg-blue-500"></div>
+            <div class="mb-6 flex justify-between items-center">
+                <h2 class="text-2xl font-bold text-white flex items-center gap-3">
+                    <i class="fa-solid fa-book-open text-blue-400"></i> Fundamentos Teóricos
+                </h2>
+                <span class="bg-blue-500/20 text-blue-300 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider border border-blue-500/30">
+                    📝 COPIAR AL CUADERNO
                 </span>
-                <h1 class="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-emerald-400 mb-2 leading-tight">
-                    El Producto Tecnológico y su Ciclo de Vida
-                </h1>
-                <p class="text-slate-300 text-lg mb-6 font-light">Colegio Santa Mariana de Jesús | Prof. William Fdo Bernal</p>
-                
-                <div class="bg-slate-900/60 p-4 rounded-2xl border border-slate-700 max-w-2xl w-full">
-                    <h3 class="text-emerald-400 font-semibold mb-2 flex items-center justify-center gap-2">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                        Objetivo de Aprendizaje
-                    </h3>
-                    <p class="text-sm text-slate-300">
-                        Comprender la definición de producto tecnológico y analizar analíticamente las etapas de su ciclo de vida, evaluando el impacto ambiental desde su diseño hasta su descarte.
+            </div>
+
+            <div class="space-y-6 text-slate-300">
+                <div class="bg-slate-800/50 p-4 rounded-xl border border-slate-700/50">
+                    <p class="text-sm">
+                        <i class="fa-solid fa-link text-emerald-400 mr-2"></i>
+                        <strong class="text-white">Conexión con el periodo anterior:</strong> En el 3er periodo estudiamos <em>"El trabajo en equipo"</em>. Recuerda que ningún producto tecnológico avanzado se crea en solitario; es el resultado de integrar ingenieros, diseñadores, operarios y especialistas trabajando de forma colaborativa.
                     </p>
                 </div>
-            </div>
-        </div>
-    </header>
 
-    <main class="max-w-5xl mx-auto space-y-8">
-
-        <section class="glass-panel rounded-3xl p-6 md:p-8 shadow-xl">
-            <div class="flex items-center gap-3 mb-6 border-b border-slate-700 pb-4">
-                <span class="bg-blue-600 text-white px-3 py-1 text-xs font-bold rounded-full shadow-lg">📝 COPIAR AL CUADERNO</span>
-                <h2 class="text-2xl font-bold text-slate-100">Fundamentos Teóricos</h2>
-            </div>
-            
-            <div class="bg-blue-900/20 border-l-4 border-blue-500 p-4 rounded-r-xl mb-6">
-                <h4 class="text-blue-300 font-bold mb-1 text-sm uppercase">Conexión con el periodo anterior:</h4>
-                <p class="text-sm text-slate-300">En el tercer periodo estudiamos las bases de datos y el <strong>trabajo en equipo</strong>. La creación de cualquier producto tecnológico moderno requiere de bases de datos para gestionar materiales y un equipo multidisciplinario trabajando en sinergia durante todas sus etapas.</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-6">
-                <div class="bg-slate-800/40 p-5 rounded-2xl border border-slate-700 hover:border-purple-500/50 transition-colors">
-                    <h3 class="text-xl font-bold text-emerald-400 mb-3">¿Qué es un Producto Tecnológico?</h3>
-                    <p class="text-slate-300 text-sm leading-relaxed mb-3">
-                        Es todo aquel objeto, proceso o servicio creado por el ser humano para satisfacer una necesidad o resolver un problema específico mediante la aplicación de la técnica y la ciencia.
-                    </p>
-                    <ul class="list-disc list-inside text-sm text-slate-400 space-y-1 ml-2">
-                        <li><strong>Bienes:</strong> Computadores, pupitres, ropa.</li>
-                        <li><strong>Servicios:</strong> Internet, software, transporte.</li>
-                        <li><strong>Procesos:</strong> Reciclaje industrial, pasteurización.</li>
-                    </ul>
-                </div>
-                
-                <div class="bg-slate-800/40 p-5 rounded-2xl border border-slate-700 hover:border-purple-500/50 transition-colors">
-                    <h3 class="text-xl font-bold text-emerald-400 mb-3">El Ciclo de Vida</h3>
-                    <p class="text-slate-300 text-sm leading-relaxed mb-3">
-                        Al igual que los seres vivos, los productos tienen un inicio y un fin. Este concepto es fundamental en la ingeniería moderna para calcular el impacto ambiental (Huella de Carbono).
-                    </p>
-                    <ul class="list-decimal list-inside text-sm text-slate-400 space-y-1 ml-2 font-semibold">
-                        <li>Diseño / Idea.</li>
-                        <li>Extracción y Producción.</li>
-                        <li>Distribución.</li>
-                        <li>Uso y Mantenimiento.</li>
-                        <li>Fin de Vida útil (Reciclaje o Desecho).</li>
-                    </ul>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-bold text-emerald-400 mb-3">1. ¿Qué es un Producto Tecnológico?</h3>
+                        <p class="mb-3">Es cualquier objeto, proceso o servicio <strong>creado por el ser humano</strong> para resolver un problema o satisfacer una necesidad concreta.</p>
+                        <ul class="list-none space-y-2 text-sm">
+                            <li><i class="fa-solid fa-check text-purple-500 mr-2"></i> <strong>Utilidad:</strong> Tiene un propósito claro.</li>
+                            <li><i class="fa-solid fa-check text-purple-500 mr-2"></i> <strong>Transformación:</strong> Requiere materias primas y energía.</li>
+                            <li><i class="fa-solid fa-check text-purple-500 mr-2"></i> <strong>Ejemplos:</strong> Tangibles (computador, cuaderno) e intangibles (Software, Wi-Fi).</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-emerald-400 mb-3">2. El Ciclo de Vida</h3>
+                        <p class="mb-3">Todo producto nace, se utiliza y "muere". Sus 5 etapas son:</p>
+                        <ol class="list-decimal pl-5 space-y-1 text-sm marker:text-purple-400 marker:font-bold">
+                            <li><strong>Idea y Diseño:</strong> Identificación del problema y planos.</li>
+                            <li><strong>Producción:</strong> Extracción de recursos y fabricación.</li>
+                            <li><strong>Distribución:</strong> Logística, transporte y venta.</li>
+                            <li><strong>Uso y Mantenimiento:</strong> Vida útil en manos del consumidor.</li>
+                            <li><strong>Fin de Vida:</strong> Obsolescencia, desecho o reciclaje.</li>
+                        </ol>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="glass-panel rounded-3xl p-6 md:p-8 shadow-xl">
-            <div class="flex items-center gap-3 mb-6 border-b border-slate-700 pb-4">
-                <span class="bg-purple-600 text-white px-3 py-1 text-xs font-bold rounded-full shadow-lg">💻 INTERACTUAR EN EL PC</span>
-                <h2 class="text-2xl font-bold text-slate-100">Data Lab: Análisis de Impacto y Ciclo</h2>
+        <section class="glass-card rounded-3xl p-8 relative">
+            <div class="absolute top-0 left-0 w-2 h-full bg-purple-500"></div>
+            <div class="mb-6 flex justify-between items-center">
+                <h2 class="text-2xl font-bold text-white flex items-center gap-3">
+                    <i class="fa-solid fa-chart-line text-purple-400"></i> Laboratorio de Datos: Impacto Ambiental
+                </h2>
+                <span class="bg-purple-500/20 text-purple-300 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider border border-purple-500/30">
+                    💻 INTERACTUAR EN EL PC
+                </span>
             </div>
 
-            <p class="text-sm text-slate-300 mb-6">Explora las 5 etapas del ciclo de vida de un dispositivo móvil genérico. Haz clic en cada fase de la línea de tiempo y observa cómo cambia el gráfico del impacto ambiental.</p>
+            <p class="text-slate-300 text-sm mb-6">
+                Analiza cómo se distribuye el <strong>Impacto Ambiental (Residuos y Energía)</strong> en las 5 etapas del ciclo de vida. Interactúa con los botones para comparar un modelo tradicional (Lineal) contra un modelo sostenible (Circular).
+            </p>
 
-            <div class="grid lg:grid-cols-3 gap-8 items-center">
-                <div class="col-span-2 relative">
-                    <div class="absolute left-4 md:left-1/2 top-0 bottom-0 w-1 bg-slate-700 transform md:-translate-x-1/2 rounded-full z-0"></div>
-                    
-                    <div class="space-y-6 relative z-10" id="timeline-container">
+            <div class="flex justify-center gap-4 mb-6">
+                <button onclick="updateChart('lineal')" class="px-5 py-2 rounded-lg bg-red-500/20 text-red-300 border border-red-500/50 hover:bg-red-500/40 transition-all font-semibold">
+                    <i class="fa-solid fa-arrow-trend-down mr-2"></i> Economía Lineal (Usar y tirar)
+                </button>
+                <button onclick="updateChart('circular')" class="px-5 py-2 rounded-lg bg-emerald-500/20 text-emerald-300 border border-emerald-500/50 hover:bg-emerald-500/40 transition-all font-semibold">
+                    <i class="fa-solid fa-recycle mr-2"></i> Economía Circular (Reciclar)
+                </button>
+            </div>
+
+            <div id="chartContainer" class="w-full bg-slate-900/50 rounded-xl p-4 border border-slate-700 h-80 flex items-center justify-center">
+                <canvas id="impactChart"></canvas>
+            </div>
+        </section>
+
+        <section class="glass-card rounded-3xl p-8 relative">
+            <div class="absolute top-0 left-0 w-2 h-full bg-emerald-500"></div>
+            <div class="mb-6 flex justify-between items-center">
+                <h2 class="text-2xl font-bold text-white flex items-center gap-3">
+                    <i class="fa-solid fa-microchip text-emerald-400"></i> Reto en Sala con IA
+                </h2>
+                <span class="bg-emerald-500/20 text-emerald-300 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider border border-emerald-500/30">
+                    🖥️ TRABAJO EN LA SALA
+                </span>
+            </div>
+
+            <div class="bg-slate-800/60 rounded-xl p-6 border border-slate-700">
+                <h3 class="text-lg font-bold text-emerald-400 mb-4">Caso de Estudio: El Lápiz de Madera</h3>
+                <p class="text-slate-300 text-sm mb-4">Para entender el ciclo de vida aplicado al mundo real, vamos a utilizar Inteligencia Artificial como asistente de investigación.</p>
+                
+                <ol class="space-y-4 text-slate-200">
+                    <li class="flex items-start gap-3">
+                        <div class="bg-emerald-500/20 text-emerald-400 w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 font-bold">1</div>
+                        <p class="mt-1">Abre tu buscador y accede a una IA conversacional (como Gemini, ChatGPT o Copilot).</p>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <div class="bg-emerald-500/20 text-emerald-400 w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 font-bold">2</div>
+                        <div class="mt-1">
+                            <p>Escribe el siguiente prompt (instrucción) en la IA:</p>
+                            <code class="block mt-2 bg-black/50 text-emerald-300 p-3 rounded-lg text-sm font-mono border border-emerald-500/30 shadow-inner">
+                                "Actúa como profesor de tecnología y créame una línea de tiempo resumida con las 5 etapas del ciclo de vida de un lápiz de madera clásico."
+                            </code>
                         </div>
-                </div>
-
-                <div class="col-span-1 glass-panel p-4 rounded-2xl h-full flex flex-col justify-center">
-                    <h3 class="text-center text-sm font-bold text-slate-300 mb-2">Impacto Ambiental (Emisiones CO2)</h3>
-                    <div class="relative w-full aspect-square">
-                        <canvas id="impactChart"></canvas>
-                    </div>
-                    <p id="chart-description" class="text-xs text-center mt-4 text-purple-300 h-10 italic">Selecciona una etapa para ver su impacto.</p>
-                </div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <div class="bg-emerald-500/20 text-emerald-400 w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 font-bold">3</div>
+                        <p class="mt-1">Lee la respuesta generada por la IA y <strong>escribe las 5 etapas en tu cuaderno</strong> (Diseño, Producción, Distribución, Uso, Fin). Analiza cómo un objeto tan simple requiere procesos tan complejos.</p>
+                    </li>
+                </ol>
             </div>
         </section>
 
-        <section class="glass-panel rounded-3xl p-6 md:p-8 shadow-xl relative overflow-hidden">
-            <div class="absolute -right-10 -top-10 text-emerald-500/10">
-                <svg class="w-48 h-48" fill="currentColor" viewBox="0 0 20 20"><path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"></path></svg>
+        <section class="glass-card rounded-3xl p-8">
+            <div class="text-center mb-8">
+                <h2 class="text-2xl font-bold text-white mb-2">Comprueba tu Aprendizaje</h2>
+                <p class="text-slate-400 text-sm">Responde las preguntas para verificar qué tanto has comprendido.</p>
             </div>
 
-            <div class="flex items-center gap-3 mb-6 border-b border-slate-700 pb-4 relative z-10">
-                <span class="bg-emerald-600 text-white px-3 py-1 text-xs font-bold rounded-full shadow-lg">🖥️ TRABAJO EN LA SALA</span>
-                <h2 class="text-2xl font-bold text-slate-100">Reto Tecnológico: El Lápiz de Madera</h2>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-6 relative z-10">
-                <div class="space-y-4">
-                    <p class="text-sm text-slate-300">Sigue estos pasos en tu estación de trabajo:</p>
-                    <ol class="space-y-3">
-                        <li class="flex items-start gap-3 bg-slate-800/50 p-3 rounded-lg border border-slate-700">
-                            <span class="bg-emerald-500 text-slate-900 font-bold w-6 h-6 rounded-full flex items-center justify-center shrink-0">1</span>
-                            <span class="text-sm text-slate-200">Abre una herramienta de Inteligencia Artificial (ej. ChatGPT, Gemini, Claude).</span>
-                        </li>
-                        <li class="flex items-start gap-3 bg-slate-800/50 p-3 rounded-lg border border-slate-700">
-                            <span class="bg-emerald-500 text-slate-900 font-bold w-6 h-6 rounded-full flex items-center justify-center shrink-0">2</span>
-                            <span class="text-sm text-slate-200">Escribe el siguiente prompt: <em>"Crea una línea de tiempo del ciclo de vida de un lápiz de madera, paso a paso."</em></span>
-                        </li>
-                        <li class="flex items-start gap-3 bg-slate-800/50 p-3 rounded-lg border border-slate-700">
-                            <span class="bg-emerald-500 text-slate-900 font-bold w-6 h-6 rounded-full flex items-center justify-center shrink-0">3</span>
-                            <span class="text-sm text-slate-200">Analiza la respuesta y <strong>transcribe</strong> la siguiente estructura a tu cuaderno.</span>
-                        </li>
-                    </ol>
+            <div id="quiz-container" class="space-y-6 max-w-2xl mx-auto">
                 </div>
-                
-                <div class="bg-slate-900 p-5 rounded-2xl border border-slate-600 shadow-inner">
-                    <h4 class="text-emerald-400 font-bold mb-3 text-sm">Contenido a transcribir al cuaderno:</h4>
-                    <ul class="space-y-3 text-sm text-slate-300 font-mono">
-                        <li><strong class="text-white">1. Diseño:</strong> Alguien decide el tamaño y color.</li>
-                        <li><strong class="text-white">2. Producción:</strong> Se corta el árbol y se pone el grafito.</li>
-                        <li><strong class="text-white">3. Distribución:</strong> Llega a la papelería del colegio.</li>
-                        <li><strong class="text-white">4. Uso:</strong> Escribes tus tareas hasta que se acaba.</li>
-                        <li><strong class="text-white">5. Fin:</strong> Lo que queda (la viruta y el pedacito final) se bota o se composta.</li>
-                    </ul>
-                </div>
+            
+            <div id="quiz-result" class="hidden mt-8 text-center bg-purple-600/20 border border-purple-500/50 rounded-xl p-6 transition-all duration-500 scale-95 opacity-0">
+                <h3 class="text-3xl font-bold text-white mb-2">¡Completado!</h3>
+                <p id="score-text" class="text-xl text-purple-300 font-semibold"></p>
             </div>
         </section>
 
-        <section class="glass-panel rounded-3xl p-6 md:p-8 shadow-xl">
-            <h2 class="text-2xl font-bold text-slate-100 mb-6 flex items-center gap-2">
-                🎮 Micro-Quiz de Comprobación
-            </h2>
-            <div id="quiz-container" class="space-y-6">
-                <div class="bg-slate-800/50 p-5 rounded-xl border border-slate-700">
-                    <p class="font-semibold text-slate-200 mb-4">1. ¿Cuál de los siguientes es un producto tecnológico INTANGIBLE (Servicio)?</p>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <button class="quiz-btn w-full text-left p-3 rounded-lg bg-slate-700 hover:bg-slate-600 transition-colors text-sm text-slate-200 border border-transparent" data-correct="false">A) Un pupitre de madera</button>
-                        <button class="quiz-btn w-full text-left p-3 rounded-lg bg-slate-700 hover:bg-slate-600 transition-colors text-sm text-slate-200 border border-transparent" data-correct="true">B) Una aplicación de música</button>
-                        <button class="quiz-btn w-full text-left p-3 rounded-lg bg-slate-700 hover:bg-slate-600 transition-colors text-sm text-slate-200 border border-transparent" data-correct="false">C) Un computador portátil</button>
-                        <button class="quiz-btn w-full text-left p-3 rounded-lg bg-slate-700 hover:bg-slate-600 transition-colors text-sm text-slate-200 border border-transparent" data-correct="false">D) Un tornillo de acero</button>
-                    </div>
+        <div class="grid md:grid-cols-2 gap-6">
+            <section class="glass-card rounded-3xl p-6 border-t-4 border-t-amber-500">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xl font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-magnifying-glass text-amber-400"></i> Consulta
+                    </h2>
+                    <span class="bg-amber-500/20 text-amber-300 text-xs font-bold px-2 py-1 rounded-full border border-amber-500/30">
+                        🔍 INVESTIGACIÓN
+                    </span>
                 </div>
-
-                <div class="bg-slate-800/50 p-5 rounded-xl border border-slate-700">
-                    <p class="font-semibold text-slate-200 mb-4">2. ¿En qué etapa del ciclo de vida se extrae la materia prima?</p>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <button class="quiz-btn w-full text-left p-3 rounded-lg bg-slate-700 hover:bg-slate-600 transition-colors text-sm text-slate-200 border border-transparent" data-correct="false">A) Diseño e Idea</button>
-                        <button class="quiz-btn w-full text-left p-3 rounded-lg bg-slate-700 hover:bg-slate-600 transition-colors text-sm text-slate-200 border border-transparent" data-correct="false">B) Distribución</button>
-                        <button class="quiz-btn w-full text-left p-3 rounded-lg bg-slate-700 hover:bg-slate-600 transition-colors text-sm text-slate-200 border border-transparent" data-correct="true">C) Producción / Fabricación</button>
-                        <button class="quiz-btn w-full text-left p-3 rounded-lg bg-slate-700 hover:bg-slate-600 transition-colors text-sm text-slate-200 border border-transparent" data-correct="false">D) Uso y Mantenimiento</button>
-                    </div>
-                </div>
-            </div>
-            <div class="mt-6 text-center">
-                <button id="reset-quiz" class="hidden bg-slate-700 text-white px-6 py-2 rounded-xl text-sm hover:bg-slate-600 transition-colors">Reintentar Quiz</button>
-            </div>
-        </section>
-
-        <div class="grid md:grid-cols-2 gap-8">
-            <section class="glass-panel rounded-3xl p-6 md:p-8 shadow-xl border-t-4 border-yellow-500">
-                <div class="flex items-center gap-3 mb-4">
-                    <span class="bg-yellow-500 text-slate-900 px-3 py-1 text-xs font-bold rounded-full shadow-lg">🔍 INVESTIGACIÓN</span>
-                </div>
-                <h3 class="text-xl font-bold text-slate-100 mb-2">Para consultar en casa</h3>
-                <p class="text-sm text-slate-300">Busca en Google la respuesta a esta pregunta y escríbela en tu cuaderno (mínimo un párrafo):</p>
-                <div class="bg-slate-900/50 p-4 rounded-xl mt-4 border border-yellow-500/30">
-                    <p class="text-yellow-400 font-semibold text-center italic">"¿Qué es la obsolescencia programada y cómo afecta la última etapa (Fin de Vida) de un celular moderno?"</p>
-                </div>
+                <p class="text-slate-300 text-sm">
+                    Busca en internet y responde en tu cuaderno: <strong>¿Qué es la "Obsolescencia Programada"?</strong> ¿Cómo afecta esto al ciclo de vida de productos como los teléfonos celulares y al medio ambiente?
+                </p>
             </section>
 
-            <section class="glass-panel rounded-3xl p-6 md:p-8 shadow-xl border-t-4 border-rose-500">
-                <div class="flex items-center gap-3 mb-4">
-                    <span class="bg-rose-500 text-white px-3 py-1 text-xs font-bold rounded-full shadow-lg">📄 TAREA EN HOJA SUELTA</span>
+            <section class="glass-card rounded-3xl p-6 border-t-4 border-t-slate-500">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xl font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-file-lines text-slate-400"></i> Entregable
+                    </h2>
+                    <span class="bg-slate-500/20 text-slate-300 text-xs font-bold px-2 py-1 rounded-full border border-slate-500/30">
+                        📄 TAREA EN HOJA SUELTA
+                    </span>
                 </div>
-                <div class="h-full flex flex-col items-center justify-center text-center space-y-4">
-                    <div class="bg-rose-500/20 w-16 h-16 rounded-full flex items-center justify-center">
-                        <svg class="w-8 h-8 text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                    </div>
-                    <p class="text-lg font-bold text-slate-200">No hay tarea de entrega</p>
-                    <p class="text-sm text-slate-400">Asegúrate de tener los apuntes al día en tu cuaderno para la próxima revisión.</p>
+                <div class="flex items-center gap-3 text-slate-300 mt-2 bg-slate-800/50 p-3 rounded-lg">
+                    <i class="fa-solid fa-face-smile-beam text-2xl text-emerald-400"></i>
+                    <p class="text-sm font-semibold">¡No hay tarea de entrega para esta semana! Concéntrate en organizar tus apuntes de clase.</p>
                 </div>
             </section>
         </div>
 
     </main>
 
-    <footer class="max-w-5xl mx-auto mt-12 mb-6">
-        <div class="bg-slate-900 rounded-2xl p-6 text-center shadow-lg border border-slate-800">
-            <p class="text-slate-400 font-medium text-sm tracking-wide">
-                &copy; 2026 | Prof. William Fdo Bernal - Área de Tecnología e Informática
-            </p>
-            <p class="text-slate-600 text-xs mt-2">Colegio Santa Mariana de Jesús - Arquitectura "Bernal-Interactivo" v2.0</p>
-        </div>
+    <footer class="mt-16 w-full bg-slate-900/90 border-t border-slate-800 py-6 text-center backdrop-blur-md relative z-40">
+        <p class="text-slate-400 font-semibold text-sm">
+            &copy; 2026 | Prof. William Fdo Bernal - Área de Tecnología e Informática <br>
+            <span class="text-xs font-light text-slate-500">Colegio Santa Mariana de Jesús</span>
+        </p>
     </footer>
 
     <script>
-        // --- 1. FUNCIÓN OBLIGATORIA: COPIAR ENLACE ---
-        function copiarEnlace() {
+        // 1. LÓGICA COPIAR ENLACE OBLIGATORIA
+        function copiarEnlace(){
             const url = window.location.href;
             navigator.clipboard.writeText(url).then(() => {
                 const t = document.getElementById('toastCopiado');
                 if(t){
                     t.classList.remove('hidden');
-                    setTimeout(()=> t.classList.add('hidden'), 2000);
+                    setTimeout(()=> t.classList.add('hidden'), 2500);
                 } else {
                     alert("Enlace copiado ✅");
                 }
@@ -288,173 +274,175 @@
             });
         }
 
-        // --- 2. DATOS DEL TIMELINE Y GRÁFICO ---
-        const timelineData = [
-            { 
-                id: 1, 
-                title: '1. Diseño e Idea', 
-                desc: 'Ingenieros crean planos y deciden especificaciones.', 
-                color: 'bg-blue-500', 
-                impact: 10,
-                impactDesc: 'Bajo impacto: Uso de energía en computadoras.'
-            },
-            { 
-                id: 2, 
-                title: '2. Producción', 
-                desc: 'Extracción de metales, plásticos y ensamblaje en fábricas.', 
-                color: 'bg-red-500', 
-                impact: 50,
-                impactDesc: 'Alto impacto: Minería pesada y emisiones industriales.'
-            },
-            { 
-                id: 3, 
-                title: '3. Distribución', 
-                desc: 'Transporte en barcos y aviones a nivel mundial.', 
-                color: 'bg-yellow-500', 
-                impact: 20,
-                impactDesc: 'Impacto medio: Quema de combustibles fósiles (transporte).'
-            },
-            { 
-                id: 4, 
-                title: '4. Uso', 
-                desc: 'Consumo de energía al cargar la batería diariamente.', 
-                color: 'bg-emerald-500', 
-                impact: 5,
-                impactDesc: 'Impacto bajo: Consumo eléctrico domiciliario.'
-            },
-            { 
-                id: 5, 
-                title: '5. Fin de Vida', 
-                desc: 'Desecho en vertederos o plantas de reciclaje.', 
-                color: 'bg-purple-500', 
-                impact: 15,
-                impactDesc: 'Impacto variable: Alta toxicidad si no se recicla adecuadamente.'
-            }
-        ];
-
-        // --- 3. INICIALIZAR CHART.JS ---
-        let impactChart;
+        // 2. LÓGICA DE CHART.JS (LABORATORIO DE DATOS)
         const ctx = document.getElementById('impactChart').getContext('2d');
+        Chart.defaults.color = '#cbd5e1';
+        Chart.defaults.font.family = "'Poppins', sans-serif";
         
-        function initChart() {
-            Chart.defaults.color = '#cbd5e1';
-            impactChart = new Chart(ctx, {
-                type: 'doughnut',
-                data: {
-                    labels: timelineData.map(d => d.title),
-                    datasets: [{
-                        data: timelineData.map(d => d.impact),
-                        backgroundColor: ['#3b82f6', '#ef4444', '#eab308', '#10b981', '#a855f7'],
-                        borderWidth: 0,
-                        hoverOffset: 10
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: { display: false },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    return ' Impacto Ambiental: ' + context.raw + '%';
-                                }
-                            }
-                        }
-                    },
-                    animation: {
-                        animateScale: true,
-                        animateRotate: true
+        // Datasets preconfigurados
+        const dataLineal = [10, 80, 40, 20, 100]; // Alto impacto en producción y altísimo desecho al final
+        const dataCircular = [20, 40, 30, 15, 10]; // Más esfuerzo en diseño, bajo impacto final gracias al reciclaje
+
+        let impactChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['1. Diseño', '2. Producción', '3. Distribución', '4. Uso', '5. Fin de Vida'],
+                datasets: [{
+                    label: 'Nivel de Impacto / Desperdicio',
+                    data: dataLineal,
+                    backgroundColor: 'rgba(239, 68, 68, 0.6)',
+                    borderColor: 'rgba(239, 68, 68, 1)',
+                    borderWidth: 2,
+                    borderRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: 'rgba(15, 23, 42, 0.9)',
+                        titleFont: { size: 14 },
+                        bodyFont: { size: 13 },
+                        padding: 10,
+                        borderColor: 'rgba(139, 92, 246, 0.5)',
+                        borderWidth: 1
                     }
-                }
-            });
-        }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                        title: { display: true, text: 'Nivel de Impacto', color: '#94a3b8' }
+                    },
+                    x: {
+                        grid: { display: false }
+                    }
+                },
+                animation: { duration: 800, easing: 'easeInOutQuart' }
+            }
+        });
 
-        // --- 4. RENDERIZAR TIMELINE ---
-        function renderTimeline() {
-            const container = document.getElementById('timeline-container');
-            const chartDesc = document.getElementById('chart-description');
-
-            timelineData.forEach((item, index) => {
-                const isLeft = index % 2 === 0;
-                
-                const html = `
-                    <div class="relative flex items-center justify-between md:justify-normal timeline-node cursor-pointer group" onclick="highlightChart(${index}, '${item.impactDesc}')">
-                        <div class="hidden md:block w-5/12 ${isLeft ? 'text-right pr-8' : 'order-1'}"></div>
-                        
-                        <div class="z-20 flex items-center bg-slate-800 shadow-xl w-8 h-8 rounded-full border-4 border-slate-900 absolute left-4 md:left-1/2 transform -translate-x-1/2 justify-center group-hover:scale-125 transition-transform duration-300">
-                            <div class="${item.color} w-3 h-3 rounded-full"></div>
-                        </div>
-
-                        <div class="w-full pl-12 md:pl-0 md:w-5/12 ${isLeft ? '' : 'order-2 md:pl-8'}">
-                            <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700 shadow-lg group-hover:border-${item.color.split('-')[1]}-500 transition-colors backdrop-blur">
-                                <h3 class="font-bold text-${item.color.split('-')[1]}-400 mb-1">${item.title}</h3>
-                                <p class="text-sm text-slate-300">${item.desc}</p>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                container.insertAdjacentHTML('beforeend', html);
-            });
-        }
-
-        window.highlightChart = function(index, desc) {
-            const chartDesc = document.getElementById('chart-description');
-            chartDesc.innerText = desc;
-            chartDesc.classList.remove('text-purple-300');
-            chartDesc.classList.add('text-white');
-            
-            // Animación simple del gráfico
-            impactChart.setActiveElements([{datasetIndex: 0, index: index}]);
+        function updateChart(modo) {
+            if (modo === 'lineal') {
+                impactChart.data.datasets[0].data = dataLineal;
+                impactChart.data.datasets[0].backgroundColor = 'rgba(239, 68, 68, 0.6)';
+                impactChart.data.datasets[0].borderColor = 'rgba(239, 68, 68, 1)';
+            } else {
+                impactChart.data.datasets[0].data = dataCircular;
+                impactChart.data.datasets[0].backgroundColor = 'rgba(16, 185, 129, 0.6)';
+                impactChart.data.datasets[0].borderColor = 'rgba(16, 185, 129, 1)';
+            }
             impactChart.update();
         }
 
-        // --- 5. LÓGICA DEL QUIZ (Vanilla JS Gamification) ---
-        const quizButtons = document.querySelectorAll('.quiz-btn');
-        const resetBtn = document.getElementById('reset-quiz');
+        // 3. LÓGICA DEL MICRO-QUIZ GAMIFICADO
+        const questions = [
+            {
+                q: "1. ¿Cuál de las siguientes opciones define mejor un 'Producto Tecnológico'?",
+                options: [
+                    "Solamente los aparatos electrónicos que necesitan batería o electricidad.",
+                    "Todo aquello que el ser humano ha creado para resolver un problema o necesidad.",
+                    "Los recursos naturales tal como se extraen del planeta (ej. madera cruda)."
+                ],
+                answer: 1
+            },
+            {
+                q: "2. ¿En qué etapa del ciclo de vida se extraen las materias primas y se fabrica el producto?",
+                options: [
+                    "Uso y Mantenimiento",
+                    "Diseño e Idea",
+                    "Producción"
+                ],
+                answer: 2
+            },
+            {
+                q: "3. Según lo repasado del periodo anterior, ¿Por qué es fundamental el Trabajo en Equipo en la tecnología?",
+                options: [
+                    "Porque un producto complejo requiere los conocimientos de muchas disciplinas diferentes trabajando juntas.",
+                    "Porque permite que los trabajadores tengan más tiempo libre durante el desarrollo.",
+                    "Para que el proceso de distribución sea más rápido en internet."
+                ],
+                answer: 0
+            }
+        ];
 
-        quizButtons.forEach(btn => {
-            btn.addEventListener('click', function() {
-                const isCorrect = this.getAttribute('data-correct') === 'true';
-                const siblings = this.parentElement.querySelectorAll('.quiz-btn');
+        let currentAnswers = new Array(questions.length).fill(null);
+        const quizContainer = document.getElementById('quiz-container');
+
+        function renderQuiz() {
+            questions.forEach((question, qIndex) => {
+                const qDiv = document.createElement('div');
+                qDiv.className = "bg-slate-800/40 p-5 rounded-xl border border-slate-700";
                 
-                // Deshabilitar hermanos
-                siblings.forEach(s => {
-                    s.disabled = true;
-                    s.classList.remove('hover:bg-slate-600');
+                let html = `<h3 class="text-white font-semibold mb-4">${question.q}</h3><div class="space-y-2">`;
+                
+                question.options.forEach((opt, oIndex) => {
+                    html += `
+                        <button onclick="selectOption(${qIndex}, ${oIndex}, this)" 
+                                class="quiz-option w-full text-left px-4 py-3 rounded-lg border border-slate-600 bg-slate-800 text-slate-300 hover:bg-slate-700 focus:outline-none">
+                            ${opt}
+                        </button>
+                    `;
+                });
+                html += `</div>`;
+                qDiv.innerHTML = html;
+                quizContainer.appendChild(qDiv);
+            });
+        }
+
+        function selectOption(qIndex, oIndex, btnElement) {
+            const parent = btnElement.parentElement;
+            const buttons = parent.querySelectorAll('button');
+            
+            // Deshabilitar todos los botones de esta pregunta tras responder
+            buttons.forEach(btn => {
+                btn.disabled = true;
+                btn.classList.add('opacity-70', 'cursor-not-allowed');
+            });
+
+            currentAnswers[qIndex] = oIndex;
+            const isCorrect = oIndex === questions[qIndex].answer;
+
+            if (isCorrect) {
+                btnElement.classList.add('correct', 'font-bold', 'text-emerald-300');
+                btnElement.classList.remove('opacity-70');
+                btnElement.innerHTML += ' <i class="fa-solid fa-circle-check float-right mt-1"></i>';
+            } else {
+                btnElement.classList.add('incorrect', 'text-red-300');
+                btnElement.innerHTML += ' <i class="fa-solid fa-circle-xmark float-right mt-1"></i>';
+                // Mostrar la correcta
+                buttons[questions[qIndex].answer].classList.add('correct');
+                buttons[questions[qIndex].answer].classList.remove('opacity-70');
+            }
+
+            checkCompletion();
+        }
+
+        function checkCompletion() {
+            if (!currentAnswers.includes(null)) {
+                let score = 0;
+                currentAnswers.forEach((ans, idx) => {
+                    if (ans === questions[idx].answer) score++;
                 });
 
-                if (isCorrect) {
-                    this.classList.remove('bg-slate-700');
-                    this.classList.add('bg-emerald-600', 'border-emerald-400', 'scale-105', 'shadow-lg', 'shadow-emerald-500/50');
-                } else {
-                    this.classList.remove('bg-slate-700');
-                    this.classList.add('bg-rose-600', 'border-rose-400', 'animate-pulse');
-                    // Mostrar la correcta
-                    siblings.forEach(s => {
-                        if (s.getAttribute('data-correct') === 'true') {
-                            s.classList.remove('bg-slate-700');
-                            s.classList.add('bg-emerald-600/50', 'border-emerald-400');
-                        }
-                    });
-                }
-                resetBtn.classList.remove('hidden');
-            });
-        });
+                const resultDiv = document.getElementById('quiz-result');
+                const scoreText = document.getElementById('score-text');
+                
+                scoreText.innerHTML = `Has obtenido <strong>${score}</strong> de <strong>${questions.length}</strong> respuestas correctas.`;
+                
+                resultDiv.classList.remove('hidden');
+                setTimeout(() => {
+                    resultDiv.classList.remove('scale-95', 'opacity-0');
+                    resultDiv.classList.add('scale-100', 'opacity-100');
+                }, 50);
+            }
+        }
 
-        resetBtn.addEventListener('click', () => {
-            quizButtons.forEach(btn => {
-                btn.disabled = false;
-                btn.className = "quiz-btn w-full text-left p-3 rounded-lg bg-slate-700 hover:bg-slate-600 transition-colors text-sm text-slate-200 border border-transparent";
-            });
-            resetBtn.classList.add('hidden');
-        });
-
-        // Inicializar componentes al cargar
-        window.addEventListener('DOMContentLoaded', () => {
-            initChart();
-            renderTimeline();
-        });
+        // Iniciar Quiz al cargar
+        renderQuiz();
 
     </script>
 </body>
