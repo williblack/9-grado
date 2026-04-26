@@ -1,1 +1,517 @@
-hola
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ciclo de Vida del Producto | Tecnología 9°</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        /* Tipografía y Base */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+        body { 
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            color: #f8fafc;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Utilidades Glassmorphism */
+        .glass { 
+            background: rgba(255, 255, 255, 0.05); 
+            backdrop-filter: blur(12px); 
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+        }
+        .glass-dark { 
+            background: rgba(15, 23, 42, 0.6); 
+            backdrop-filter: blur(16px); 
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08); 
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Animaciones y Efectos Hover */
+        .card-hover { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .card-hover:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2); 
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        @keyframes fadeInNode {
+            0% { opacity: 0; transform: translateY(10px) scale(0.98); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .animate-node { animation: fadeInNode 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+        .shake-error { animation: shake 0.4s ease-in-out; }
+
+        /* Custom Scrollbar Chrome */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #4f46e5; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #6366f1; }
+    </style>
+</head>
+<body class="antialiased pb-12">
+
+    <div class="max-w-5xl mx-auto flex justify-end gap-3 pt-6 px-4 mb-4 relative z-50">
+      <a href="../../../index.html"
+         class="glass text-white px-4 py-2 rounded-xl shadow hover:scale-105 hover:bg-white/10 transition-all duration-300 text-sm font-semibold flex items-center gap-2">
+         <i class="fas fa-home"></i> Inicio (Grado)
+      </a>
+    
+      <a href="../../index.html"
+         class="bg-purple-600/90 hover:bg-purple-500 text-white px-4 py-2 rounded-xl shadow hover:scale-105 transition-all duration-300 backdrop-blur text-sm font-semibold flex items-center gap-2 border border-purple-400/30">
+         <i class="fas fa-folder-open"></i> Menú del Periodo
+      </a>
+    
+      <button type="button" onclick="copiarEnlace()"
+         class="bg-emerald-600/90 hover:bg-emerald-500 text-white px-4 py-2 rounded-xl shadow hover:scale-105 transition-all duration-300 backdrop-blur text-sm font-semibold flex items-center gap-2 border border-emerald-400/30">
+         <i class="fas fa-link"></i> Copiar enlace
+      </button>
+    </div>
+    
+    <div id="toastCopiado" class="fixed top-6 right-6 hidden bg-slate-900 text-emerald-400 px-6 py-4 rounded-xl shadow-2xl backdrop-blur-md z-50 border border-emerald-500/50 flex items-center gap-3 font-bold transform transition-all">
+      <i class="fas fa-circle-check text-xl"></i> Enlace copiado al portapapeles
+    </div>
+
+    <header class="max-w-5xl mx-auto px-4 mb-16 text-center mt-8">
+        <div class="inline-block mb-4 px-4 py-1 rounded-full bg-blue-900/40 border border-blue-500/30 text-blue-300 font-semibold tracking-wider text-xs md:text-sm shadow-[0_0_15px_rgba(59,130,246,0.2)]">
+            <i class="fas fa-school mr-2"></i>Colegio Santa Mariana de Jesús | Prof. William Fdo Bernal
+        </div>
+        
+        <h1 class="text-5xl md:text-7xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 drop-shadow-lg">
+            El Viaje de las Cosas
+        </h1>
+        <h2 class="text-2xl md:text-3xl text-slate-300 mb-10 font-light">Ciclo de Vida del Producto</h2>
+        
+        <div class="glass-dark inline-block p-6 md:p-8 rounded-3xl max-w-3xl border-t border-l border-blue-400/20 relative overflow-hidden group">
+            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-purple-600 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+            <p class="text-lg md:text-xl leading-relaxed text-slate-200">
+                <span class="text-blue-400 text-2xl mr-2"><i class="fas fa-bullseye"></i></span>
+                <strong>Objetivo:</strong> Generar información estructurada y comprender que la tecnología tiene un inicio y un fin. Analizaremos las etapas de los productos y cómo aplicar IA para procesar datos.
+            </p>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 space-y-12">
+
+        <section class="glass-dark p-8 rounded-[2rem] relative overflow-hidden card-hover border border-slate-700/50">
+            <div class="absolute top-0 right-0 bg-gradient-to-r from-blue-600 to-blue-500 text-white text-[10px] md:text-xs font-bold px-4 py-2 rounded-bl-2xl shadow-lg uppercase tracking-wider">
+                📝 COPIAR AL CUADERNO
+            </div>
+            
+            <h3 class="text-2xl font-bold mb-6 flex items-center gap-3 text-white">
+                <div class="bg-blue-500/20 p-3 rounded-lg"><i class="fas fa-book-open text-blue-400"></i></div> 
+                Conexión y Conceptos Clave
+            </h3>
+            
+            <p class="mb-6 text-slate-300 text-lg leading-relaxed border-l-4 border-blue-500 pl-4 bg-slate-800/30 py-2 rounded-r-lg">
+                En la <strong>semana 1</strong> estudiamos qué es un "Producto Tecnológico". Hoy aprenderemos que estos objetos no aparecen por arte de magia ni duran para siempre. Cumplen un ciclo llamado <strong>"Ciclo de Vida del Producto"</strong>.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+                <div class="bg-slate-800/40 p-5 rounded-2xl border border-slate-700/50 flex flex-col items-center text-center group hover:bg-slate-800/80 transition-colors">
+                    <i class="fas fa-lightbulb text-3xl text-yellow-400 mb-3 group-hover:scale-125 transition-transform"></i>
+                    <h4 class="font-bold text-white mb-1">1. Diseño</h4>
+                    <p class="text-xs text-slate-400">La idea, los planos y selección de materiales.</p>
+                </div>
+                <div class="bg-slate-800/40 p-5 rounded-2xl border border-slate-700/50 flex flex-col items-center text-center group hover:bg-slate-800/80 transition-colors">
+                    <i class="fas fa-industry text-3xl text-orange-400 mb-3 group-hover:scale-125 transition-transform"></i>
+                    <h4 class="font-bold text-white mb-1">2. Producción</h4>
+                    <p class="text-xs text-slate-400">Extracción de recursos y ensamblaje en fábricas.</p>
+                </div>
+                <div class="bg-slate-800/40 p-5 rounded-2xl border border-slate-700/50 flex flex-col items-center text-center group hover:bg-slate-800/80 transition-colors">
+                    <i class="fas fa-truck-fast text-3xl text-cyan-400 mb-3 group-hover:scale-125 transition-transform"></i>
+                    <h4 class="font-bold text-white mb-1">3. Distribución</h4>
+                    <p class="text-xs text-slate-400">Empaque y transporte a tiendas globales.</p>
+                </div>
+                <div class="bg-slate-800/40 p-5 rounded-2xl border border-slate-700/50 flex flex-col items-center text-center group hover:bg-slate-800/80 transition-colors">
+                    <i class="fas fa-user-check text-3xl text-emerald-400 mb-3 group-hover:scale-125 transition-transform"></i>
+                    <h4 class="font-bold text-white mb-1">4. Uso</h4>
+                    <p class="text-xs text-slate-400">El consumidor adquiere y utiliza el producto.</p>
+                </div>
+                <div class="bg-slate-800/40 p-5 rounded-2xl border border-slate-700/50 flex flex-col items-center text-center group hover:bg-slate-800/80 transition-colors">
+                    <i class="fas fa-recycle text-3xl text-green-500 mb-3 group-hover:rotate-180 transition-transform duration-700"></i>
+                    <h4 class="font-bold text-white mb-1">5. Desecho</h4>
+                    <p class="text-xs text-slate-400">Fin de vida útil. Debería terminar en reciclaje.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="glass-dark p-8 rounded-[2rem] relative card-hover border border-slate-700/50">
+            <div class="absolute top-0 right-0 bg-gradient-to-r from-purple-600 to-indigo-500 text-white text-[10px] md:text-xs font-bold px-4 py-2 rounded-bl-2xl shadow-lg uppercase tracking-wider">
+                💻 INTERACTUAR EN EL PC
+            </div>
+            
+            <h3 class="text-2xl font-bold mb-2 flex items-center gap-3 text-white">
+                <div class="bg-purple-500/20 p-3 rounded-lg"><i class="fas fa-microchip text-purple-400"></i></div>
+                Explorador de Nodos: Anatomía de un Smartphone
+            </h3>
+            <p class="text-slate-400 mb-8 ml-14">Haz clic en cada etapa del panel izquierdo para analizar qué sucede internamente con un celular.</p>
+            
+            <div class="flex flex-col md:flex-row gap-6">
+                <div class="flex md:flex-col gap-3 w-full md:w-1/3 overflow-x-auto pb-4 md:pb-0 hide-scrollbar" id="node-controls">
+                    </div>
+                
+                <div class="w-full md:w-2/3 bg-[#0a0f1c] rounded-2xl p-8 border border-slate-700 shadow-[inset_0_0_30px_rgba(0,0,0,0.6)] flex flex-col justify-center min-h-[300px] relative overflow-hidden" id="node-display">
+                    <div class="absolute inset-0 opacity-20 pointer-events-none" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 32px 32px;"></div>
+                    
+                    <div id="node-content" class="text-center relative z-10 w-full">
+                        <i class="fas fa-hand-pointer text-5xl text-slate-600 mb-4 animate-bounce"></i>
+                        <h4 class="text-2xl font-bold text-slate-400">Selecciona una etapa</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="glass-dark p-8 rounded-[2rem] relative card-hover border border-emerald-500/30 shadow-[0_0_20px_rgba(16,185,129,0.1)]">
+            <div class="absolute top-0 right-0 bg-gradient-to-r from-emerald-600 to-teal-500 text-white text-[10px] md:text-xs font-bold px-4 py-2 rounded-bl-2xl shadow-lg uppercase tracking-wider">
+                🖥️ TRABAJO EN LA SALA
+            </div>
+            
+            <h3 class="text-2xl font-bold mb-6 flex items-center gap-3 text-white">
+                <div class="bg-emerald-500/20 p-3 rounded-lg"><i class="fas fa-laptop-code text-emerald-400"></i></div>
+                Actividad: Mi solución con IA y Excel
+            </h3>
+
+            <div class="bg-slate-900/60 p-6 md:p-8 rounded-2xl border border-emerald-500/20 relative">
+                <div class="absolute -top-3 -left-3 bg-emerald-500 text-slate-900 font-black w-8 h-8 rounded-full flex items-center justify-center shadow-lg"><i class="fas fa-bolt"></i></div>
+                
+                <p class="mb-6 text-emerald-100 text-lg"><strong>Objetivo:</strong> Generar información con Inteligencia Artificial y organizarla críticamente en Excel.</p>
+                
+                <div class="space-y-6">
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0 w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center font-bold border border-slate-600 text-emerald-400">1</div>
+                        <div>
+                            <h5 class="text-lg font-bold text-white mb-1">Elige un tema</h5>
+                            <p class="text-slate-400">Deportes, música, videojuegos, animales o el tema de tecnología que prefieras.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0 w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center font-bold border border-slate-600 text-emerald-400">2</div>
+                        <div>
+                            <h5 class="text-lg font-bold text-white mb-1">Pregunta a la IA</h5>
+                            <p class="text-slate-400 mb-2">Abre ChatGPT, Gemini o Copilot y escribe el siguiente prompt (instrucción):</p>
+                            <code class="block bg-[#0a0f1c] text-emerald-300 p-3 rounded-xl font-mono text-sm border border-emerald-500/20 select-all cursor-pointer hover:bg-emerald-900/20 transition-colors">
+                                "Dame 10 datos curiosos y verificables sobre [tu tema]."
+                            </code>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0 w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center font-bold border border-slate-600 text-emerald-400">3</div>
+                        <div>
+                            <h5 class="text-lg font-bold text-white mb-1">Organiza en Excel</h5>
+                            <p class="text-slate-400 mb-2">Crea una tabla con exactamente estas columnas. Luego copia los datos de la IA y evalúalos tú mismo.</p>
+                            <div class="flex flex-wrap gap-2 text-sm">
+                                <span class="bg-blue-900/50 border border-blue-500/50 text-blue-200 px-3 py-1 rounded-md">#</span>
+                                <span class="bg-blue-900/50 border border-blue-500/50 text-blue-200 px-3 py-1 rounded-md">Dato</span>
+                                <span class="bg-blue-900/50 border border-blue-500/50 text-blue-200 px-3 py-1 rounded-md">Categoría</span>
+                                <span class="bg-blue-900/50 border border-blue-500/50 text-blue-200 px-3 py-1 rounded-md">¿Lo sabías? (Sí/No)</span>
+                                <span class="bg-blue-900/50 border border-blue-500/50 text-blue-200 px-3 py-1 rounded-md">Puntuación (1-5)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0 w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center font-bold border border-slate-600 text-emerald-400">4</div>
+                        <div>
+                            <h5 class="text-lg font-bold text-white mb-1">Visualiza</h5>
+                            <p class="text-slate-400">Selecciona la tabla completa en Excel ➡️ Haz clic en <strong>Formato como tabla</strong> ➡️ <strong>Insertar > Gráfico de barras</strong> basado en las puntuaciones.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 bg-orange-950/40 border-l-4 border-orange-500 p-5 rounded-r-xl">
+                    <h5 class="text-orange-400 font-bold flex items-center gap-2 mb-2">
+                        <i class="fas fa-triangle-exclamation"></i> REGLA DE ORO Y ENTREGA
+                    </h5>
+                    <p class="text-slate-300 text-sm mb-3">La IA a veces sufre de "alucinaciones" (inventa cosas). <strong>Verifica al menos 2 datos en Google</strong> antes de finalizar.</p>
+                    <div class="bg-black/50 p-3 rounded-lg text-sm text-slate-300 font-mono">
+                        Nomenclatura de guardado:<br>
+                        <span class="text-emerald-400 font-bold block mt-1">9_ElViajeDeLasCosas_DDMMAA_NombreApellido.xlsx</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <section class="glass-dark p-8 rounded-[2rem] relative card-hover border border-orange-500/30">
+                <div class="absolute top-0 right-0 bg-gradient-to-r from-orange-500 to-amber-500 text-white text-[10px] md:text-xs font-bold px-4 py-2 rounded-bl-2xl shadow-lg uppercase tracking-wider">
+                    🔍 INVESTIGACIÓN
+                </div>
+                <h3 class="text-xl font-bold mb-4 flex items-center gap-3 text-white mt-2">
+                    <div class="bg-orange-500/20 p-2 rounded-lg"><i class="fab fa-google text-orange-400"></i></div>
+                    Búsqueda Crítica Web
+                </h3>
+                <p class="text-slate-300 mb-4 text-sm">Abre una nueva pestaña en Google Chrome e investiga sobre un concepto oculto en el diseño de tecnología moderna:</p>
+                <div class="bg-[#0a0f1c] p-5 rounded-xl border border-orange-500/20">
+                    <p class="text-orange-300 font-semibold italic text-lg text-center">"¿Qué es la obsolescencia programada y cómo afecta al ciclo de vida de los dispositivos electrónicos?"</p>
+                </div>
+            </section>
+
+            <section class="glass-dark p-8 rounded-[2rem] relative card-hover border border-red-500/30">
+                <div class="absolute top-0 right-0 bg-gradient-to-r from-red-600 to-rose-500 text-white text-[10px] md:text-xs font-bold px-4 py-2 rounded-bl-2xl shadow-lg uppercase tracking-wider">
+                    📄 TAREA EN HOJA SUELTA
+                </div>
+                <h3 class="text-xl font-bold mb-4 flex items-center gap-3 text-white mt-2">
+                    <div class="bg-red-500/20 p-2 rounded-lg"><i class="fas fa-file-pen text-red-400"></i></div>
+                    Entregable Físico
+                </h3>
+                <p class="text-slate-300 text-sm mb-4">Redacta a mano en una hoja un párrafo (mínimo 5 renglones) dando tu <strong>opinión personal</strong> sobre lo que investigaste de la Obsolescencia Programada.</p>
+                
+                <ul class="space-y-3 text-sm text-slate-400 bg-slate-900/50 p-4 rounded-xl border border-slate-700">
+                    <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500"></i> Usa una hoja en blanco limpia o block.</li>
+                    <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500"></i> Marcada: <strong>Nombre, Grado 9° y Fecha</strong>.</li>
+                    <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500"></i> Entrega física al profesor en la siguiente clase.</li>
+                </ul>
+            </section>
+        </div>
+
+        <section class="glass-dark p-8 rounded-[2rem] relative border border-indigo-500/30 shadow-[0_0_20px_rgba(99,102,241,0.1)]">
+            <h3 class="text-2xl font-extrabold mb-8 text-center flex items-center justify-center gap-3 text-white">
+                <i class="fas fa-gamepad text-indigo-400 text-3xl"></i> Micro-Quiz de Cierre
+            </h3>
+            
+            <div id="quiz-container" class="max-w-2xl mx-auto">
+                </div>
+            
+            <div id="quiz-result" class="hidden max-w-2xl mx-auto mt-6 p-6 rounded-2xl font-bold text-xl text-center shadow-lg border"></div>
+        </section>
+
+    </main>
+
+    <footer class="mt-20 bg-[#060b14] py-8 text-center border-t border-slate-800 relative z-10">
+        <p class="text-slate-500 font-semibold tracking-wide flex items-center justify-center gap-2">
+            <i class="fas fa-code"></i> © 2026 | Prof. William Fdo Bernal <span class="mx-2 text-slate-700">|</span> Área de Tecnología e Informática
+        </p>
+    </footer>
+
+    <script>
+        // --- 1. FUNCIÓN OBLIGATORIA: COPIAR ENLACE ---
+        function copiarEnlace() {
+            const url = window.location.href;
+            navigator.clipboard.writeText(url).then(() => {
+                const t = document.getElementById('toastCopiado');
+                if (t) {
+                    t.classList.remove('hidden');
+                    // Add entry animation classes if needed, or rely on tailwind defaults.
+                    setTimeout(() => {
+                        t.classList.add('hidden');
+                    }, 3000);
+                } else {
+                    alert("Enlace copiado ✅");
+                }
+            }).catch(() => {
+                alert("No se pudo copiar automáticamente. Copia el enlace manualmente desde la barra del navegador.");
+            });
+        }
+
+        // --- 2. LÓGICA DEL EXPLORADOR DE NODOS ---
+        const nodesData = [
+            {
+                id: 1,
+                title: "1. Diseño e Ingeniería",
+                icon: "fa-pen-ruler",
+                color: "purple",
+                text: "Ingenieros deciden en laboratorios qué procesador llevará el celular, el tamaño de pantalla (AMOLED/LCD) y la batería. Aquí se genera el modelo 3D y el plano maestro.",
+                fact: "El diseño define el 80% del impacto ambiental que tendrá el producto."
+            },
+            {
+                id: 2,
+                title: "2. Producción y Minería",
+                icon: "fa-industry",
+                color: "orange",
+                text: "Se extraen minerales como Litio, Cobalto y Cobre de las minas. Luego, en grandes fábricas tecnológicas, máquinas robóticas y humanos ensamblan las piezas.",
+                fact: "Un smartphone promedio contiene más de 60 elementos de la tabla periódica."
+            },
+            {
+                id: 3,
+                title: "3. Distribución Global",
+                icon: "fa-ship",
+                color: "cyan",
+                text: "Millones de dispositivos se empacan y suben a barcos cargueros o aviones de carga para cruzar los océanos hasta llegar a las tiendas de tu país.",
+                fact: "Esta etapa genera una enorme 'huella de carbono' debido al combustible quemado."
+            },
+            {
+                id: 4,
+                title: "4. Vida Útil (Uso)",
+                icon: "fa-mobile-screen-button",
+                color: "emerald",
+                text: "Lo compras, descargas apps, tomas fotos y lo cargas a diario. Es la etapa donde el producto cumple su propósito tecnológico.",
+                fact: "La vida promedio de un celular en manos de un usuario es de solo 2 a 3 años."
+            },
+            {
+                id: 5,
+                title: "5. Desecho y/o Reciclaje",
+                icon: "fa-recycle",
+                color: "green",
+                text: "El celular se rompe o queda obsoleto. Si va a la basura, contamina la tierra (E-waste). Si se recicla, sus metales preciosos pueden usarse en un celular nuevo.",
+                fact: "Solo el 20% de la basura electrónica mundial se recicla adecuadamente."
+            }
+        ];
+
+        const controlsContainer = document.getElementById('node-controls');
+        const displayContainer = document.getElementById('node-content');
+        let activeNodeId = null;
+
+        // Render Buttons
+        nodesData.forEach(node => {
+            const btn = document.createElement('button');
+            btn.className = `w-full text-left px-5 py-4 rounded-xl border border-slate-700 bg-slate-800 hover:bg-slate-700 transition-all font-semibold flex items-center justify-between group shadow-sm`;
+            btn.innerHTML = `<span class="text-slate-300 group-hover:text-white transition-colors">${node.title}</span> <i class="fas ${node.icon} text-slate-500 group-hover:text-${node.color}-400 transition-colors text-lg"></i>`;
+            btn.onclick = () => renderNode(node.id, btn);
+            controlsContainer.appendChild(btn);
+        });
+
+        function renderNode(id, clickedBtn) {
+            // Estilos activos
+            document.querySelectorAll('#node-controls button').forEach(b => {
+                b.classList.remove('bg-blue-600/30', 'border-blue-500', 'scale-105');
+                b.classList.add('bg-slate-800', 'border-slate-700');
+            });
+            clickedBtn.classList.remove('bg-slate-800', 'border-slate-700');
+            clickedBtn.classList.add('bg-blue-600/30', 'border-blue-500', 'scale-[1.02]');
+
+            const data = nodesData.find(n => n.id === id);
+            
+            // Inyectar HTML con animación
+            displayContainer.innerHTML = `
+                <div class="animate-node">
+                    <div class="inline-flex items-center justify-center w-24 h-24 rounded-full bg-slate-900 border-4 border-${data.color}-500/30 shadow-[0_0_30px_rgba(0,0,0,0.5)] mb-6 relative">
+                        <i class="fas ${data.icon} text-4xl text-${data.color}-400 drop-shadow-[0_0_10px_currentColor]"></i>
+                    </div>
+                    <h4 class="text-3xl font-black mb-4 text-white">${data.title.split('. ')[1]}</h4>
+                    <p class="text-slate-300 text-lg leading-relaxed mb-6">${data.text}</p>
+                    <div class="bg-black/40 inline-block px-5 py-3 rounded-xl border border-${data.color}-500/20 text-sm">
+                        <span class="text-${data.color}-400 font-bold"><i class="fas fa-bolt mr-1"></i> Dato Curioso:</span> <span class="text-slate-300">${data.fact}</span>
+                    </div>
+                </div>
+            `;
+        }
+
+
+        // --- 3. LÓGICA DEL MICRO-QUIZ GAMIFICADO ---
+        const questions = [
+            {
+                q: "¿Qué sucede en la etapa de 'Diseño' del ciclo de vida?",
+                opts: [
+                    "Se empaca el producto en cajas para venderlo.",
+                    "Se extrae litio y plástico de la tierra.",
+                    "Se planifica cómo será, qué materiales usará y sus funciones."
+                ],
+                correct: 2
+            },
+            {
+                q: "¿Por qué el 'Desecho' de celulares es un problema si no se hace bien?",
+                opts: [
+                    "Porque ocupan mucho espacio en las casas.",
+                    "Porque sus componentes tóxicos contaminan la tierra y el agua (E-waste).",
+                    "Porque las antenas dejan de funcionar."
+                ],
+                correct: 1
+            },
+            {
+                q: "Según la actividad de Excel en la sala, ¿Por qué debemos verificar los datos que nos da la Inteligencia Artificial?",
+                opts: [
+                    "Porque la IA a veces inventa datos que parecen reales (alucinaciones).",
+                    "Porque la IA siempre nos espía.",
+                    "Porque Excel no acepta datos falsos."
+                ],
+                correct: 0
+            }
+        ];
+
+        const quizContainer = document.getElementById('quiz-container');
+        const quizResult = document.getElementById('quiz-result');
+        let currentQuestion = 0;
+        let score = 0;
+
+        function renderQuiz() {
+            if (currentQuestion >= questions.length) {
+                showQuizResults();
+                return;
+            }
+
+            const qData = questions[currentQuestion];
+            let html = `
+                <div class="animate-node">
+                    <p class="text-indigo-400 font-bold mb-2 text-sm uppercase tracking-wider">Pregunta ${currentQuestion + 1} de ${questions.length}</p>
+                    <h4 class="text-xl md:text-2xl font-bold text-white mb-6">${qData.q}</h4>
+                    <div class="space-y-3">
+            `;
+
+            qData.opts.forEach((opt, idx) => {
+                html += `
+                    <button onclick="checkAnswer(${idx}, this)" class="w-full text-left p-4 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-600 transition-all duration-300 text-slate-200">
+                        ${opt}
+                    </button>
+                `;
+            });
+
+            html += `</div></div>`;
+            quizContainer.innerHTML = html;
+        }
+
+        function checkAnswer(selectedIdx, btnElement) {
+            const correctIdx = questions[currentQuestion].correct;
+            const allBtns = quizContainer.querySelectorAll('button');
+            
+            // Deshabilitar botones temporales
+            allBtns.forEach(b => b.disabled = true);
+
+            if (selectedIdx === correctIdx) {
+                btnElement.classList.remove('bg-slate-800', 'border-slate-600');
+                btnElement.classList.add('bg-emerald-600', 'border-emerald-400', 'text-white');
+                score++;
+            } else {
+                btnElement.classList.remove('bg-slate-800');
+                btnElement.classList.add('bg-red-600', 'text-white', 'shake-error');
+                // Mostrar correcta
+                allBtns[correctIdx].classList.remove('bg-slate-800');
+                allBtns[correctIdx].classList.add('border-emerald-500', 'text-emerald-400');
+            }
+
+            setTimeout(() => {
+                currentQuestion++;
+                renderQuiz();
+            }, 1500);
+        }
+
+        function showQuizResults() {
+            quizContainer.classList.add('hidden');
+            quizResult.classList.remove('hidden');
+            
+            if (score === questions.length) {
+                quizResult.classList.add('bg-emerald-900/50', 'border-emerald-500', 'text-emerald-400');
+                quizResult.innerHTML = `<i class="fas fa-trophy text-4xl mb-3 block text-yellow-400"></i> ¡Puntaje Perfecto! (${score}/${questions.length})<br><span class="text-sm font-normal text-slate-300 mt-2 block">Dominas por completo el ciclo de vida.</span>`;
+            } else if (score >= questions.length / 2) {
+                quizResult.classList.add('bg-blue-900/50', 'border-blue-500', 'text-blue-400');
+                quizResult.innerHTML = `¡Buen trabajo! (${score}/${questions.length})<br><span class="text-sm font-normal text-slate-300 mt-2 block">Casi lo logras. Repasa las etapas en el cuaderno.</span>`;
+            } else {
+                quizResult.classList.add('bg-red-900/50', 'border-red-500', 'text-red-400');
+                quizResult.innerHTML = `Necesitas repasar (${score}/${questions.length})<br><span class="text-sm font-normal text-slate-300 mt-2 block">Vuelve a interactuar con el simulador de arriba.</span>`;
+            }
+        }
+
+        // Init
+        renderQuiz();
+
+    </script>
+</body>
+</html>
