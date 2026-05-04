@@ -1,1 +1,464 @@
-hola
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tecnología 9° - Calidad Tecnológica</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; background-color: #f1f5f9; background-image: radial-gradient(#cbd5e1 1px, transparent 1px); background-size: 20px 20px; }
+        .glass-card { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.3); }
+        .flip-card { perspective: 1000px; height: 180px; }
+        .flip-card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.6s; transform-style: preserve-3d; cursor: pointer; }
+        .flip-card:hover .flip-card-inner { transform: rotateY(180deg); }
+        .flip-card-front, .flip-card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 1rem; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 1rem; text-align: center; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+        .flip-card-front { background: linear-gradient(135deg, #6366f1, #8b5cf6); color: white; }
+        .flip-card-back { background: white; color: #1e293b; transform: rotateY(180deg); border: 2px solid #8b5cf6; }
+        .quiz-option { transition: all 0.3s ease; cursor: pointer; }
+        .quiz-option:hover { transform: scale(1.02); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+        .correct-answer { background-color: #10b981 !important; color: white !important; }
+        .wrong-answer { background-color: #ef4444 !important; color: white !important; animation: shake 0.5s; }
+        @keyframes shake { 0% { transform: translateX(0); } 25% { transform: translateX(-5px); } 50% { transform: translateX(5px); } 75% { transform: translateX(-5px); } 100% { transform: translateX(0); } }
+    </style>
+</head>
+<body class="text-slate-800 antialiased p-4 md:p-8">
+
+    <!-- BARRA DE NAVEGACIÓN OBLIGATORIA -->
+    <div class="max-w-5xl mx-auto flex justify-end gap-3 mb-4">
+        <a href="../../../index.html" class="bg-slate-800/70 text-white px-4 py-2 rounded-xl shadow hover:scale-105 transition-all duration-300 backdrop-blur">
+            ⬅ Inicio (Grado)
+        </a>
+        <a href="../../index.html" class="bg-purple-600 text-white px-4 py-2 rounded-xl shadow hover:scale-105 transition-all duration-300">
+            ⬅ Menú del Periodo
+        </a>
+        <button type="button" onclick="copiarEnlace()" class="bg-emerald-600 text-white px-4 py-2 rounded-xl shadow hover:scale-105 transition-all duration-300">
+            🔗 Copiar enlace
+        </button>
+    </div>
+
+    <!-- TOAST DE ENLACE COPIADO -->
+    <div id="toastCopiado" class="fixed top-6 right-6 hidden bg-black/80 text-white px-4 py-3 rounded-xl shadow-lg backdrop-blur z-50 transition-opacity">
+        Enlace copiado ✅
+    </div>
+    
+    <!-- TOAST DE PROMPT COPIADO -->
+    <div id="toastPrompt" class="fixed top-20 right-6 hidden bg-blue-600/90 text-white px-4 py-3 rounded-xl shadow-lg backdrop-blur z-50 transition-opacity">
+        Prompt copiado ✅
+    </div>
+
+    <main class="max-w-5xl mx-auto space-y-8">
+        
+        <!-- SECCIÓN 1: HERO -->
+        <header class="glass-card rounded-3xl p-8 shadow-xl text-center relative overflow-hidden">
+            <div class="absolute -top-10 -left-10 w-40 h-40 bg-purple-400 rounded-full mix-blend-multiply filter blur-2xl opacity-30"></div>
+            <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-indigo-400 rounded-full mix-blend-multiply filter blur-2xl opacity-30"></div>
+            
+            <div class="relative z-10">
+                <h3 class="text-indigo-600 font-bold uppercase tracking-wider text-sm mb-2">Colegio Santa Mariana de Jesús | Área de Tecnología</h3>
+                <h1 class="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-700 to-indigo-600 mb-4">
+                    ¿Por qué un producto es "bueno"?
+                </h1>
+                <h2 class="text-xl font-medium text-slate-600 mb-6">Conceptos y criterios de calidad tecnológica</h2>
+                
+                <div class="inline-block bg-white/60 p-4 rounded-xl border border-indigo-100 shadow-sm text-left">
+                    <p class="text-sm font-semibold text-slate-700">🎯 Objetivo de Aprendizaje:</p>
+                    <p class="text-slate-600">Comprender los 5 criterios universales para evaluar la calidad de cualquier objeto tecnológico y aplicar análisis de datos usando IA y Excel.</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- SECCIÓN: COPIAR AL CUADERNO -->
+        <section class="glass-card rounded-2xl p-6 shadow-lg border-l-8 border-l-blue-500">
+            <div class="mb-4">
+                <span class="bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm shadow-blue-500/50">📝 COPIAR AL CUADERNO</span>
+            </div>
+            <h3 class="text-2xl font-bold mb-3 text-slate-800">1. De "El Viaje de las Cosas" a la Calidad</h3>
+            <p class="text-slate-700 mb-4 leading-relaxed">
+                La semana pasada analizamos <span class="font-semibold text-indigo-600">"El Viaje de las Cosas"</span>, entendiendo cómo se extraen, producen y desechan los objetos. Hoy damos el siguiente paso: <strong>¿Cómo sabemos si el resultado de ese viaje vale la pena?</strong> 
+                No se trata solo de que sea "bonito" o "caro". La calidad tecnológica se evalúa mediante 5 pilares fundamentales.
+            </p>
+            <ul class="space-y-2 list-disc list-inside text-slate-700 font-medium ml-4">
+                <li><span class="text-indigo-700 font-bold">Funcionalidad:</span> ¿Hace eficientemente la tarea para la que fue creado?</li>
+                <li><span class="text-indigo-700 font-bold">Durabilidad:</span> ¿Resiste el uso y el paso del tiempo de forma adecuada?</li>
+                <li><span class="text-indigo-700 font-bold">Seguridad:</span> ¿Protege la integridad física y los datos del usuario?</li>
+                <li><span class="text-indigo-700 font-bold">Presentación:</span> ¿Su diseño (UI/UX), acabados y ergonomía son óptimos?</li>
+                <li><span class="text-indigo-700 font-bold">Utilidad:</span> ¿Realmente resuelve un problema o necesidad real en tu contexto?</li>
+            </ul>
+        </section>
+
+        <!-- SECCIÓN: INTERACTUAR EN EL PC -->
+        <section class="glass-card rounded-2xl p-6 shadow-lg">
+            <div class="mb-6">
+                <span class="bg-indigo-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm shadow-indigo-500/50">💻 INTERACTUAR EN EL PC</span>
+            </div>
+            <h3 class="text-2xl font-bold mb-4 text-slate-800 text-center">Laboratorio de Datos: Radar de Calidad</h3>
+            <p class="text-center text-slate-600 mb-6 text-sm">Selecciona un producto para visualizar su análisis en el gráfico de radar.</p>
+            
+            <div class="flex flex-col md:flex-row gap-8 items-center">
+                <div class="w-full md:w-1/2 flex flex-col gap-3">
+                    <button onclick="updateChart(0)" class="w-full py-3 px-4 rounded-xl font-semibold bg-white border-2 border-indigo-200 hover:border-indigo-500 hover:bg-indigo-50 transition-all text-slate-700 flex justify-between items-center shadow-sm">
+                        <span>🎧 Audífonos "Premium" ($150.000)</span>
+                        <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">Caso A</span>
+                    </button>
+                    <button onclick="updateChart(1)" class="w-full py-3 px-4 rounded-xl font-semibold bg-white border-2 border-indigo-200 hover:border-indigo-500 hover:bg-indigo-50 transition-all text-slate-700 flex justify-between items-center shadow-sm">
+                        <span>📱 Celular "Gama Baja" Antiguo</span>
+                        <span class="text-xs bg-yellow-100 text-yellow-700 px-2 py-1 rounded">Caso B</span>
+                    </button>
+                    <button onclick="updateChart(2)" class="w-full py-3 px-4 rounded-xl font-semibold bg-white border-2 border-indigo-200 hover:border-indigo-500 hover:bg-indigo-50 transition-all text-slate-700 flex justify-between items-center shadow-sm">
+                        <span>🔋 Cargador "Pirata" de la calle</span>
+                        <span class="text-xs bg-red-100 text-red-700 px-2 py-1 rounded">Caso C</span>
+                    </button>
+                    <div id="chartFeedback" class="mt-4 p-4 bg-indigo-50 rounded-xl border border-indigo-100 text-sm text-slate-700 font-medium h-24 flex items-center justify-center text-center">
+                        Haz clic en un producto para ver su análisis de calidad.
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 h-64 md:h-80 relative flex justify-center items-center">
+                    <canvas id="calidadChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Tarjetas Interactivas de Conceptos -->
+            <h3 class="text-xl font-bold mt-12 mb-6 text-slate-800 text-center">Explorador de Criterios (Pasa el ratón)</h3>
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+                <!-- Tarjeta 1 -->
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front"><h4 class="text-xl font-bold">⚙️<br>Funcionalidad</h4></div>
+                        <div class="flip-card-back"><p class="text-sm font-semibold">¿El mouse hace click sin trabarse? ¿La app abre rápido? Esa es su función principal.</p></div>
+                    </div>
+                </div>
+                <!-- Tarjeta 2 -->
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front"><h4 class="text-xl font-bold">⏳<br>Durabilidad</h4></div>
+                        <div class="flip-card-back"><p class="text-sm font-semibold">Si el cable se rompe a la semana, tiene baja durabilidad por malos materiales.</p></div>
+                    </div>
+                </div>
+                <!-- Tarjeta 3 -->
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front"><h4 class="text-xl font-bold">🛡️<br>Seguridad</h4></div>
+                        <div class="flip-card-back"><p class="text-sm font-semibold">Cargadores que se recalientan o apps que roban tus datos = 0 Seguridad.</p></div>
+                    </div>
+                </div>
+                <!-- Tarjeta 4 -->
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front"><h4 class="text-xl font-bold">✨<br>Presentación</h4></div>
+                        <div class="flip-card-back"><p class="text-sm font-semibold">Plásticos agradables al tacto, diseño ergonómico e interfaces intuitivas.</p></div>
+                    </div>
+                </div>
+                <!-- Tarjeta 5 -->
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front"><h4 class="text-xl font-bold">🎯<br>Utilidad</h4></div>
+                        <div class="flip-card-back"><p class="text-sm font-semibold">¿Un pelador de bananos automático? Quizás sea funcional, pero inútil para la mayoría.</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: TRABAJO EN LA SALA -->
+        <section class="glass-card rounded-2xl p-0 shadow-lg border-l-8 border-l-emerald-500 overflow-hidden">
+            <div class="p-6 bg-emerald-50 border-b border-emerald-100">
+                <span class="bg-emerald-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm shadow-emerald-500/50">🖥️ TRABAJO EN LA SALA</span>
+                <h3 class="text-2xl font-bold mt-4 text-emerald-900">Actividad: Control de Calidad con IA + Excel</h3>
+                <div class="flex items-center gap-4 mt-2 text-sm text-emerald-700 font-medium">
+                    <span class="bg-white px-2 py-1 rounded shadow-sm">⏱️ 45 min</span>
+                    <span class="bg-white px-2 py-1 rounded shadow-sm">🎯 Objetivo: Evaluar, Organizar datos, Fórmulas y Validación con IA.</span>
+                </div>
+            </div>
+
+            <div class="p-6 space-y-8">
+                <!-- Paso 1 -->
+                <div class="flex gap-4">
+                    <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 font-bold flex items-center justify-center shrink-0 text-lg">1</div>
+                    <div>
+                        <h4 class="text-lg font-bold text-slate-800">Prepara con IA (5 min)</h4>
+                        <p class="text-slate-600 mb-3">Escoge un objeto de tu mochila (audífonos, calculadora, cargador). Copia este prompt exacto y pégalo en tu IA de preferencia (Gemini, ChatGPT, Claude):</p>
+                        <div class="bg-slate-800 rounded-xl p-4 relative group">
+                            <button onclick="copiarPrompt()" class="absolute top-2 right-2 bg-slate-700 hover:bg-slate-600 text-white p-2 rounded-lg transition-colors" title="Copiar Prompt">
+                                📋 Copiar
+                            </button>
+                            <p id="promptText" class="text-emerald-300 font-mono text-sm pr-10">"Soy estudiante de 9°. Genera los encabezados para una tabla de Excel de control de calidad con estas columnas: Criterio, Puntuación (1-5), Observación. Los criterios son: Funcionalidad, Durabilidad, Seguridad, Presentación, Utilidad. Dame también una fórmula para calcular el promedio y otra con SI para clasificar como 'Alta Calidad' si el promedio es >=4, o 'Baja Calidad' si es menor. Solo dame el texto listo para copiar."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Paso 2 -->
+                <div class="flex gap-4">
+                    <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 font-bold flex items-center justify-center shrink-0 text-lg">2</div>
+                    <div>
+                        <h4 class="text-lg font-bold text-slate-800">Crea la tabla en Excel (10 min)</h4>
+                        <p class="text-slate-600">Abre Excel > Libro nuevo. En la fila 1 escribe: <span class="font-mono bg-slate-100 px-1 rounded">Criterio | Puntuación (1-5) | Observación</span>.<br>En la columna A (filas 2 a 6) escribe los 5 criterios. Evalúa tu objeto del 1 al 5 y anótalo en la columna B. Agrega notas breves en la columna C.</p>
+                    </div>
+                </div>
+
+                <!-- Paso 3 -->
+                <div class="flex gap-4">
+                    <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 font-bold flex items-center justify-center shrink-0 text-lg">3</div>
+                    <div>
+                        <h4 class="text-lg font-bold text-slate-800">Aplica fórmulas y formato (10 min)</h4>
+                        <p class="text-slate-600 mb-2">Debajo de la tabla (ej. fila 8), escribe las siguientes fórmulas en la columna B:</p>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3">
+                            <div class="bg-slate-100 p-2 rounded-lg font-mono text-sm">Puntaje Total:<br><span class="text-purple-700 font-bold">=SUMA(B2:B6)</span></div>
+                            <div class="bg-slate-100 p-2 rounded-lg font-mono text-sm">Promedio:<br><span class="text-blue-700 font-bold">=PROMEDIO(B2:B6)</span></div>
+                            <div class="bg-slate-100 p-2 rounded-lg font-mono text-sm">Clasificación:<br><span class="text-emerald-700 font-bold text-xs">=SI(B9>=4,"Alta Calidad","Baja Calidad")</span></div>
+                        </div>
+                        <p class="text-sm text-slate-600">
+                            <strong>1.</strong> Selecciona B2:B6 > Inicio > Formato condicional > Escalas de color.<br>
+                            <strong>2.</strong> Selecciona A1:C10 > presiona <kbd class="bg-slate-200 px-1 rounded border shadow-sm font-mono text-xs">Ctrl</kbd> + <kbd class="bg-slate-200 px-1 rounded border shadow-sm font-mono text-xs">T</kbd> para convertir en tabla oficial.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Paso 4 -->
+                <div class="flex gap-4">
+                    <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 font-bold flex items-center justify-center shrink-0 text-lg">4</div>
+                    <div>
+                        <h4 class="text-lg font-bold text-slate-800">Valida y Concluye (10 min)</h4>
+                        <p class="text-slate-600">Copia tu promedio y pregúntale a la IA: <em>"Mi objeto obtuvo [TU PUNTAJE]/5 en control de calidad. ¿Qué significa? Dame 2 recomendaciones para mejorar su vida útil."</em><br>En una celda libre escribe tu conclusión: <span class="italic text-slate-500">"Considero que es de [alta/baja] calidad porque... La IA sugiere..."</span></p>
+                    </div>
+                </div>
+
+                <!-- Paso 5 -->
+                <div class="flex gap-4">
+                    <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 font-bold flex items-center justify-center shrink-0 text-lg">5</div>
+                    <div>
+                        <h4 class="text-lg font-bold text-slate-800">Guarda y Entrega (5 min)</h4>
+                        <p class="text-slate-600">Usa <kbd class="bg-slate-200 px-1 rounded border shadow-sm font-mono text-xs">Ctrl</kbd> + <kbd class="bg-slate-200 px-1 rounded border shadow-sm font-mono text-xs">Z</kbd> si necesitas deshacer un error. Guarda el archivo con esta nomenclatura EXACTA:</p>
+                        <p class="font-mono bg-slate-800 text-emerald-400 p-2 rounded-lg mt-2 text-sm">grado_tema_fecha(ddmmaa)_nombre.xlsx <br><span class="text-slate-400 text-xs">Ejemplo: 9_control_calidad_021224_SantiagoMora.xlsx</span></p>
+                    </div>
+                </div>
+
+                <!-- Regla Técnica -->
+                <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-r-lg mt-6">
+                    <h5 class="font-bold text-yellow-800 text-sm uppercase flex items-center gap-2"><span class="text-lg">⚠️</span> Regla Técnica:</h5>
+                    <p class="text-yellow-700 text-sm mt-1">Los datos deben ser honestos y consistentes. <strong>Excel calcula; tú interpretas y decides.</strong><br>
+                    <span class="font-bold text-indigo-700">RETO OPCIONAL:</span> Usa <code class="font-mono bg-white px-1 rounded">=MAX(B2:B6)</code> y <code class="font-mono bg-white px-1 rounded">=MIN(B2:B6)</code> para hallar tu criterio más fuerte y más débil.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: GAMIFICACIÓN (QUIZ) -->
+        <section class="glass-card rounded-2xl p-6 shadow-lg border-l-8 border-l-purple-500">
+            <h3 class="text-2xl font-bold mb-4 text-slate-800 text-center">🎮 Micro-Quiz de Calidad</h3>
+            <div id="quiz-container" class="max-w-2xl mx-auto space-y-4">
+                <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                    <p class="font-semibold text-lg text-slate-800 mb-4" id="question-text">1. Si la batería de tu portátil nuevo se daña al mes de uso, ¿qué criterio de calidad falló principalmente?</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3" id="options-container">
+                        <button onclick="checkAnswer(this, false)" class="quiz-option text-left px-4 py-3 rounded-lg bg-slate-50 border border-slate-200 font-medium text-slate-700">A) Presentación</button>
+                        <button onclick="checkAnswer(this, true)" class="quiz-option text-left px-4 py-3 rounded-lg bg-slate-50 border border-slate-200 font-medium text-slate-700">B) Durabilidad</button>
+                        <button onclick="checkAnswer(this, false)" class="quiz-option text-left px-4 py-3 rounded-lg bg-slate-50 border border-slate-200 font-medium text-slate-700">C) Utilidad</button>
+                        <button onclick="checkAnswer(this, false)" class="quiz-option text-left px-4 py-3 rounded-lg bg-slate-50 border border-slate-200 font-medium text-slate-700">D) Ergonomía</button>
+                    </div>
+                </div>
+                <div id="quiz-feedback" class="hidden text-center p-3 rounded-lg font-bold text-white transition-all"></div>
+            </div>
+        </section>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- SECCIÓN: INVESTIGACIÓN -->
+            <section class="glass-card rounded-2xl p-6 shadow-lg border-l-8 border-l-orange-500">
+                <div class="mb-3">
+                    <span class="bg-orange-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm">🔍 INVESTIGACIÓN</span>
+                </div>
+                <h3 class="text-lg font-bold text-slate-800 mb-2">Para consultar en Google:</h3>
+                <p class="text-slate-700 italic border-l-2 border-orange-300 pl-3">"¿Qué es la obsolescencia programada y cómo afecta la DURABILIDAD de los dispositivos que compramos hoy en día?"</p>
+                <p class="text-xs text-slate-500 mt-2">Anota un resumen de 3 líneas en tu cuaderno.</p>
+            </section>
+
+            <!-- SECCIÓN: TAREA -->
+            <section class="glass-card rounded-2xl p-6 shadow-lg border-l-8 border-l-slate-400">
+                <div class="mb-3">
+                    <span class="bg-slate-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm">📄 TAREA EN HOJA SUELTA</span>
+                </div>
+                <div class="flex items-center justify-center h-full pb-6">
+                    <p class="text-xl font-bold text-slate-400 opacity-70">Esta semana no hay tarea. ¡Descansa! ☕</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="bg-slate-900 text-slate-400 py-6 text-center rounded-2xl mt-8">
+            <p class="font-medium">© 2026 | Prof. William Fdo Bernal - Área de Tecnología e Informática</p>
+            <p class="text-sm mt-1 opacity-70">Colegio Santa Mariana de Jesús</p>
+        </footer>
+
+    </main>
+
+    <script>
+        // FUNCIÓN OBLIGATORIA: Copiar enlace
+        function copiarEnlace(){
+            const url = window.location.href;
+            navigator.clipboard.writeText(url).then(() => {
+                const t = document.getElementById('toastCopiado');
+                if(t){
+                    t.classList.remove('hidden');
+                    setTimeout(()=> t.classList.add('hidden'), 2000);
+                } else {
+                    alert("Enlace copiado ✅");
+                }
+            }).catch(() => {
+                alert("No se pudo copiar automáticamente. Copia el enlace manualmente.");
+            });
+        }
+
+        // Función para copiar el prompt de IA
+        function copiarPrompt() {
+            const text = document.getElementById('promptText').innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                const t = document.getElementById('toastPrompt');
+                t.classList.remove('hidden');
+                setTimeout(()=> t.classList.add('hidden'), 2000);
+            });
+        }
+
+        // LÓGICA DEL RADAR CHART (CHART.JS)
+        let chartInstance = null;
+        
+        const chartDataSets = [
+            {
+                label: '🎧 Audífonos "Premium"',
+                data: [5, 4.5, 5, 5, 4],
+                fill: true,
+                backgroundColor: 'rgba(99, 102, 241, 0.2)',
+                borderColor: 'rgb(99, 102, 241)',
+                pointBackgroundColor: 'rgb(99, 102, 241)',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgb(99, 102, 241)'
+            },
+            {
+                label: '📱 Celular Gama Baja (Lento)',
+                data: [2, 3, 4, 3, 5],
+                fill: true,
+                backgroundColor: 'rgba(234, 179, 8, 0.2)',
+                borderColor: 'rgb(234, 179, 8)',
+                pointBackgroundColor: 'rgb(234, 179, 8)',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgb(234, 179, 8)'
+            },
+            {
+                label: '🔋 Cargador "Pirata"',
+                data: [3, 1, 1, 2, 4],
+                fill: true,
+                backgroundColor: 'rgba(239, 68, 68, 0.2)',
+                borderColor: 'rgb(239, 68, 68)',
+                pointBackgroundColor: 'rgb(239, 68, 68)',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgb(239, 68, 68)'
+            }
+        ];
+
+        const feedbackTexts = [
+            "<strong>Audífonos Premium:</strong> Excelentes materiales y sonido. Cumplen en todo, aunque la 'utilidad' depende de si el usuario realmente necesita sonido profesional.",
+            "<strong>Celular Lento:</strong> Es muy útil y seguro, pero su baja funcionalidad (se traba) y materiales baratos bajan drásticamente su calidad percibida.",
+            "<strong>Cargador Pirata:</strong> Funciona y es útil para una emergencia, pero su pésima seguridad y nula durabilidad lo hacen un producto de MUY baja calidad (y peligroso)."
+        ];
+
+        function initChart() {
+            const ctx = document.getElementById('calidadChart').getContext('2d');
+            chartInstance = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['Funcionalidad', 'Durabilidad', 'Seguridad', 'Presentación', 'Utilidad'],
+                    datasets: [chartDataSets[0]]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: { color: 'rgba(0,0,0,0.1)' },
+                            grid: { color: 'rgba(0,0,0,0.1)' },
+                            pointLabels: { font: { family: 'Poppins', size: 12, weight: '600' }, color: '#475569' },
+                            ticks: { display: false, min: 0, max: 5, stepSize: 1 }
+                        }
+                    },
+                    plugins: { legend: { display: false } }
+                }
+            });
+            document.getElementById('chartFeedback').innerHTML = feedbackTexts[0];
+        }
+
+        function updateChart(index) {
+            chartInstance.data.datasets = [chartDataSets[index]];
+            chartInstance.update();
+            const feedbackBox = document.getElementById('chartFeedback');
+            feedbackBox.style.opacity = 0;
+            setTimeout(() => {
+                feedbackBox.innerHTML = feedbackTexts[index];
+                feedbackBox.style.opacity = 1;
+            }, 300);
+        }
+
+        // LÓGICA DEL QUIZ
+        let quizState = 0;
+        const quizQuestions = [
+            {
+                q: "1. Si la batería de tu portátil nuevo se daña al mes de uso, ¿qué criterio falló?",
+                options: ["A) Presentación", "B) Durabilidad", "C) Utilidad", "D) Seguridad"],
+                ans: 1
+            },
+            {
+                q: "2. Si un software escolar guarda las notas perfectamente pero hackean la base de datos fácilmente, falló la...",
+                options: ["A) Funcionalidad", "B) Presentación", "C) Seguridad", "D) Utilidad"],
+                ans: 2
+            }
+        ];
+
+        function loadQuestion(index) {
+            if(index >= quizQuestions.length){
+                document.getElementById('question-text').innerText = "¡Excelente! Has completado el Micro-Quiz.";
+                document.getElementById('options-container').innerHTML = "<p class='text-center text-emerald-600 font-bold col-span-2'>Puntaje Perfecto. Eres un experto en calidad.</p>";
+                return;
+            }
+            document.getElementById('question-text').innerText = quizQuestions[index].q;
+            const container = document.getElementById('options-container');
+            container.innerHTML = "";
+            quizQuestions[index].options.forEach((opt, i) => {
+                const isCorrect = (i === quizQuestions[index].ans);
+                container.innerHTML += `<button onclick="checkAnswer(this, ${isCorrect})" class="quiz-option text-left px-4 py-3 rounded-lg bg-slate-50 border border-slate-200 font-medium text-slate-700">${opt}</button>`;
+            });
+        }
+
+        function checkAnswer(button, isCorrect) {
+            const feedback = document.getElementById('quiz-feedback');
+            const allButtons = document.querySelectorAll('.quiz-option');
+            
+            allButtons.forEach(btn => btn.disabled = true); // Disable after click
+
+            if (isCorrect) {
+                button.classList.add('correct-answer');
+                feedback.innerHTML = "¡Correcto! 🎯";
+                feedback.className = "mt-4 p-3 rounded-lg font-bold text-white bg-emerald-500 block";
+                setTimeout(() => {
+                    feedback.classList.add('hidden');
+                    quizState++;
+                    loadQuestion(quizState);
+                }, 1500);
+            } else {
+                button.classList.add('wrong-answer');
+                feedback.innerHTML = "Intenta de nuevo... 👀";
+                feedback.className = "mt-4 p-3 rounded-lg font-bold text-white bg-red-500 block";
+                setTimeout(() => {
+                    button.classList.remove('wrong-answer');
+                    allButtons.forEach(btn => btn.disabled = false);
+                    feedback.classList.add('hidden');
+                }, 1000);
+            }
+        }
+
+        // Iniciar
+        window.onload = () => {
+            initChart();
+            loadQuestion(0);
+        };
+    </script>
+</body>
+</html>
