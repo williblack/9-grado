@@ -1,1 +1,416 @@
-hola
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clase: Evaluación de Calidad Tecnológica | Prof. William Fdo Bernal</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            color: #f8fafc;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* Glassmorphism utility */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .badge {
+            @apply inline-block px-3 py-1 text-xs font-bold rounded-full mb-3 uppercase tracking-wider shadow-md;
+        }
+
+        /* Smooth scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #6366f1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #4f46e5; }
+    </style>
+</head>
+<body class="relative pb-10">
+
+    <!-- Orbes de fondo decorativos -->
+    <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-purple-600 rounded-full mix-blend-multiply filter blur-[128px] opacity-50 pointer-events-none"></div>
+    <div class="absolute top-[20%] right-[-5%] w-96 h-96 bg-emerald-600 rounded-full mix-blend-multiply filter blur-[128px] opacity-40 pointer-events-none"></div>
+    <div class="absolute bottom-[-10%] left-[20%] w-[500px] h-[500px] bg-blue-600 rounded-full mix-blend-multiply filter blur-[128px] opacity-40 pointer-events-none"></div>
+
+    <!-- ========================================== -->
+    <!-- BARRA DE BOTONES OBLIGATORIA -->
+    <!-- ========================================== -->
+    <div class="max-w-5xl mx-auto flex justify-end gap-3 mb-4 mt-6 px-4 relative z-50">
+        <a href="../../../index.html"
+           class="bg-slate-800/70 text-white px-4 py-2 rounded-xl shadow hover:scale-105 transition-all duration-300 backdrop-blur border border-white/10 hover:border-white/30 text-sm md:text-base">
+           ⬅ Inicio (Grado)
+        </a>
+
+        <a href="../../index.html"
+           class="bg-purple-600 text-white px-4 py-2 rounded-xl shadow hover:scale-105 hover:bg-purple-500 transition-all duration-300 text-sm md:text-base">
+           ⬅ Menú del Periodo
+        </a>
+
+        <button type="button" onclick="copiarEnlace()"
+           class="bg-emerald-600 text-white px-4 py-2 rounded-xl shadow hover:scale-105 hover:bg-emerald-500 transition-all duration-300 text-sm md:text-base">
+           🔗 Copiar enlace
+        </button>
+    </div>
+
+    <div id="toastCopiado" class="fixed top-6 right-6 z-[100] hidden bg-black/90 text-emerald-400 font-bold px-6 py-3 rounded-xl shadow-2xl backdrop-blur border border-emerald-500/30 transition-all">
+        Enlace copiado ✅
+    </div>
+    <!-- ========================================== -->
+
+    <!-- SECCIÓN 1: HERO -->
+    <header class="max-w-5xl mx-auto px-4 relative z-10 mb-12 mt-4">
+        <div class="glass-card rounded-3xl p-8 md:p-12 text-center border-t-4 border-t-purple-500 relative overflow-hidden">
+            <div class="absolute top-0 right-0 p-4 opacity-20 text-6xl">📊</div>
+            <p class="text-purple-300 font-semibold tracking-widest text-sm uppercase mb-2">Colegio Santa Mariana de Jesús | Grado 9°</p>
+            <h1 class="text-4xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-emerald-400 mb-4 leading-tight">
+                Evaluación de Calidad en Productos Tecnológicos
+            </h1>
+            <p class="text-lg text-slate-300 mb-6">Semana 4 | Área de Tecnología e Informática</p>
+            
+            <div class="inline-block bg-slate-800/80 rounded-xl p-4 border border-slate-600/50 shadow-inner">
+                <p class="text-emerald-300 font-bold mb-1">🎯 Objetivo de Aprendizaje:</p>
+                <p class="text-sm md:text-base text-slate-200">
+                    Aplicar Inteligencia Artificial y funciones de Excel para generar, organizar y analizar bases de datos que evalúen objetivamente la calidad de los dispositivos que nos rodean.
+                </p>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 relative z-10 space-y-8">
+
+        <!-- COPIAR AL CUADERNO -->
+        <section class="glass-card rounded-2xl p-6 md:p-8 hover:shadow-purple-900/20 transition-all duration-300">
+            <span class="badge bg-amber-500/20 text-amber-300 border border-amber-500/50">
+                📝 COPIAR AL CUADERNO
+            </span>
+            <h2 class="text-2xl font-bold mb-4 text-white">Conectando Saberes...</h2>
+            <div class="prose prose-invert max-w-none text-slate-300">
+                <p class="mb-3">
+                    En la <strong>Semana 3</strong> nos preguntamos <em>"¿Por qué un producto es 'bueno'?"</em> y descubrimos que no basta con el diseño visual. Un buen producto equilibra funcionalidad, ergonomía, durabilidad y estética.
+                </p>
+                <p class="mb-3">
+                    Hoy, daremos el salto de la observación manual al <strong>análisis de datos</strong>. Cuando evaluamos tecnología a nivel empresarial o diseñamos soluciones, necesitamos sistematizar la información. Utilizaremos el formato <strong>TSV (Tab-Separated Values)</strong>, un estándar de bases de datos que permite organizar grandes volúmenes de información rápidamente en herramientas como Microsoft Excel, facilitando el uso de funciones lógicas para determinar la calidad de un lote de productos.
+                </p>
+            </div>
+        </section>
+
+        <!-- INTERACTUAR EN EL PC (Data Lab) -->
+        <section class="glass-card rounded-2xl p-6 md:p-8 border-l-4 border-l-emerald-500">
+            <span class="badge bg-emerald-500/20 text-emerald-300 border border-emerald-500/50">
+                💻 INTERACTUAR EN EL PC
+            </span>
+            <div class="flex flex-col md:flex-row justify-between items-center mb-6">
+                <div>
+                    <h2 class="text-2xl font-bold text-white mb-2">Data Lab: Visualizando la Calidad</h2>
+                    <p class="text-sm text-slate-400">Analiza cómo cambia el promedio de calidad según el lote de producción evaluado.</p>
+                </div>
+                <div class="flex gap-2 mt-4 md:mt-0">
+                    <button onclick="updateChart('A')" class="bg-purple-600 hover:bg-purple-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-all">Lote A (Gama Alta)</button>
+                    <button onclick="updateChart('B')" class="bg-rose-600 hover:bg-rose-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-all">Lote B (Gama Baja)</button>
+                </div>
+            </div>
+            
+            <div class="bg-slate-900/50 rounded-xl p-4 border border-slate-700 h-80 relative">
+                <canvas id="calidadChart"></canvas>
+            </div>
+        </section>
+
+        <!-- TRABAJO EN LA SALA -->
+        <section class="glass-card rounded-2xl p-6 md:p-8 relative overflow-hidden">
+            <div class="absolute right-0 top-0 w-32 h-32 bg-blue-500/10 rounded-bl-full pointer-events-none"></div>
+            <span class="badge bg-blue-500/20 text-blue-300 border border-blue-500/50">
+                🖥️ TRABAJO EN LA SALA
+            </span>
+            <h2 class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400 mb-6">
+                Mi Solución con IA + Excel
+            </h2>
+
+            <div class="space-y-6">
+                <!-- Paso 1 -->
+                <div class="group bg-slate-800/40 p-5 rounded-xl border border-slate-700/50 hover:border-blue-500/50 transition-all">
+                    <h3 class="text-xl font-bold text-blue-300 mb-3 flex items-center gap-2">
+                        <span>🤖</span> Paso 1: Genera tu base de datos con IA
+                    </h3>
+                    <p class="text-slate-300 text-sm mb-3">Abre tu asistente de IA generativa (ChatGPT, Gemini, etc.) y pega el siguiente prompt <strong>exacto</strong>:</p>
+                    
+                    <div class="relative">
+                        <div class="bg-black/60 p-4 rounded-lg text-emerald-400 font-mono text-xs md:text-sm leading-relaxed border border-slate-700 shadow-inner">
+                            Genera una tabla en formato TSV (valores separados por tabulación) sobre productos tecnológicos del entorno escolar o familiar para evaluar su calidad. La tabla debe tener exactamente 6 columnas con estos encabezados: ID_Producto, Producto, Categoría, Puntuación_Calidad, Durabilidad_Estimada, Recomendado. Incluye 1 fila de encabezados + EXACTAMENTE 10 filas de datos realistas. ID_Producto: códigos únicos como TEC001, TEC002... Categoría: valores como 'Audífonos', 'Cargador', 'Teclado', 'Mouse', 'Parlante'. Puntuación_Calidad: números enteros del 1 al 10. Durabilidad_Estimada: números en meses (12, 24, 36, etc.). Recomendado: 'Sí' o 'No'. Entrega SOLO la tabla en formato TSV con exactamente 10 filas de datos más 1 fila de encabezados, sin explicaciones, sin markdown, sin código, sin comillas. Usa tabulaciones reales como separador.
+                        </div>
+                        <button onclick="copiarPrompt(this)" class="absolute top-2 right-2 bg-slate-700 hover:bg-slate-600 p-1.5 rounded text-xs text-white transition-all">📋 Copiar</button>
+                    </div>
+                    
+                    <div class="mt-4 text-sm text-slate-300">
+                        <ul class="list-disc pl-5 space-y-1">
+                            <li>Copia el resultado de la IA y pégalo en la <strong>celda A1</strong> de Excel. Los datos se separarán automáticamente.</li>
+                            <li><span class="text-amber-400 font-bold">⚠️ Atención:</span> Verifica que tengas datos hasta la fila 11. Si la IA falla, vuelve a pedir el formato TSV.</li>
+                            <li><span class="text-blue-400 font-bold">💡 Concepto clave:</span> El formato TSV usa tabulaciones invisibles que Excel interpreta como saltos de columna.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Paso 2 -->
+                <div class="group bg-slate-800/40 p-5 rounded-xl border border-slate-700/50 hover:border-purple-500/50 transition-all">
+                    <h3 class="text-xl font-bold text-purple-300 mb-3 flex items-center gap-2">
+                        <span>📊</span> Paso 2: Aplica formato visual profesional
+                    </h3>
+                    <p class="text-slate-300 text-sm mb-2">Selecciona el rango <code class="bg-slate-700 px-1 rounded text-white">A1:F11</code> y aplica lo siguiente:</p>
+                    <ul class="list-none space-y-2 text-sm text-slate-300">
+                        <li class="flex items-start gap-2"><span class="text-purple-400">✅</span> <strong>Fila 1 (Encabezados):</strong> Fondo azul oscuro y fuente blanca en negrita.</li>
+                        <li class="flex items-start gap-2"><span class="text-purple-400">✅</span> <strong>Columna A (ID_Producto):</strong> Fuente tipo 'Consolas' o tipografía técnica, tamaño 9.</li>
+                        <li class="flex items-start gap-2"><span class="text-purple-400">✅</span> <strong>Columna D (Puntuación):</strong> Formato de número sin decimales, alineación centrada.</li>
+                        <li class="flex items-start gap-2"><span class="text-purple-400">✅</span> <strong>Columna F (Recomendado):</strong> Formato Condicional. 'Sí' = Fondo Verde | 'No' = Fondo Rojo.</li>
+                    </ul>
+                </div>
+
+                <!-- Paso 3 -->
+                <div class="group bg-slate-800/40 p-5 rounded-xl border border-slate-700/50 hover:border-emerald-500/50 transition-all">
+                    <h3 class="text-xl font-bold text-emerald-300 mb-3 flex items-center gap-2">
+                        <span>⚙️</span> Paso 3: Analiza con funciones de Excel
+                    </h3>
+                    <p class="text-slate-300 text-sm mb-3">En celdas libres (ej. H2, H3, H4), usa estas fórmulas para extraer inteligencia de tus datos:</p>
+                    
+                    <div class="grid md:grid-cols-3 gap-3 mb-4">
+                        <div class="bg-black/40 p-3 rounded border border-slate-600">
+                            <code class="text-emerald-400 block text-xs mb-1">=PROMEDIO(D2:D11)</code>
+                            <span class="text-xs text-slate-400">Calcula la calidad promedio de todo el lote.</span>
+                        </div>
+                        <div class="bg-black/40 p-3 rounded border border-slate-600">
+                            <code class="text-emerald-400 block text-xs mb-1">=CONTAR.SI(C2:C11;"Audífonos")</code>
+                            <span class="text-xs text-slate-400">Cuenta cuántos productos son de la categoría especificada.</span>
+                        </div>
+                        <div class="bg-black/40 p-3 rounded border border-slate-600">
+                            <code class="text-emerald-400 block text-xs mb-1">=BUSCARV("TEC001";A2:F11;4;FALSO)</code>
+                            <span class="text-xs text-slate-400">Recupera la puntuación exacta del ID TEC001.</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-400 border-l-2 border-amber-500 pl-2">
+                        ⚠️ Si aparece '#¡NOMBRE?' o '#¡VALOR!', revisa tu Excel: algunos equipos usan punto y coma <code class="text-white">(;)</code> y otros coma <code class="text-white">(,)</code> como separador.
+                    </p>
+                </div>
+
+                <!-- Reto Avanzado & Guardado -->
+                <div class="flex flex-col md:flex-row gap-4">
+                    <div class="flex-1 bg-gradient-to-br from-amber-500/10 to-orange-600/10 p-5 rounded-xl border border-amber-500/30">
+                        <h3 class="font-bold text-amber-400 mb-2 flex items-center gap-2"><span>✨</span> Reto Avanzado</h3>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            Crea la columna G: 'Clasificación'. Usa la función lógica: <br>
+                            <code class="text-amber-300 bg-black/40 px-1 rounded block mt-1 mb-2">=SI(D2>=7;"Alta Calidad";"Mejorable")</code>
+                            Arrastra hasta G11. Luego usa <code class="text-amber-300">=CONTAR.SI(...)</code> para saber cuántos son "Alta Calidad".
+                        </p>
+                    </div>
+                    <div class="flex-1 bg-gradient-to-br from-blue-500/10 to-cyan-600/10 p-5 rounded-xl border border-blue-500/30">
+                        <h3 class="font-bold text-cyan-400 mb-2 flex items-center gap-2"><span>💾</span> Guardado Final</h3>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            Nomenclatura obligatoria:<br>
+                            <code class="text-cyan-300 bg-black/40 px-1 rounded block mt-1 mb-2">grado_tema_fecha_nombre.xlsx</code>
+                            <em>Ej: 9_evaluacion_tecnologica_110526_JuanPerez.xlsx</em><br>
+                            Sin espacios ni tildes.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ZONA DE INVESTIGACIÓN Y TAREA (Grid) -->
+        <div class="grid md:grid-cols-2 gap-6">
+            <section class="glass-card rounded-2xl p-6 relative">
+                <span class="badge bg-rose-500/20 text-rose-300 border border-rose-500/50">
+                    🔍 INVESTIGACIÓN
+                </span>
+                <h3 class="text-xl font-bold text-white mb-3">Consulta en la Web</h3>
+                <p class="text-slate-300 text-sm">
+                    Busca en Google y analiza: <br><br>
+                    <strong class="text-rose-400">¿Qué es la "Obsolescencia Programada"?</strong> <br>
+                    ¿Cómo afecta la calidad real de los productos tecnológicos que compramos y qué impacto directo tiene en el medio ambiente mundial?
+                </p>
+            </section>
+
+            <section class="glass-card rounded-2xl p-6 relative border-t-4 border-t-yellow-400">
+                <span class="badge bg-yellow-500/20 text-yellow-300 border border-yellow-500/50 text-black font-extrabold">
+                    📄 TAREA EN HOJA SUELTA
+                </span>
+                <h3 class="text-xl font-bold text-white mb-3">Entregable Físico</h3>
+                <p class="text-slate-300 text-sm">
+                    Debes entregar la investigación de búsqueda (mencionada al lado izquierdo de esta sección) en una hoja de bloc en blanco o tamaño carta.
+                </p>
+                <div class="mt-4 p-3 bg-black/40 rounded border border-yellow-500/30 flex items-center gap-3">
+                    <span class="text-2xl">⚠️</span>
+                    <p class="text-xs text-yellow-200">Obligatorio: Marcar claramente con tu Nombre Completo y Grado en la parte superior.</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- GAMIFICACIÓN -->
+        <section class="glass-card rounded-2xl p-6 md:p-8 text-center">
+            <h2 class="text-2xl font-bold text-white mb-6">🎮 Comprueba tu Aprendizaje</h2>
+            <div id="quiz-container" class="grid md:grid-cols-3 gap-4">
+                <!-- Pregunta 1 -->
+                <div class="quiz-card bg-slate-800/60 p-5 rounded-xl border border-slate-600 cursor-pointer hover:-translate-y-1 transition-all" onclick="checkAnswer(this, true)">
+                    <p class="text-sm font-semibold text-slate-200 mb-3">¿Qué formato utilizamos hoy para que la IA estructurara los datos y Excel los separara en columnas automáticamente?</p>
+                    <div class="text-xs font-bold text-slate-400 mt-auto">Clic para responder: TSV (Valores por Tabulación)</div>
+                </div>
+                <!-- Pregunta 2 -->
+                <div class="quiz-card bg-slate-800/60 p-5 rounded-xl border border-slate-600 cursor-pointer hover:-translate-y-1 transition-all" onclick="checkAnswer(this, false)">
+                    <p class="text-sm font-semibold text-slate-200 mb-3">La función =PROMEDIO() en nuestro reto servía para contar cuántos audífonos había en la lista.</p>
+                    <div class="text-xs font-bold text-slate-400 mt-auto">Clic para responder: Falso (Usa CONTAR.SI)</div>
+                </div>
+                <!-- Pregunta 3 -->
+                <div class="quiz-card bg-slate-800/60 p-5 rounded-xl border border-slate-600 cursor-pointer hover:-translate-y-1 transition-all" onclick="checkAnswer(this, true)">
+                    <p class="text-sm font-semibold text-slate-200 mb-3">¿El Formato Condicional nos permitió colorear automáticamente de verde los productos que decían "Sí" en Recomendado?</p>
+                    <div class="text-xs font-bold text-slate-400 mt-auto">Clic para responder: Verdadero</div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="max-w-5xl mx-auto mt-12 bg-black/80 rounded-t-3xl py-6 text-center border-t border-slate-800 relative z-10 shadow-[0_-10px_40px_rgba(0,0,0,0.5)]">
+        <p class="text-slate-400 text-sm font-medium tracking-wide">
+            © 2026 | Prof. William Fdo Bernal - Área de Tecnología e Informática
+        </p>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script>
+        // JS Obligatorio: Copiar enlace
+        function copiarEnlace(){
+            const url = window.location.href;
+            navigator.clipboard.writeText(url).then(() => {
+                const t = document.getElementById('toastCopiado');
+                if(t){
+                    t.classList.remove('hidden');
+                    t.classList.add('opacity-100', 'translate-y-0');
+                    setTimeout(() => {
+                        t.classList.add('hidden');
+                    }, 2000);
+                } else {
+                    alert("Enlace copiado ✅");
+                }
+            }).catch(() => {
+                alert("No se pudo copiar automáticamente. Copia el enlace manualmente desde la barra del navegador.");
+            });
+        }
+
+        // Utilidad para copiar el prompt
+        function copiarPrompt(btn) {
+            const textToCopy = btn.previousElementSibling.innerText;
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                const originalText = btn.innerText;
+                btn.innerText = "¡Copiado!";
+                btn.classList.replace('bg-slate-700', 'bg-emerald-600');
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                    btn.classList.replace('bg-emerald-600', 'bg-slate-700');
+                }, 2000);
+            });
+        }
+
+        // Lógica de Chart.js
+        const ctx = document.getElementById('calidadChart').getContext('2d');
+        
+        // Datos iniciales (Lote A)
+        const dataA = [9, 8, 9, 7, 8];
+        const colorA = 'rgba(147, 51, 234, 0.8)'; // Purple
+        
+        // Datos alternativos (Lote B)
+        const dataB = [4, 5, 3, 6, 2];
+        const colorB = 'rgba(244, 63, 94, 0.8)'; // Rose
+
+        let chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Audífonos', 'Mouse', 'Teclado', 'Pantalla', 'Cargador'],
+                datasets: [{
+                    label: 'Puntuación de Calidad (1-10)',
+                    data: dataA,
+                    backgroundColor: colorA,
+                    borderRadius: 8,
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                animation: { duration: 800, easing: 'easeOutQuart' },
+                plugins: {
+                    legend: { labels: { color: '#cbd5e1' } },
+                    tooltip: {
+                        backgroundColor: 'rgba(0,0,0,0.8)',
+                        titleColor: '#fff',
+                        bodyColor: '#10b981',
+                        callbacks: {
+                            label: function(context) { return 'Puntuación: ' + context.parsed.y + '/10'; }
+                        }
+                    }
+                },
+                scales: {
+                    y: { 
+                        beginAtZero: true, 
+                        max: 10,
+                        grid: { color: 'rgba(255,255,255,0.1)' },
+                        ticks: { color: '#94a3b8' }
+                    },
+                    x: {
+                        grid: { display: false },
+                        ticks: { color: '#94a3b8' }
+                    }
+                }
+            }
+        });
+
+        function updateChart(lote) {
+            if(lote === 'A') {
+                chart.data.datasets[0].data = dataA;
+                chart.data.datasets[0].backgroundColor = colorA;
+            } else {
+                chart.data.datasets[0].data = dataB;
+                chart.data.datasets[0].backgroundColor = colorB;
+            }
+            chart.update();
+        }
+
+        // Gamificación: Verificación de respuestas
+        function checkAnswer(element, isCorrect) {
+            // Reset styles
+            element.classList.remove('bg-slate-800/60', 'border-slate-600', 'bg-emerald-900/50', 'border-emerald-500', 'bg-rose-900/50', 'border-rose-500');
+            
+            if (isCorrect) {
+                element.classList.add('bg-emerald-900/80', 'border-emerald-500', 'scale-105');
+                element.querySelector('div').innerText = "¡Correcto! ✅";
+                element.querySelector('div').classList.replace('text-slate-400', 'text-emerald-300');
+            } else {
+                element.classList.add('bg-rose-900/80', 'border-rose-500');
+                // Vibration animation effect hack
+                element.style.transform = 'translateX(5px)';
+                setTimeout(() => element.style.transform = 'translateX(-5px)', 50);
+                setTimeout(() => element.style.transform = 'translateX(5px)', 100);
+                setTimeout(() => element.style.transform = 'translateX(0)', 150);
+                
+                element.querySelector('div').innerText = "Correcto para esta afirmación ✅";
+                element.querySelector('div').classList.replace('text-slate-400', 'text-rose-300');
+            }
+        }
+    </script>
+</body>
+</html>
