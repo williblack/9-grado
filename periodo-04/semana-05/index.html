@@ -42,7 +42,7 @@
         }
     </script>
     <style>
-        /* Estilos personalizados y utilidades Glassmorphism */
+        /* Estilos base y Glassmorphism */
         body {
             background: radial-gradient(circle at top left, #1e1b4b, #0f172a, #171717);
             color: #f8fafc;
@@ -68,16 +68,10 @@
         ::-webkit-scrollbar-thumb { background: #6366f1; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #818cf8; }
         
+        /* Celdas del Simulador */
         .grid-cell { transition: all 0.2s ease; cursor: pointer; }
-        .grid-cell:hover { background-color: rgba(99, 102, 241, 0.4); transform: scale(1.05); z-index: 10; }
-        .grid-active { background-color: rgba(168, 85, 247, 0.6) !important; font-weight: bold; border: 2px solid white;}
-        
-        /* Flip Card */
-        .perspective-1000 { perspective: 1000px; }
-        .transform-style-3d { transform-style: preserve-3d; }
-        .backface-hidden { backface-visibility: hidden; }
-        .rotate-y-180 { transform: rotateY(180deg); }
-        .group:hover .group-hover\:rotate-y-180 { transform: rotateY(180deg); }
+        .grid-cell:hover { background-color: rgba(99, 102, 241, 0.4); transform: scale(1.05); z-index: 10; box-shadow: 0 0 10px rgba(99,102,241,0.5); }
+        .grid-active { background-color: rgba(168, 85, 247, 0.8) !important; font-weight: bold; border: 2px solid white; box-shadow: 0 0 15px rgba(168,85,247,0.6); }
     </style>
 </head>
 <body class="p-4 md:p-8 antialiased selection:bg-purple-500 selection:text-white">
@@ -112,7 +106,6 @@
              SECCIÓN 1: HERO
         =========================================== -->
         <header class="glass-panel rounded-3xl p-8 md:p-12 relative overflow-hidden group">
-            <!-- Efecto de luz de fondo -->
             <div class="absolute top-0 right-0 w-64 h-64 bg-indigo-500/20 rounded-full blur-3xl -z-10 group-hover:bg-indigo-500/30 transition-all duration-700"></div>
             <div class="absolute bottom-0 left-0 w-80 h-80 bg-purple-600/20 rounded-full blur-3xl -z-10 group-hover:bg-purple-600/30 transition-all duration-700"></div>
 
@@ -158,7 +151,7 @@
                             Conexión con la clase anterior
                         </h4>
                         <p class="text-slate-300 text-sm">
-                            La semana 4 hablamos de la <strong>Evaluación de Calidad en Productos Tecnológicos</strong>. Para evaluar la calidad o gestionar un sistema tecnológico (como un laboratorio), necesitamos procesar miles de datos. Hoy aprenderemos a usar Excel como nuestro cerebro digital para esta tarea.
+                            La semana 4 hablamos de la <strong>Evaluación de Calidad en Productos Tecnológicos</strong>. Para evaluar la calidad o gestionar un sistema (como un laboratorio), necesitamos procesar miles de datos. Hoy aprenderemos a usar Excel como nuestro cerebro digital.
                         </p>
                     </div>
 
@@ -185,41 +178,53 @@
                     </div>
                 </div>
 
-                <!-- MOD-C: Zona de Analogías (Flip Cards) -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 perspective-1000">
-                    <!-- Tarjeta 1 -->
-                    <div class="group h-40 w-full cursor-pointer transform-style-3d transition-all duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-br from-blue-600/80 to-indigo-800/80 rounded-xl border border-white/10 p-4 flex flex-col justify-center items-center backface-hidden shadow-lg">
-                            <span class="text-4xl mb-2">🏛️</span>
-                            <h3 class="font-bold text-white">Las Columnas</h3>
-                            <p class="text-xs text-blue-200 mt-1">(Pasa el ratón)</p>
-                        </div>
-                        <div class="absolute inset-0 bg-indigo-900 rounded-xl border border-indigo-400 p-4 flex flex-col justify-center items-center backface-hidden rotate-y-180 shadow-lg text-center">
-                            <p class="text-sm text-white">Son como los pilares que sostienen un edificio. Van de arriba hacia abajo y se llaman A, B, C...</p>
-                        </div>
-                    </div>
-                    <!-- Tarjeta 2 -->
-                    <div class="group h-40 w-full cursor-pointer transform-style-3d transition-all duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-br from-emerald-600/80 to-teal-800/80 rounded-xl border border-white/10 p-4 flex flex-col justify-center items-center backface-hidden shadow-lg">
-                            <span class="text-4xl mb-2">🪑</span>
-                            <h3 class="font-bold text-white">Las Filas</h3>
-                            <p class="text-xs text-emerald-200 mt-1">(Pasa el ratón)</p>
-                        </div>
-                        <div class="absolute inset-0 bg-teal-900 rounded-xl border border-teal-400 p-4 flex flex-col justify-center items-center backface-hidden rotate-y-180 shadow-lg text-center">
-                            <p class="text-sm text-white">Son como las filas de sillas en el cine. Van de izquierda a derecha y se llaman 1, 2, 3...</p>
+                <!-- MOD-C: Zona de Analogías (Flip Cards Corregidas con Tailwind puro) -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    
+                    <!-- Tarjeta 1 (Columnas) -->
+                    <div class="group h-40 w-full perspective-[1000px] cursor-pointer">
+                        <div class="relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] rounded-xl shadow-lg">
+                            <!-- Cara Frontal -->
+                            <div class="absolute inset-0 bg-gradient-to-br from-blue-600/80 to-indigo-800/80 rounded-xl border border-white/20 p-4 flex flex-col justify-center items-center [backface-visibility:hidden]">
+                                <span class="text-4xl mb-2">🏛️</span>
+                                <h3 class="font-bold text-white">Las Columnas</h3>
+                                <p class="text-xs text-blue-200 mt-1 animate-pulse">Pasa el ratón 👆</p>
+                            </div>
+                            <!-- Cara Trasera -->
+                            <div class="absolute inset-0 bg-indigo-900 rounded-xl border border-indigo-400 p-4 flex flex-col justify-center items-center [backface-visibility:hidden] [transform:rotateY(180deg)] text-center">
+                                <p class="text-sm text-white font-medium">Son como los pilares que sostienen un edificio. Van de arriba hacia abajo y se llaman A, B, C...</p>
+                            </div>
                         </div>
                     </div>
-                    <!-- Tarjeta 3 -->
-                    <div class="group h-40 w-full cursor-pointer transform-style-3d transition-all duration-500 sm:col-span-2">
-                        <div class="absolute inset-0 bg-gradient-to-br from-purple-600/80 to-pink-800/80 rounded-xl border border-white/10 p-4 flex flex-col justify-center items-center backface-hidden shadow-lg">
-                            <span class="text-4xl mb-2">📦</span>
-                            <h3 class="font-bold text-white">La Celda</h3>
-                            <p class="text-xs text-purple-200 mt-1">(Pasa el ratón)</p>
-                        </div>
-                        <div class="absolute inset-0 bg-purple-900 rounded-xl border border-purple-400 p-4 flex flex-col justify-center items-center backface-hidden rotate-y-180 shadow-lg text-center">
-                            <p class="text-sm text-white">Es la cajita individual. Si la Columna B se cruza con la Fila 5, esa cajita mágica se llama <strong>B5</strong>.</p>
+
+                    <!-- Tarjeta 2 (Filas) -->
+                    <div class="group h-40 w-full perspective-[1000px] cursor-pointer">
+                        <div class="relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] rounded-xl shadow-lg">
+                            <div class="absolute inset-0 bg-gradient-to-br from-emerald-600/80 to-teal-800/80 rounded-xl border border-white/20 p-4 flex flex-col justify-center items-center [backface-visibility:hidden]">
+                                <span class="text-4xl mb-2">🪑</span>
+                                <h3 class="font-bold text-white">Las Filas</h3>
+                                <p class="text-xs text-emerald-200 mt-1 animate-pulse">Pasa el ratón 👆</p>
+                            </div>
+                            <div class="absolute inset-0 bg-teal-900 rounded-xl border border-teal-400 p-4 flex flex-col justify-center items-center [backface-visibility:hidden] [transform:rotateY(180deg)] text-center">
+                                <p class="text-sm text-white font-medium">Son como las filas de sillas en el cine. Van de izquierda a derecha y se llaman 1, 2, 3...</p>
+                            </div>
                         </div>
                     </div>
+
+                    <!-- Tarjeta 3 (Celdas) -->
+                    <div class="group h-40 w-full sm:col-span-2 perspective-[1000px] cursor-pointer">
+                        <div class="relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] rounded-xl shadow-lg">
+                            <div class="absolute inset-0 bg-gradient-to-br from-purple-600/80 to-pink-800/80 rounded-xl border border-white/20 p-4 flex flex-col justify-center items-center [backface-visibility:hidden]">
+                                <span class="text-4xl mb-2">📦</span>
+                                <h3 class="font-bold text-white">La Celda</h3>
+                                <p class="text-xs text-purple-200 mt-1 animate-pulse">Pasa el ratón 👆</p>
+                            </div>
+                            <div class="absolute inset-0 bg-purple-900 rounded-xl border border-purple-400 p-4 flex flex-col justify-center items-center [backface-visibility:hidden] [transform:rotateY(180deg)] text-center">
+                                <p class="text-sm text-white font-medium">Es la cajita individual. Si la Columna B se cruza con la Fila 5, esa cajita mágica se llama <strong class="text-pink-300 text-lg">B5</strong>.</p>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
@@ -234,23 +239,23 @@
 
             <div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
                 
-                <!-- MOD-A: Simulador Conceptual (Grilla Excel) -->
+                <!-- MOD-A: Simulador Conceptual (Grilla Excel Mejorada) -->
                 <div class="glass-panel rounded-3xl p-6 relative overflow-hidden flex flex-col">
                     <h3 class="text-xl font-bold text-white mb-2 flex items-center gap-2">
                         <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
-                        Simulador: Radar de Celdas
+                        Simulador: Radar de Celdas interactivo
                     </h3>
-                    <p class="text-sm text-slate-400 mb-4">Haz clic en cualquier celda para identificar sus coordenadas.</p>
+                    <p class="text-sm text-slate-400 mb-4">Pasa el ratón por encima para ver cómo se cruzan las coordenadas. Haz clic en cualquier celda para seleccionarla.</p>
                     
-                    <div class="bg-white/5 p-2 rounded-xl border border-white/10 flex-grow">
+                    <div class="bg-white/5 p-2 rounded-xl border border-white/10 flex-grow relative">
                         <table class="w-full text-center text-sm" id="excelSimulator">
                             <thead>
                                 <tr class="bg-slate-800 text-slate-300">
-                                    <th class="p-2 border border-slate-700 rounded-tl-lg"></th>
-                                    <th class="p-2 border border-slate-700">A</th>
-                                    <th class="p-2 border border-slate-700">B</th>
-                                    <th class="p-2 border border-slate-700">C</th>
-                                    <th class="p-2 border border-slate-700 rounded-tr-lg">D</th>
+                                    <th class="p-2 border border-slate-700 rounded-tl-lg bg-slate-900"></th>
+                                    <th class="p-2 border border-slate-700 transition-colors duration-200" id="col-A">A</th>
+                                    <th class="p-2 border border-slate-700 transition-colors duration-200" id="col-B">B</th>
+                                    <th class="p-2 border border-slate-700 transition-colors duration-200" id="col-C">C</th>
+                                    <th class="p-2 border border-slate-700 transition-colors duration-200 rounded-tr-lg" id="col-D">D</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -259,9 +264,9 @@
                         </table>
                     </div>
                     
-                    <div class="mt-4 glass-panel-dark p-4 rounded-xl text-center">
-                        <p class="text-slate-400 text-sm mb-1">Coordenada Actual:</p>
-                        <div id="activeCellDisplay" class="text-3xl font-mono font-bold text-emerald-400 animate-pulse">Ninguna</div>
+                    <div class="mt-4 glass-panel-dark p-4 rounded-xl text-center border border-indigo-500/30">
+                        <p class="text-slate-400 text-sm mb-1 uppercase tracking-widest">Celda Seleccionada:</p>
+                        <div id="activeCellDisplay" class="text-4xl font-mono font-bold text-emerald-400 drop-shadow-[0_0_8px_rgba(52,211,153,0.8)]">--</div>
                     </div>
                 </div>
 
@@ -271,13 +276,13 @@
                         <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
                         Dashboard: Inventario de Laboratorio
                     </h3>
-                    <p class="text-sm text-slate-400 mb-4">Así se verán tus datos cuando apliques fórmulas en el reto. Haz clic en las categorías.</p>
+                    <p class="text-sm text-slate-400 mb-4">Así se verán tus datos cuando apliques fórmulas en el reto. Filtra por categoría interactuando abajo.</p>
                     
                     <div class="flex gap-2 mb-4 justify-center">
-                        <button onclick="updateChart('all')" class="bg-slate-700 hover:bg-slate-600 text-white text-xs px-3 py-1.5 rounded-lg transition-colors">Todos</button>
-                        <button onclick="updateChart('Física')" class="bg-blue-600 hover:bg-blue-500 text-white text-xs px-3 py-1.5 rounded-lg transition-colors">Física</button>
-                        <button onclick="updateChart('Química')" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs px-3 py-1.5 rounded-lg transition-colors">Química</button>
-                        <button onclick="updateChart('Biología')" class="bg-purple-600 hover:bg-purple-500 text-white text-xs px-3 py-1.5 rounded-lg transition-colors">Biología</button>
+                        <button onclick="updateChart('all')" class="bg-slate-700 hover:bg-slate-600 text-white text-xs px-3 py-1.5 rounded-lg transition-colors focus:ring-2 ring-white">Todos</button>
+                        <button onclick="updateChart('Física')" class="bg-blue-600 hover:bg-blue-500 text-white text-xs px-3 py-1.5 rounded-lg transition-colors focus:ring-2 ring-white">Física</button>
+                        <button onclick="updateChart('Química')" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs px-3 py-1.5 rounded-lg transition-colors focus:ring-2 ring-white">Química</button>
+                        <button onclick="updateChart('Biología')" class="bg-purple-600 hover:bg-purple-500 text-white text-xs px-3 py-1.5 rounded-lg transition-colors focus:ring-2 ring-white">Biología</button>
                     </div>
 
                     <div class="relative h-48 w-full bg-white/5 rounded-xl border border-white/10 p-2">
@@ -309,12 +314,12 @@
                         <p class="text-sm text-slate-300 mb-3">Abre tu IA (ChatGPT, Gemini) y cópiale este prompt exacto. Pega el resultado en la celda A1 de Excel.</p>
                         
                         <div class="relative bg-black/60 rounded border border-slate-700 p-3">
-                            <p id="aiPromptText" class="text-xs font-mono text-emerald-200 select-all overflow-y-auto max-h-32 pr-6">Genera una tabla de inventario de materiales de laboratorio escolar con exactamente 5 columnas: Código, Material, Categoría, Cantidad, PrecioUnit_COP. La columna Código debe tener valores únicos como MAT001, MAT002, etc. La columna Material debe tener nombres reales de equipos o insumos de laboratorio. La columna Categoría debe alternar entre Física, Química y Biología. La columna Cantidad debe tener números enteros entre 5 y 50. La columna PrecioUnit_COP debe tener precios realistas en pesos colombianos entre 5000 y 150000. Entrega SOLO la tabla en formato TSV con exactamente 10 filas de datos más 1 fila de encabezados, sin explicaciones, sin markdown, sin código, sin comillas. Usa tabulaciones reales como separador.</p>
-                            <button onclick="copyPrompt()" class="absolute top-2 right-2 text-slate-400 hover:text-white transition-colors" title="Copiar Prompt">
+                            <p id="aiPromptText" class="text-xs font-mono text-emerald-200 select-all overflow-y-auto max-h-32 pr-6 leading-relaxed">Genera una tabla de inventario de materiales de laboratorio escolar con exactamente 5 columnas: Código, Material, Categoría, Cantidad, PrecioUnit_COP. La columna Código debe tener valores únicos como MAT001, MAT002, etc. La columna Material debe tener nombres reales de equipos o insumos de laboratorio. La columna Categoría debe alternar entre Física, Química y Biología. La columna Cantidad debe tener números enteros entre 5 y 50. La columna PrecioUnit_COP debe tener precios realistas en pesos colombianos entre 5000 y 150000. Entrega SOLO la tabla en formato TSV con exactamente 10 filas de datos más 1 fila de encabezados, sin explicaciones, sin markdown, sin código, sin comillas. Usa tabulaciones reales como separador.</p>
+                            <button onclick="copyPrompt()" class="absolute top-2 right-2 bg-slate-800 p-1.5 rounded-lg border border-slate-600 text-slate-300 hover:text-emerald-400 hover:border-emerald-500 transition-all shadow-md" title="Copiar Prompt">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
                             </button>
                         </div>
-                        <p class="text-xs text-yellow-400 mt-2">⚠️ Tip: El formato TSV distribuye todo en columnas automáticamente.</p>
+                        <p class="text-xs text-yellow-400 mt-2 flex items-center gap-1">⚠️ <span class="opacity-90">Tip: El formato TSV distribuye todo en columnas automáticamente.</span></p>
                     </div>
                 </div>
 
@@ -323,10 +328,10 @@
                     <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-slate-900 bg-blue-500 text-slate-900 font-bold shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 transition-transform duration-300 group-hover:scale-125">2</div>
                     <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass-panel p-5 rounded-2xl group-hover:border-blue-500/50 transition-colors duration-300">
                         <h4 class="font-bold text-blue-400 text-lg mb-2">Formato Profesional 📊</h4>
-                        <ul class="text-sm text-slate-300 list-disc pl-4 space-y-1">
+                        <ul class="text-sm text-slate-300 list-disc pl-4 space-y-2">
                             <li><strong>Encabezados:</strong> Negrita, fondo azul oscuro, letra blanca.</li>
-                            <li><strong>Bordes:</strong> Selecciona A1:E11 y aplica Todos los bordes.</li>
-                            <li><strong>Moneda:</strong> Columna E, pulsa 'Ctrl + 1', elige Moneda ($).</li>
+                            <li><strong>Bordes:</strong> Selecciona A1:E11 y aplica <span class="bg-slate-700 px-1 rounded">Todos los bordes</span>.</li>
+                            <li><strong>Moneda:</strong> Columna E, pulsa <kbd class="bg-slate-800 text-blue-300 px-1 rounded font-mono">Ctrl + 1</kbd>, elige Moneda ($).</li>
                             <li><strong>Autoajuste:</strong> Doble clic en el borde superior de las columnas.</li>
                         </ul>
                     </div>
@@ -338,14 +343,14 @@
                     <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass-panel p-5 rounded-2xl group-hover:border-purple-500/50 transition-colors duration-300">
                         <h4 class="font-bold text-purple-400 text-lg mb-2">Análisis con Fórmulas ⚙️</h4>
                         <p class="text-sm text-slate-300 mb-2">Aplica estas funciones exactas donde corresponde:</p>
-                        <div class="space-y-2 text-xs font-mono bg-black/40 p-3 rounded-lg overflow-x-auto text-slate-300">
-                            <div><span class="text-purple-400">Valor Total (F2):</span> =D2*E2 (Arrastra hasta F11)</div>
+                        <div class="space-y-2 text-xs font-mono bg-black/50 p-3 rounded-lg overflow-x-auto text-slate-300 border border-slate-700 shadow-inner">
+                            <div><span class="text-purple-400">Valor Total (F2):</span> =D2*E2 <span class="text-slate-500">// Arrastra a F11</span></div>
                             <div><span class="text-emerald-400">Suma total (H13):</span> =SUMA(F2:F11)</div>
-                            <div><span class="text-blue-400">Dif. de stock (H14):</span> =MAX(D2:D11)-MIN(D2:D11)</div>
-                            <div><span class="text-pink-400">Promedio general (H17):</span> =PROMEDIO(E2:E11)</div>
+                            <div><span class="text-blue-400">Dif. stock (H14):</span> =MAX(D2:D11)-MIN(D2:D11)</div>
+                            <div><span class="text-pink-400">Promedio (H17):</span> =PROMEDIO(E2:E11)</div>
                             <div><span class="text-orange-400">Conteo Bio (H18):</span> =CONTAR.SI(C2:C11;"Biología")</div>
                             <div><span class="text-yellow-400">Suma Qui (H19):</span> =SUMAR.SI(C2:C11;"Química";D2:D11)</div>
-                            <div class="pt-2 border-t border-slate-700 mt-2 text-slate-400">¡Y las de Evaluación Lógica y Búsqueda de tu guía impresa!</div>
+                            <div class="pt-2 mt-2 border-t border-slate-700/50 text-slate-400">¡Y las funciones Lógicas (SI) y Búsqueda (BUSCARV) de tu guía!</div>
                         </div>
                     </div>
                 </div>
@@ -355,10 +360,10 @@
                     <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-slate-900 bg-pink-500 text-white font-bold shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 transition-transform duration-300 group-hover:scale-125">4</div>
                     <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass-panel p-5 rounded-2xl group-hover:border-pink-500/50 transition-colors duration-300">
                         <h4 class="font-bold text-pink-400 text-lg mb-2">Guardado y Reto Pro 💾✨</h4>
-                        <p class="text-sm text-slate-300">Guarda como: <code class="bg-black/50 text-emerald-300 px-1 rounded">9_excel-inventario-lab_190526_nombre.xlsx</code></p>
-                        <div class="mt-3 p-3 bg-gradient-to-r from-pink-500/20 to-orange-500/20 rounded border border-pink-500/30">
-                            <strong class="text-pink-300 text-sm">Reto Avanzado:</strong>
-                            <p class="text-xs text-slate-200 mt-1">Crea columna "Prioridad". Usa <code>=SI()</code> anidada para: < 10 "Stock Crítico", < 20 "Stock Bajo", >=20 "Stock OK". Luego pulsa Ctrl+T.</p>
+                        <p class="text-sm text-slate-300">Guarda tu archivo como: <br><code class="bg-black/50 text-emerald-300 px-2 py-1 rounded block mt-1 border border-emerald-900/50">9_excel-inventario-lab_190526_nombre.xlsx</code></p>
+                        <div class="mt-4 p-3 bg-gradient-to-r from-pink-900/30 to-orange-900/30 rounded-xl border border-pink-500/30 shadow-inner">
+                            <strong class="text-pink-300 text-sm flex items-center gap-1">🔥 Reto Avanzado:</strong>
+                            <p class="text-xs text-slate-200 mt-1 leading-relaxed">Crea columna "Prioridad". Usa <code class="text-pink-200 bg-black/40 px-1">=SI()</code> anidada para: &lt; 10 "Stock Crítico", &lt; 20 "Stock Bajo", &gt;=20 "Stock OK". Luego pulsa Ctrl+T.</p>
                         </div>
                     </div>
                 </div>
@@ -371,28 +376,28 @@
         =========================================== -->
         <section class="grid grid-cols-1 md:grid-cols-12 gap-6">
             
-            <div class="md:col-span-7 glass-panel rounded-3xl p-6 border-l-4 border-l-blue-500">
-                <span class="inline-block bg-gradient-to-r from-blue-600 to-indigo-500 text-white text-xs font-bold px-3 py-1 rounded-full mb-4 shadow-lg uppercase tracking-wider">
+            <div class="md:col-span-7 glass-panel rounded-3xl p-6 border-l-4 border-l-blue-500 flex flex-col justify-center">
+                <span class="inline-block bg-gradient-to-r from-blue-600 to-indigo-500 text-white text-xs font-bold px-3 py-1 rounded-full mb-4 shadow-lg uppercase tracking-wider self-start">
                     🔍 INVESTIGACIÓN
                 </span>
                 <h3 class="text-xl font-bold text-white mb-2">Para el cuaderno:</h3>
-                <p class="text-slate-300">Busca en Google o en tu IA y responde en tu cuaderno en un párrafo corto:</p>
-                <div class="bg-indigo-900/30 p-4 rounded-xl mt-3 border border-indigo-500/20">
-                    <p class="font-mono text-indigo-300">¿Qué significa que un archivo tenga formato "CSV" o "TSV" en informática, y por qué es tan útil para trasladar datos entre programas como Excel?</p>
+                <p class="text-slate-300 text-sm">Busca en Google o en tu IA y responde en tu cuaderno en un párrafo corto:</p>
+                <div class="bg-indigo-950/50 p-4 rounded-xl mt-3 border border-indigo-500/30 shadow-inner">
+                    <p class="font-mono text-indigo-200 leading-relaxed text-sm">¿Qué significa que un archivo tenga formato "CSV" o "TSV" en informática, y por qué es tan útil para trasladar datos entre programas como Excel?</p>
                 </div>
             </div>
 
-            <div class="md:col-span-5 bg-gradient-to-br from-slate-800 to-slate-900 rounded-3xl p-6 border border-slate-700 flex flex-col items-center justify-center text-center relative overflow-hidden group">
-                <!-- Flecha animada -->
-                <div class="absolute right-4 top-1/2 -translate-y-1/2 text-4xl hidden md:block animate-bounce-left z-10 text-emerald-400 drop-shadow-[0_0_10px_rgba(52,211,153,0.8)]">⬅️</div>
-                <div class="absolute bottom-4 left-1/2 -translate-x-1/2 text-4xl block md:hidden animate-bounce text-emerald-400">⬆️</div>
+            <div class="md:col-span-5 bg-gradient-to-br from-slate-800 to-slate-900 rounded-3xl p-6 border border-slate-700 flex flex-col items-center justify-center text-center relative overflow-hidden group shadow-2xl">
+                <!-- Flecha animada (Apunta a la izquierda) -->
+                <div class="absolute right-4 top-1/2 -translate-y-1/2 text-5xl hidden md:block animate-bounce-left z-10 text-emerald-400 drop-shadow-[0_0_15px_rgba(52,211,153,0.8)]">⬅️</div>
+                <div class="absolute top-4 left-1/2 -translate-x-1/2 text-5xl block md:hidden animate-bounce text-emerald-400 drop-shadow-[0_0_15px_rgba(52,211,153,0.8)]">⬆️</div>
 
-                <span class="inline-block bg-slate-700 text-slate-300 text-xs font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-wider">
+                <span class="inline-block bg-slate-700 text-slate-300 text-xs font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-wider relative z-20">
                     📄 TAREA EN HOJA SUELTA
                 </span>
-                <div class="text-5xl mb-3 group-hover:scale-110 transition-transform">🎉</div>
-                <h3 class="text-xl font-bold text-emerald-400 mb-2">¡Descanso!</h3>
-                <p class="text-slate-400 text-sm">Esta semana <strong>NO</strong> hay tarea entregable. Dedica tu tiempo a copiar la investigación en el cuaderno (ver a la izquierda).</p>
+                <div class="text-6xl mb-3 group-hover:scale-125 transition-transform duration-500 relative z-20 drop-shadow-xl">🎉</div>
+                <h3 class="text-2xl font-bold text-emerald-400 mb-2 relative z-20">¡Descanso!</h3>
+                <p class="text-slate-300 text-sm relative z-20 mt-2 px-4">Esta semana <strong>NO</strong> hay tarea entregable. Dedica tu tiempo a resolver la investigación (ver la flecha).</p>
             </div>
 
         </section>
@@ -410,10 +415,11 @@
                 <!-- Generado por JS -->
             </div>
             
-            <div id="quiz-results" class="hidden max-w-2xl mx-auto text-center p-6 bg-emerald-900/40 border border-emerald-500/50 rounded-2xl backdrop-blur">
-                <h3 class="text-2xl font-bold text-emerald-400 mb-2">¡Quiz Completado! 🏆</h3>
-                <p class="text-white text-lg">Acertaste <span id="score-display" class="font-bold text-2xl text-emerald-300"></span> de 3 preguntas.</p>
-                <button onclick="resetQuiz()" class="mt-4 px-6 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-xl transition-colors">Intentar de nuevo</button>
+            <div id="quiz-results" class="hidden max-w-2xl mx-auto text-center p-8 bg-gradient-to-br from-emerald-900/60 to-teal-900/60 border border-emerald-500/50 rounded-2xl backdrop-blur shadow-[0_0_30px_rgba(16,185,129,0.2)]">
+                <div class="text-6xl mb-4 animate-bounce">🏆</div>
+                <h3 class="text-3xl font-bold text-emerald-400 mb-2">¡Misión Cumplida!</h3>
+                <p class="text-white text-lg">Acertaste <span id="score-display" class="font-bold text-3xl text-emerald-300 px-2"></span> de 3 preguntas.</p>
+                <button onclick="resetQuiz()" class="mt-6 px-8 py-3 bg-slate-800 hover:bg-emerald-600 border border-slate-600 hover:border-emerald-400 text-white rounded-xl transition-all duration-300 font-bold shadow-lg hover:shadow-emerald-500/50">Intentar de nuevo</button>
             </div>
         </section>
 
@@ -439,7 +445,6 @@
                 const t = document.getElementById('toastCopiado');
                 if(t) {
                     t.classList.remove('hidden');
-                    // Add small pop animation
                     t.classList.add('scale-105');
                     setTimeout(() => t.classList.remove('scale-105'), 150);
                     setTimeout(() => t.classList.add('hidden'), 2500);
@@ -457,12 +462,16 @@
                 const btn = document.querySelector('#aiPromptText + button');
                 const origHTML = btn.innerHTML;
                 btn.innerHTML = `<svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>`;
-                setTimeout(() => btn.innerHTML = origHTML, 2000);
+                btn.classList.add('border-emerald-500', 'bg-emerald-900/50');
+                setTimeout(() => {
+                    btn.innerHTML = origHTML;
+                    btn.classList.remove('border-emerald-500', 'bg-emerald-900/50');
+                }, 2000);
             });
         }
 
         // ----------------------------------------
-        // MOD-A: LÓGICA SIMULADOR DE CELDAS
+        // MOD-A: LÓGICA SIMULADOR DE CELDAS (CORREGIDO Y SÚPER FUNCIONAL)
         // ----------------------------------------
         const gridBody = document.querySelector('#excelSimulator tbody');
         const activeCellDisplay = document.getElementById('activeCellDisplay');
@@ -470,30 +479,67 @@
         
         for(let i = 1; i <= 5; i++) {
             const tr = document.createElement('tr');
-            // Header de fila
+            
+            // Header de fila (Los números de la izquierda)
             const th = document.createElement('th');
-            th.className = 'p-2 bg-slate-800 text-slate-300 border border-slate-700';
+            th.className = 'p-2 bg-slate-800 text-slate-300 border border-slate-700 transition-colors duration-200';
+            th.id = 'row-' + i; // Le damos ID para poder iluminarlo
             th.textContent = i;
             tr.appendChild(th);
             
-            // Celdas
+            // Celdas interactuables
             for(let j = 0; j < cols.length; j++) {
                 const td = document.createElement('td');
-                td.className = 'grid-cell p-3 border border-slate-700/50 bg-slate-900/50 text-slate-500';
+                td.className = 'grid-cell p-3 border border-slate-700/50 bg-slate-900/50 text-slate-500 font-mono transition-all duration-200';
                 td.textContent = '...';
-                td.onclick = function() {
-                    // Remover active class de todas
-                    document.querySelectorAll('.grid-cell').forEach(c => c.classList.remove('grid-active', 'text-white'));
-                    // Añadir a la actual
-                    this.classList.add('grid-active', 'text-white');
-                    this.textContent = Math.floor(Math.random() * 100); // Add random number for fun
+                
+                // Efecto al pasar el ratón (Hover Inteligente)
+                td.addEventListener('mouseenter', () => {
+                    // Iluminar encabezado de Columna (A, B, C...)
+                    document.getElementById('col-' + cols[j]).classList.add('bg-emerald-600', 'text-white', 'shadow-[0_0_10px_rgba(52,211,153,0.5)]');
+                    // Iluminar encabezado de Fila (1, 2, 3...)
+                    document.getElementById('row-' + i).classList.add('bg-emerald-600', 'text-white', 'shadow-[0_0_10px_rgba(52,211,153,0.5)]');
+                    
+                    // Mostrar coordenada dinámicamente si no está activa
+                    if(!td.classList.contains('grid-active')) {
+                        td.textContent = cols[j] + i;
+                        td.classList.add('text-indigo-300');
+                    }
+                });
+                
+                // Efecto al quitar el ratón
+                td.addEventListener('mouseleave', () => {
+                    document.getElementById('col-' + cols[j]).classList.remove('bg-emerald-600', 'text-white', 'shadow-[0_0_10px_rgba(52,211,153,0.5)]');
+                    document.getElementById('row-' + i).classList.remove('bg-emerald-600', 'text-white', 'shadow-[0_0_10px_rgba(52,211,153,0.5)]');
+                    
+                    if (!td.classList.contains('grid-active')) {
+                        td.textContent = '...';
+                        td.classList.remove('text-indigo-300');
+                    }
+                });
+
+                // Efecto Clic (Seleccionar celda)
+                td.addEventListener('click', () => {
+                    // Limpiar selección previa
+                    document.querySelectorAll('.grid-cell').forEach(c => {
+                        c.classList.remove('grid-active', 'text-white', 'text-xl');
+                        c.textContent = '...';
+                    });
+                    
+                    // Activar la actual fijando la coordenada (Ej: B3)
+                    td.classList.add('grid-active', 'text-white', 'text-xl');
+                    td.classList.remove('text-indigo-300');
+                    td.textContent = cols[j] + i;
+                    
+                    // Actualizar Pantalla Gigante
                     activeCellDisplay.textContent = cols[j] + i;
                     
-                    // Pequeña animación en el texto
+                    // Animación de pulso
                     activeCellDisplay.classList.remove('animate-pulse');
-                    void activeCellDisplay.offsetWidth; // trigger reflow
+                    void activeCellDisplay.offsetWidth; // Reflow
                     activeCellDisplay.classList.add('animate-pulse');
-                }
+                });
+                
                 tr.appendChild(td);
             }
             gridBody.appendChild(tr);
@@ -525,24 +571,25 @@
                     backgroundColor: 'rgba(99, 102, 241, 0.6)',
                     borderColor: 'rgba(99, 102, 241, 1)',
                     borderWidth: 1,
-                    borderRadius: 4
+                    borderRadius: 6
                 }]
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
-                    legend: { display: false }
+                    legend: { display: false },
+                    tooltip: { backgroundColor: 'rgba(0,0,0,0.8)', titleFont: {size: 14}, bodyFont: {size: 14}, padding: 10 }
                 },
                 scales: {
                     y: { 
                         beginAtZero: true, 
-                        grid: { color: 'rgba(255, 255, 255, 0.1)' },
-                        ticks: { color: 'rgba(255, 255, 255, 0.7)' }
+                        grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                        ticks: { color: 'rgba(255, 255, 255, 0.7)', font: {family: 'monospace'} }
                     },
                     x: {
                         grid: { display: false },
-                        ticks: { color: 'rgba(255, 255, 255, 0.7)' }
+                        ticks: { color: 'rgba(255, 255, 255, 0.9)', font: {weight: 'bold'} }
                     }
                 },
                 animation: { duration: 800, easing: 'easeOutQuart' }
@@ -554,36 +601,46 @@
                 myChart.data.labels = [...labelsMaster['Física'], ...labelsMaster['Química'], ...labelsMaster['Biología']];
                 myChart.data.datasets[0].data = [...dataMaster['Física'], ...dataMaster['Química'], ...dataMaster['Biología']];
                 myChart.data.datasets[0].backgroundColor = 'rgba(99, 102, 241, 0.6)';
+                myChart.data.datasets[0].borderColor = 'rgba(99, 102, 241, 1)';
             } else {
                 myChart.data.labels = labelsMaster[category];
                 myChart.data.datasets[0].data = dataMaster[category];
                 
-                // Colores por categoría
-                if(category === 'Física') myChart.data.datasets[0].backgroundColor = 'rgba(59, 130, 246, 0.6)'; // Blue
-                if(category === 'Química') myChart.data.datasets[0].backgroundColor = 'rgba(16, 185, 129, 0.6)'; // Emerald
-                if(category === 'Biología') myChart.data.datasets[0].backgroundColor = 'rgba(168, 85, 247, 0.6)'; // Purple
+                // Colores vibrantes por categoría
+                if(category === 'Física') {
+                    myChart.data.datasets[0].backgroundColor = 'rgba(59, 130, 246, 0.7)'; // Azul
+                    myChart.data.datasets[0].borderColor = 'rgba(59, 130, 246, 1)';
+                }
+                if(category === 'Química') {
+                    myChart.data.datasets[0].backgroundColor = 'rgba(16, 185, 129, 0.7)'; // Esmeralda
+                    myChart.data.datasets[0].borderColor = 'rgba(16, 185, 129, 1)';
+                }
+                if(category === 'Biología') {
+                    myChart.data.datasets[0].backgroundColor = 'rgba(168, 85, 247, 0.7)'; // Púrpura
+                    myChart.data.datasets[0].borderColor = 'rgba(168, 85, 247, 1)';
+                }
             }
             myChart.update();
         }
 
         // ----------------------------------------
-        // QUIZ LOGIC
+        // QUIZ LÓGICA
         // ----------------------------------------
         const questions = [
             {
-                q: "1. ¿Cuál es el símbolo OBLIGATORIO con el que debe iniciar toda fórmula en Excel?",
-                opts: ["El signo Más (+)", "El signo Igual (=)", "Un paréntesis ()", "El símbolo de pesos ($)"],
+                q: "1. ¿Cuál es la 'Regla de Oro' para indicarle a Excel que vas a hacer una operación matemática?",
+                opts: ["Poner la letra de la columna en mayúscula", "Empezar SIEMPRE con el signo Igual (=)", "Escribir la palabra SUMA", "Terminar con un punto"],
                 ans: 1
             },
             {
-                q: "2. Si ves una referencia que dice 'D8', ¿qué significa?",
-                opts: ["Columna D, Fila 8", "Fila D, Columna 8", "La celda número 8 de la columna A", "Un error del sistema"],
-                ans: 0
+                q: "2. En el simulador, cuando te ubicas en la columna C y la fila 4, la celda mágica se llama:",
+                opts: ["4C", "C4", "Celda 4", "No tiene nombre"],
+                ans: 1
             },
             {
-                q: "3. Según la regla de las celdas, para sumar dos números es mejor escribir:",
-                opts: ["=10+5", "10+5=", "Sumar A1 y B1", "=A1+B1"],
-                ans: 3
+                q: "3. ¿Por qué usamos nombres de celdas (Ej: =A1+B1) en lugar de números directos (Ej: =10+5)?",
+                opts: ["Porque así se actualiza mágicamente si cambiamos los datos", "Porque Excel no sabe sumar números normales", "Para que el archivo pese menos", "Porque se ve más bonito"],
+                ans: 0
             }
         ];
 
@@ -601,17 +658,17 @@
 
             const q = questions[currentQuestion];
             let html = `
-                <div class="glass-panel p-6 rounded-2xl transform transition-all duration-300 animate-fade-in">
-                    <p class="text-slate-400 text-sm font-bold mb-2">Pregunta ${currentQuestion + 1} de ${questions.length}</p>
-                    <h3 class="text-xl text-white font-medium mb-4">${q.q}</h3>
+                <div class="glass-panel p-6 rounded-2xl transform transition-all duration-300 animate-fade-in shadow-xl border border-indigo-500/30">
+                    <p class="text-indigo-400 text-sm font-bold mb-2 tracking-widest uppercase">Pregunta ${currentQuestion + 1} de ${questions.length}</p>
+                    <h3 class="text-2xl text-white font-medium mb-6 leading-relaxed">${q.q}</h3>
                     <div class="space-y-3">
             `;
             
             q.opts.forEach((opt, idx) => {
                 html += `
-                    <button onclick="checkAnswer(${idx})" class="w-full text-left p-4 rounded-xl bg-slate-800/80 hover:bg-indigo-600 border border-slate-700 hover:border-indigo-400 text-slate-200 transition-all duration-200 group">
-                        <span class="inline-block w-6 h-6 rounded-full border border-slate-500 text-center text-sm mr-3 group-hover:border-white transition-colors">${['A','B','C','D'][idx]}</span>
-                        ${opt}
+                    <button onclick="checkAnswer(${idx})" class="w-full text-left p-4 rounded-xl bg-slate-800/80 hover:bg-indigo-600 border border-slate-600 hover:border-indigo-400 text-slate-200 transition-all duration-200 group flex items-center shadow">
+                        <span class="flex-shrink-0 inline-flex justify-center items-center w-8 h-8 rounded-full border-2 border-slate-500 font-bold text-sm mr-4 group-hover:border-white group-hover:bg-indigo-500 transition-all">${['A','B','C','D'][idx]}</span>
+                        <span class="text-lg">${opt}</span>
                     </button>
                 `;
             });
@@ -624,24 +681,25 @@
             const btns = quizContainer.querySelectorAll('button');
             const correctIdx = questions[currentQuestion].ans;
             
-            // Deshabilitar botones temporalmente
-            btns.forEach(b => b.disabled = true);
+            btns.forEach(b => b.disabled = true); // Bloquear botones
 
             if(idx === correctIdx) {
-                btns[idx].classList.remove('bg-slate-800/80', 'hover:bg-indigo-600');
-                btns[idx].classList.add('bg-emerald-600', 'border-emerald-400');
+                btns[idx].classList.remove('bg-slate-800/80', 'hover:bg-indigo-600', 'border-slate-600');
+                btns[idx].classList.add('bg-emerald-600', 'border-emerald-400', 'text-white', 'shadow-[0_0_15px_rgba(16,185,129,0.5)]');
                 score++;
             } else {
-                btns[idx].classList.remove('bg-slate-800/80', 'hover:bg-indigo-600');
-                btns[idx].classList.add('bg-red-600', 'border-red-400');
-                // Mostrar la correcta
-                btns[correctIdx].classList.add('border-emerald-400', 'text-emerald-400');
+                btns[idx].classList.remove('bg-slate-800/80', 'hover:bg-indigo-600', 'border-slate-600');
+                btns[idx].classList.add('bg-red-600', 'border-red-400', 'text-white');
+                
+                // Mostrar la correcta en verde
+                btns[correctIdx].classList.remove('bg-slate-800/80', 'border-slate-600');
+                btns[correctIdx].classList.add('bg-emerald-900/80', 'border-emerald-400', 'text-emerald-400');
             }
 
             setTimeout(() => {
                 currentQuestion++;
                 renderQuiz();
-            }, 1200);
+            }, 1500);
         }
 
         window.resetQuiz = function() {
@@ -652,7 +710,7 @@
             renderQuiz();
         }
 
-        // Init Quiz
+        // Init
         renderQuiz();
 
     </script>
