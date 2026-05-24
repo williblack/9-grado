@@ -1,1 +1,435 @@
-hola
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semana 6 - Fórmulas Combinadas | Colegio Santa Mariana de Jesús</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        glass: 'rgba(255, 255, 255, 0.1)',
+                        glassBorder: 'rgba(255, 255, 255, 0.2)',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        bounceLeft: {
+                            '0%, 100%': { transform: 'translateX(0)' },
+                            '50%': { transform: 'translateX(-15px)' },
+                        }
+                    },
+                    animation: {
+                        float: 'float 3s ease-in-out infinite',
+                        bounceLeft: 'bounceLeft 1.5s infinite',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+            color: #f8fafc;
+            min-height: 100vh;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+        .glass-card:hover {
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.08);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #4f46e5; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #6366f1; }
+    </style>
+</head>
+<body class="font-sans antialiased overflow-x-hidden pb-10">
+
+    <div class="max-w-5xl mx-auto flex flex-wrap justify-end gap-3 mb-4 mt-6 px-4 relative z-50">
+        <a href="../../../index.html"
+           class="bg-slate-800/70 text-white px-4 py-2 rounded-xl shadow-lg hover:scale-105 transition-all duration-300 backdrop-blur border border-white/10 flex items-center gap-2 text-sm md:text-base">
+           ⬅ Inicio (Grado)
+        </a>
+      
+        <a href="../../index.html"
+           class="bg-purple-600/80 text-white px-4 py-2 rounded-xl shadow-lg hover:scale-105 transition-all duration-300 backdrop-blur border border-purple-400/30 flex items-center gap-2 text-sm md:text-base">
+           ⬅ Menú del Periodo
+        </a>
+      
+        <button type="button" onclick="copiarEnlace()"
+           class="bg-emerald-600/80 text-white px-4 py-2 rounded-xl shadow-lg hover:scale-105 transition-all duration-300 backdrop-blur border border-emerald-400/30 flex items-center gap-2 text-sm md:text-base">
+           🔗 Copiar enlace
+        </button>
+    </div>
+      
+    <div id="toastCopiado" class="fixed top-6 right-6 hidden bg-black/90 border border-emerald-500 text-emerald-400 font-bold px-6 py-3 rounded-xl shadow-2xl backdrop-blur z-50 transition-all">
+        Enlace copiado ✅
+    </div>
+
+    <header class="max-w-5xl mx-auto px-4 mb-12">
+        <div class="glass-card rounded-3xl p-8 relative overflow-hidden animate-float text-center">
+            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"></div>
+            <h3 class="text-indigo-300 font-semibold tracking-wider uppercase text-sm mb-2">Colegio Santa Mariana de Jesús</h3>
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4 drop-shadow-lg">
+                Excel: Fórmulas Combinadas y Tablas de Control
+            </h1>
+            <p class="text-lg text-slate-300 mb-6">Grado 9° | Prof. William Fdo Bernal</p>
+            
+            <div class="inline-block bg-blue-900/40 border border-blue-400/30 px-6 py-3 rounded-xl shadow-inner">
+                <span class="text-blue-300 font-bold mr-2">🎯 Objetivo:</span>
+                <span class="text-slate-100">Dominar operaciones combinadas y funciones avanzadas (SUMAR.SI, BUSCARV) usando IA para analizar inventarios reales.</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 space-y-8">
+
+        <section class="glass-card rounded-2xl p-6 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/20">
+            <div class="mb-4">
+                <span class="bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
+                    📝 COPIAR AL CUADERNO
+                </span>
+            </div>
+            <h2 class="text-2xl font-semibold mb-3 text-blue-200 border-b border-blue-500/30 pb-2">Conexión de Aprendizaje</h2>
+            <p class="text-slate-200 leading-relaxed text-lg">
+                En la <strong>Semana 5</strong> (Nuestro espacio de trabajo y Fórmulas Básicas) aprendimos a usar Excel como una calculadora gigante. Hoy, damos el salto hacia el análisis profesional. <br><br>
+                Al combinar operaciones matemáticas <code class="bg-black/50 px-2 py-1 rounded text-pink-400">=(A1*B1)-C1</code> con funciones de inteligencia de datos como <code class="bg-black/50 px-2 py-1 rounded text-emerald-400">=BUSCARV()</code> o <code class="bg-black/50 px-2 py-1 rounded text-purple-400">=SUMAR.SI()</code>, podemos construir Tablas de Control. Esto nos permite no solo guardar datos, sino hacer preguntas a la información para tomar decisiones.
+            </p>
+        </section>
+
+        <section class="glass-card rounded-2xl p-6 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/20">
+            <div class="mb-4">
+                <span class="bg-purple-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
+                    💻 INTERACTUAR EN EL PC
+                </span>
+            </div>
+            <h2 class="text-2xl font-semibold mb-4 text-purple-200">Data Lab: Visualizando el Inventario</h2>
+            <p class="text-slate-300 mb-6">Interactúa con el dashboard para ver cómo la función <strong>SUMAR.SI</strong> agrupa los datos de nuestra tienda de ejemplo.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="flex flex-col gap-4">
+                    <button onclick="updateChart('stock')" class="w-full bg-slate-800 hover:bg-indigo-600 border border-indigo-400/50 text-white font-semibold py-3 px-4 rounded-xl transition-all shadow-lg hover:scale-105">
+                        📦 Ver Unidades (Stock)
+                    </button>
+                    <button onclick="updateChart('valor')" class="w-full bg-slate-800 hover:bg-emerald-600 border border-emerald-400/50 text-white font-semibold py-3 px-4 rounded-xl transition-all shadow-lg hover:scale-105">
+                        💰 Ver Valor Total (COP)
+                    </button>
+                    
+                    <div class="bg-black/30 p-4 rounded-xl border border-white/5 mt-4">
+                        <p class="text-sm text-slate-400">
+                            <strong>Concepto:</strong> Al igual que en el gráfico, en Excel usamos <span class="text-emerald-400 font-mono">=SUMAR.SI()</span> para calcular automáticamente el total de cada categoría sin contar manualmente.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="md:col-span-2 bg-black/40 rounded-xl p-4 border border-white/10 flex items-center justify-center min-h-[300px]">
+                    <canvas id="inventoryChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section class="glass-card rounded-2xl p-6 transition-all duration-300 hover:shadow-2xl hover:shadow-emerald-500/20">
+            <div class="mb-4">
+                <span class="bg-emerald-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
+                    🖥️ TRABAJO EN LA SALA
+                </span>
+            </div>
+            <h2 class="text-3xl font-bold mb-6 text-emerald-300">Actividad: Mi solución con IA</h2>
+            
+            <div class="space-y-6">
+                <div class="bg-black/20 p-5 rounded-xl border border-emerald-500/20 hover:border-emerald-500/50 transition-colors">
+                    <h3 class="text-xl font-bold text-white mb-3 flex items-center gap-2">🤖 Paso 1: Generar tabla de datos con IA</h3>
+                    <p class="text-slate-300 mb-3">Pídele a un asistente de IA (ChatGPT, Copilot o Gemini) que cree una tabla copiando este prompt exacto:</p>
+                    <div class="bg-slate-900 p-4 rounded-lg border border-slate-700 relative group">
+                        <button onclick="copyPrompt()" class="absolute top-2 right-2 bg-slate-700 hover:bg-emerald-600 text-xs px-2 py-1 rounded text-white transition-colors">Copiar</button>
+                        <p id="promptText" class="text-slate-300 text-sm font-mono italic">"Genera una tabla de 5 columnas (ID, Producto, Categoría, Cantidad, Precio) con 10 filas de datos sobre productos de una tienda. Los ID deben ser únicos con formato 'PROD001' a 'PROD010'. Productos: nombres reales (ej. 'Mouse USB', 'Cuaderno universitario'). Categoría: una de estas tres: 'Electrónica', 'Papelería', 'Oficina'. Cantidad: número entero entre 1 y 100. Precio: número entero entre 2000 y 500000 (sin separadores de miles, solo dígitos). Entrega SOLO la tabla en formato TSV (valores separados por tabulación) con exactamente 10 filas de datos más 1 fila de encabezados, sin explicaciones, sin markdown, sin código, sin comillas. Usa tabulaciones reales como separador."</p>
+                    </div>
+                    <ul class="list-disc ml-5 mt-3 text-slate-300 text-sm space-y-1">
+                        <li>Copia el resultado y pégalo en la celda <strong>A1</strong> de Excel. Verifica que ocupen desde A1 hasta E11.</li>
+                        <li>⚠️ Si la IA falla, repite el prompt exigiendo formato TSV puro.</li>
+                        <li class="text-blue-300">💡 <strong>Concepto:</strong> TSV es ideal porque cada tabulación crea una columna automáticamente.</li>
+                    </ul>
+                </div>
+
+                <div class="bg-black/20 p-5 rounded-xl border border-emerald-500/20 hover:border-emerald-500/50 transition-colors">
+                    <h3 class="text-xl font-bold text-white mb-3 flex items-center gap-2">📊 Paso 2: Aplicar formato profesional</h3>
+                    <ul class="list-none space-y-2 text-slate-300">
+                        <li class="flex items-start gap-2"><span class="text-emerald-400 mt-1">✔</span> Selecciona A1:E11. Fila 1: Negrita, fondo azul claro, centrado total.</li>
+                        <li class="flex items-start gap-2"><span class="text-emerald-400 mt-1">✔</span> Columna D (Cantidad): número sin decimales, centrado.</li>
+                        <li class="flex items-start gap-2"><span class="text-emerald-400 mt-1">✔</span> Columna E (Precio): formato moneda (COP), 2 decimales, texto verde oscuro.</li>
+                        <li class="flex items-start gap-2"><span class="text-emerald-400 mt-1">✔</span> Ajusta ancho de columnas y aplica bordes finos.</li>
+                        <li class="flex items-start gap-2"><span class="text-emerald-400 mt-1">✔</span> Colorea amarillo pálido D2:D11 y E2:E11 (variables de fórmula).</li>
+                    </ul>
+                </div>
+
+                <div class="bg-black/20 p-5 rounded-xl border border-emerald-500/20 hover:border-emerald-500/50 transition-colors">
+                    <h3 class="text-xl font-bold text-white mb-3 flex items-center gap-2">⚙️ Paso 3: Operaciones y funciones combinadas</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-slate-300">
+                        <div class="bg-slate-800/50 p-3 rounded border border-slate-700">
+                            <strong class="text-indigo-300 block mb-1">a) Total por producto:</strong>
+                            En F1 "Total (COP)". En F2 <code class="text-pink-400">=D2*E2</code>. Arrastra hasta F11.
+                        </div>
+                        <div class="bg-slate-800/50 p-3 rounded border border-slate-700">
+                            <strong class="text-indigo-300 block mb-1">b) Inventario Total:</strong>
+                            En G2 escribe <code class="text-emerald-400">=SUMA(F2:F11)</code>.
+                        </div>
+                        <div class="bg-slate-800/50 p-3 rounded border border-slate-700">
+                            <strong class="text-indigo-300 block mb-1">c) Ventas por categoría:</strong>
+                            G4 "Total Electrónica", H4 <code class="text-purple-400">=SUMAR.SI(C2:C11;"Electrónica";F2:F11)</code>. Repite para el resto.
+                        </div>
+                        <div class="bg-slate-800/50 p-3 rounded border border-slate-700">
+                            <strong class="text-indigo-300 block mb-1">d) Buscar precio (BUSCARV):</strong>
+                            G6 "ID a buscar", H6 "PROD005", I6 <code class="text-yellow-400">=BUSCARV(H6;A2:E11;5;FALSO)</code>.
+                        </div>
+                        <div class="bg-slate-800/50 p-3 rounded border border-slate-700 md:col-span-2">
+                            <strong class="text-indigo-300 block mb-1">e) Máximos y Mínimos:</strong>
+                            En H8 <code class="text-blue-400">=MAX(E2:E11)</code>. En H9 <code class="text-blue-400">=MIN(E2:E11)</code>.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-gradient-to-br from-blue-900/40 to-indigo-900/40 p-5 rounded-xl border border-blue-500/30">
+                        <h3 class="text-lg font-bold text-blue-300 mb-2">💾 Paso final: Guardar</h3>
+                        <p class="text-slate-300 text-sm">
+                            Nomenclatura:<br>
+                            <code class="bg-black/50 px-2 py-1 rounded text-white block mt-2 text-center">9_inventario_ventas_140425_tu_nombre.xlsx</code><br>
+                            <span class="text-xs text-slate-400">(Ejemplo: 9_inventario_ventas_140425_gomez.xlsx)</span>
+                        </p>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-amber-900/40 to-orange-900/40 p-5 rounded-xl border border-amber-500/30">
+                        <h3 class="text-lg font-bold text-amber-400 mb-2">✨ Reto avanzado</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            Agrega columna G para clasificar: <br>
+                            <code class="text-amber-200">=SI(D2>50;"Stock alto";"Stock bajo")</code>. <br>
+                            Luego usa <code class="text-amber-200">=CONTAR.SI(G2:G11;"Stock bajo")</code> para contar cuántos necesitan reabastecimiento.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center pt-4">
+            
+            <div class="glass-card rounded-2xl p-6 h-full flex flex-col justify-center border-l-4 border-l-pink-500">
+                <div class="mb-4">
+                    <span class="bg-pink-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
+                        🔍 INVESTIGACIÓN
+                    </span>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-3">Pregunta de Análisis:</h3>
+                <p class="text-slate-200 text-lg">
+                    Busca en Google: ¿Cuál es la diferencia entre <strong>referencias relativas</strong> y <strong>referencias absolutas</strong> (el uso del signo $) en Excel? Escribe un ejemplo corto.
+                </p>
+            </div>
+
+            <div class="flex items-center h-full">
+                <div class="animate-bounceLeft text-5xl mr-4 drop-shadow-lg filter hue-rotate-15">
+                    👈
+                </div>
+                <div class="glass-card rounded-2xl p-6 w-full border-r-4 border-r-yellow-500">
+                    <div class="mb-4">
+                        <span class="bg-yellow-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
+                            📄 TAREA EN HOJA SUELTA
+                        </span>
+                    </div>
+                    <p class="text-slate-200 text-lg">
+                        <strong>Entregable:</strong> Resuelve la investigación de la izquierda en una hoja de bloc suelta, debidamente marcada con tu nombre, grado y fecha para entregar al final de la clase.
+                    </p>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="glass-card rounded-2xl p-6 mb-12">
+            <h2 class="text-2xl font-bold text-center text-white mb-6">🎮 Micro-Quiz: Demuestra tu conocimiento</h2>
+            
+            <div class="space-y-4" id="quiz-container">
+                <div class="bg-slate-800/60 p-4 rounded-xl border border-slate-600">
+                    <p class="font-semibold text-lg mb-3 text-indigo-200">1. ¿Qué formato separa los datos en columnas usando tabulaciones?</p>
+                    <div class="flex gap-3">
+                        <button class="quiz-btn flex-1 bg-slate-700 hover:bg-slate-600 py-2 rounded-lg transition-colors" data-correct="false" onclick="checkAnswer(this)">TXT</button>
+                        <button class="quiz-btn flex-1 bg-slate-700 hover:bg-slate-600 py-2 rounded-lg transition-colors" data-correct="true" onclick="checkAnswer(this)">TSV</button>
+                        <button class="quiz-btn flex-1 bg-slate-700 hover:bg-slate-600 py-2 rounded-lg transition-colors" data-correct="false" onclick="checkAnswer(this)">CSV</button>
+                    </div>
+                </div>
+
+                <div class="bg-slate-800/60 p-4 rounded-xl border border-slate-600">
+                    <p class="font-semibold text-lg mb-3 text-indigo-200">2. ¿Qué función usamos para buscar el precio de un "PROD005" en una tabla?</p>
+                    <div class="flex gap-3 flex-wrap md:flex-nowrap">
+                        <button class="quiz-btn flex-1 bg-slate-700 hover:bg-slate-600 py-2 px-1 rounded-lg transition-colors" data-correct="true" onclick="checkAnswer(this)">=BUSCARV()</button>
+                        <button class="quiz-btn flex-1 bg-slate-700 hover:bg-slate-600 py-2 px-1 rounded-lg transition-colors" data-correct="false" onclick="checkAnswer(this)">=SUMAR.SI()</button>
+                        <button class="quiz-btn flex-1 bg-slate-700 hover:bg-slate-600 py-2 px-1 rounded-lg transition-colors" data-correct="false" onclick="checkAnswer(this)">=MAX()</button>
+                    </div>
+                </div>
+
+                <div class="bg-slate-800/60 p-4 rounded-xl border border-slate-600">
+                    <p class="font-semibold text-lg mb-3 text-indigo-200">3. Si arrastras la fórmula `=D2*E2` hacia abajo, ¿qué sucede?</p>
+                    <div class="flex gap-3 flex-col md:flex-row">
+                        <button class="quiz-btn flex-1 bg-slate-700 hover:bg-slate-600 py-2 px-4 rounded-lg transition-colors" data-correct="false" onclick="checkAnswer(this)">Se borra la fórmula</button>
+                        <button class="quiz-btn flex-1 bg-slate-700 hover:bg-slate-600 py-2 px-4 rounded-lg transition-colors" data-correct="false" onclick="checkAnswer(this)">Sigue multiplicando D2*E2 siempre</button>
+                        <button class="quiz-btn flex-1 bg-slate-700 hover:bg-slate-600 py-2 px-4 rounded-lg transition-colors" data-correct="true" onclick="checkAnswer(this)">Las filas cambian automáticamente (D3*E3, etc.)</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="max-w-5xl mx-auto px-4 mt-8">
+        <div class="bg-black/60 rounded-xl p-6 text-center border border-white/5 backdrop-blur-sm">
+            <p class="text-slate-400 font-medium">© 2026 | Prof. William Fdo Bernal - Área de Tecnología e Informática</p>
+        </div>
+    </footer>
+
+    <script>
+        // FUNCIÓN OBLIGATORIA: Copiar enlace de la ruta
+        function copiarEnlace(){
+            const url = window.location.href;
+            navigator.clipboard.writeText(url).then(() => {
+                const t = document.getElementById('toastCopiado');
+                if(t){
+                    t.classList.remove('hidden');
+                    setTimeout(()=> t.classList.add('hidden'), 2500);
+                } else {
+                    alert("Enlace copiado ✅");
+                }
+            }).catch(() => {
+                alert("No se pudo copiar automáticamente. Copia el enlace manualmente desde la barra del navegador.");
+            });
+        }
+
+        // Utilidad para copiar el prompt de IA
+        function copyPrompt() {
+            const text = document.getElementById("promptText").innerText.replace(/"/g, '');
+            navigator.clipboard.writeText(text).then(() => {
+                alert("Prompt copiado al portapapeles. ¡Pégalo en ChatGPT, Gemini o Copilot!");
+            });
+        }
+
+        // Lógica del Quiz
+        function checkAnswer(btn) {
+            const isCorrect = btn.getAttribute('data-correct') === 'true';
+            const parent = btn.parentElement;
+            
+            // Deshabilitar hermanos
+            Array.from(parent.children).forEach(child => {
+                child.disabled = true;
+                child.classList.remove('hover:bg-slate-600');
+            });
+
+            if (isCorrect) {
+                btn.classList.remove('bg-slate-700');
+                btn.classList.add('bg-emerald-600', 'transform', 'scale-105');
+                btn.innerHTML += " ✅";
+            } else {
+                btn.classList.remove('bg-slate-700');
+                btn.classList.add('bg-red-600', 'opacity-70');
+                btn.innerHTML += " ❌";
+                
+                // Resaltar correcta
+                Array.from(parent.children).forEach(child => {
+                    if(child.getAttribute('data-correct') === 'true'){
+                        child.classList.remove('bg-slate-700');
+                        child.classList.add('bg-emerald-600/50', 'border', 'border-emerald-500');
+                    }
+                });
+            }
+        }
+
+        // Lógica de Chart.js (Data Lab)
+        const ctx = document.getElementById('inventoryChart').getContext('2d');
+        
+        const dataStock = {
+            labels: ['Electrónica', 'Papelería', 'Oficina'],
+            datasets: [{
+                label: 'Unidades en Stock',
+                data: [150, 420, 85],
+                backgroundColor: ['#6366f1', '#ec4899', '#14b8a6'],
+                borderColor: ['#4f46e5', '#db2777', '#0d9488'],
+                borderWidth: 2,
+                borderRadius: 8
+            }]
+        };
+
+        const dataValor = {
+            labels: ['Electrónica', 'Papelería', 'Oficina'],
+            datasets: [{
+                label: 'Valor Total (COP Millones)',
+                data: [12.5, 3.2, 5.8],
+                backgroundColor: ['#8b5cf6', '#f59e0b', '#10b981'],
+                borderColor: ['#7c3aed', '#d97706', '#059669'],
+                borderWidth: 2,
+                borderRadius: 8
+            }]
+        };
+
+        let myChart = new Chart(ctx, {
+            type: 'bar',
+            data: dataStock,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { labels: { color: '#e2e8f0' } },
+                    tooltip: {
+                        backgroundColor: 'rgba(15, 23, 42, 0.9)',
+                        titleColor: '#fff',
+                        bodyColor: '#cbd5e1',
+                        padding: 12,
+                        cornerRadius: 8
+                    }
+                },
+                scales: {
+                    y: { 
+                        beginAtZero: true, 
+                        grid: { color: 'rgba(255,255,255,0.1)' },
+                        ticks: { color: '#94a3b8' }
+                    },
+                    x: {
+                        grid: { display: false },
+                        ticks: { color: '#94a3b8' }
+                    }
+                },
+                animation: {
+                    duration: 800,
+                    easing: 'easeOutQuart'
+                }
+            }
+        });
+
+        function updateChart(tipo) {
+            if (tipo === 'stock') {
+                myChart.data = dataStock;
+            } else {
+                myChart.data = dataValor;
+            }
+            myChart.update();
+        }
+    </script>
+</body>
+</html>
