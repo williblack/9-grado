@@ -1,1 +1,487 @@
-hola
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clase 4 - Comunicación Académica por Correo Electrónico | Prof. William Fdo Bernal</title>
+    
+    <!-- Tailwind CSS (Full Power) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Chart.js para el Módulo Interactivo -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0f172a, #1e293b, #0f172a);
+            background-size: 200% 200%;
+            animation: gradientMove 15s ease infinite;
+            color: #e2e8f0;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-5px);
+            transition: all 0.3s ease;
+        }
+
+        /* Animación para la flecha de la tarea */
+        @keyframes bounce-x {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(-20px); }
+        }
+        .animate-bounce-x {
+            display: inline-block;
+            animation: bounce-x 1.5s infinite ease-in-out;
+        }
+
+        /* Ocultar barra de scroll para estetica */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #6366f1; border-radius: 10px; }
+        
+        .quiz-option.selected {
+            background-color: rgba(99, 102, 241, 0.8) !important;
+            border-color: #a5b4fc !important;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col pt-4 pb-8">
+
+    <!-- ========================================== -->
+    <!-- BARRA DE BOTONES (RUTAS OBLIGATORIAS)      -->
+    <!-- ========================================== -->
+    <div class="max-w-5xl mx-auto w-full flex justify-end gap-3 mb-8 px-6">
+        <a href="../../../index.html"
+           class="bg-slate-800/70 text-white px-4 py-2 rounded-xl shadow hover:scale-105 hover:bg-slate-700 transition-all duration-300 backdrop-blur border border-slate-600">
+           ⬅ Inicio (Grado)
+        </a>
+
+        <a href="../../index.html"
+           class="bg-purple-600/90 text-white px-4 py-2 rounded-xl shadow hover:scale-105 hover:bg-purple-500 transition-all duration-300 backdrop-blur border border-purple-400">
+           ⬅ Menú del Periodo
+        </a>
+
+        <button type="button" onclick="copiarEnlace()"
+           class="bg-emerald-600/90 text-white px-4 py-2 rounded-xl shadow hover:scale-105 hover:bg-emerald-500 transition-all duration-300 backdrop-blur border border-emerald-400">
+           🔗 Copiar enlace
+        </button>
+    </div>
+
+    <!-- TOAST DE COPIA -->
+    <div id="toastCopiado" class="fixed top-6 right-6 hidden z-50 bg-black/80 text-emerald-400 px-6 py-3 rounded-xl shadow-2xl backdrop-blur border border-emerald-500 font-bold text-lg transition-all duration-300">
+        Enlace copiado ✅
+    </div>
+
+    <!-- SECCIÓN 1: HERO IMPACTANTE -->
+    <header class="max-w-5xl mx-auto px-6 mb-12 text-center w-full">
+        <div class="inline-block px-4 py-1 rounded-full bg-slate-800/50 border border-slate-600 text-cyan-300 text-sm font-bold tracking-widest mb-4 uppercase shadow-lg">
+            Colegio Santa Mariana de Jesús | Prof. William Fdo Bernal
+        </div>
+        <h1 class="text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 mb-6 drop-shadow-lg filter drop-shadow-[0_0_10px_rgba(56,189,248,0.4)]">
+            Comunicación Académica mediante Correo Electrónico 📧
+        </h1>
+        
+        <div class="glass-card p-6 max-w-3xl mx-auto border-l-4 border-l-cyan-400 text-left">
+            <h3 class="text-2xl font-bold text-white mb-2 flex items-center gap-2">
+                <span>🎯</span> Objetivo de Aprendizaje
+            </h3>
+            <p class="text-slate-300 text-lg leading-relaxed">
+                Identificar la estructura de un correo formal, dominar las normas de comportamiento digital y redactar mensajes académicos claros, respetuosos y seguros utilizando herramientas modernas.
+            </p>
+        </div>
+    </header>
+
+    <!-- CONTENEDOR PRINCIPAL -->
+    <main class="max-w-5xl mx-auto w-full px-6 space-y-8">
+
+        <!-- BLOQUE: COPIAR AL CUADERNO -->
+        <section class="glass-card p-8 border-t-4 border-t-blue-500 relative overflow-hidden group">
+            <div class="absolute top-4 right-4">
+                <span class="bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide shadow-md shadow-blue-500/50">
+                    📝 COPIAR AL CUADERNO
+                </span>
+            </div>
+            
+            <h2 class="text-3xl font-bold text-blue-400 mb-4">Estructura y Normas del Correo Formal 📋</h2>
+            <div class="text-slate-300 space-y-4 text-lg">
+                <p class="italic text-yellow-300 mb-4">"Conectando con la clase anterior: Ya conocemos los riesgos de seguridad y las contraseñas seguras; ahora aplicaremos esa seguridad en nuestras comunicaciones formales."</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-slate-900/50 p-5 rounded-xl border border-slate-700">
+                        <h3 class="text-xl font-bold text-cyan-300 mb-2">1. Comunicación Informal vs Formal</h3>
+                        <p class="text-sm mb-2"><strong>Informal:</strong> Mensajes rápidos de chat (WhatsApp), abreviaturas (q, xq), uso de emoticones y tono coloquial.</p>
+                        <p class="text-sm"><strong>Formal (Académica):</strong> Dirigida a docentes o directivos. Requiere orden, respeto, excelente ortografía y estructura profesional.</p>
+                    </div>
+
+                    <div class="bg-slate-900/50 p-5 rounded-xl border border-slate-700">
+                        <h3 class="text-xl font-bold text-cyan-300 mb-2">2. Las 6 Partes del Correo Formal</h3>
+                        <ul class="text-sm space-y-1">
+                            <li>👤 <strong>Destinatario:</strong> Correo oficial del profesor.</li>
+                            <li>📌 <strong>Asunto:</strong> Resumen claro (Ej: Entrega de actividad - Grado 9).</li>
+                            <li>👋 <strong>Saludo:</strong> Respetuoso (Ej: Respetado profesor...).</li>
+                            <li>📄 <strong>Cuerpo:</strong> Propósito directo y educado.</li>
+                            <li>🤝 <strong>Cierre:</strong> Despedida cortés y formal.</li>
+                            <li>✍️ <strong>Firma:</strong> Nombres completos, grado y grupo.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-blue-900/30 p-4 rounded-lg mt-4 border border-blue-500/30">
+                    <h3 class="text-lg font-bold text-white mb-1">💡 Regla de Extensión Ideal</h3>
+                    <p class="text-sm">Un correo académico efectivo y formal suele rondar entre las <strong>50 y 150 palabras</strong>: conciso, directo y sin rodeos.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- BLOQUE: INTERACTUAR EN EL PC (DATA LAB) -->
+        <section class="glass-card p-8 border-t-4 border-t-emerald-500 relative group">
+            <div class="absolute top-4 right-4">
+                <span class="bg-emerald-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide shadow-md shadow-emerald-500/50">
+                    💻 INTERACTUAR EN EL PC
+                </span>
+            </div>
+            
+            <h2 class="text-3xl font-bold text-emerald-400 mb-2">Data Lab: Análisis de Correos con Chart.js 📊</h2>
+            <p class="text-slate-300 mb-6">Analiza visualmente la extensión (número de palabras) de un banco de correos simulados frente al rango ideal académico (50 - 150 palabras).</p>
+
+            <div class="flex flex-wrap gap-4 mb-6 justify-center">
+                <button onclick="updateChart('todos')" class="bg-slate-700 hover:bg-slate-600 text-white font-bold py-2 px-6 rounded-lg transition-colors border border-slate-500 shadow-lg">Ver Todos los Casos</button>
+                <button onclick="updateChart('academicos')" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2 px-6 rounded-lg transition-colors border border-emerald-400 shadow-lg">Filtrar Académicos</button>
+            </div>
+
+            <div class="bg-white/5 p-4 rounded-xl border border-white/10 w-full h-80 relative">
+                <canvas id="emailChart"></canvas>
+            </div>
+        </section>
+
+        <!-- BLOQUE: TRABAJO EN LA SALA -->
+        <section class="glass-card p-8 border-t-4 border-t-purple-500 relative group">
+            <div class="absolute top-4 right-4">
+                <span class="bg-purple-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide shadow-md shadow-purple-500/50">
+                    🖥️ TRABAJO EN LA SALA
+                </span>
+            </div>
+            
+            <h2 class="text-3xl font-bold text-purple-400 mb-4">Reto en Sala: Mi solución con IA y Excel 🚀</h2>
+            
+            <div class="space-y-6 text-slate-300">
+                <!-- Paso 1 -->
+                <div class="bg-slate-800/40 p-5 rounded-xl border border-slate-600 hover:bg-slate-800/60 transition-all">
+                    <h3 class="text-xl font-bold text-white mb-2">🤖 Paso 1: Genera tu banco de correos con IA</h3>
+                    <p class="mb-3">Abre tu asistente de IA (ChatGPT, Gemini o Copilot) y pega exactamente este prompt:</p>
+                    <div class="bg-black/60 p-4 rounded text-emerald-300 font-mono text-xs shadow-inner relative overflow-x-auto">
+                        Actúa como profesor de tecnología educativa. Genera una tabla TSV con 6 columnas exactas: Codigo, Remitente, Asunto, Palabras, Adjuntos, Categoria. La columna Codigo tiene códigos únicos COR001 a COR010. La columna Remitente tiene nombres completos de estudiantes. La columna Asunto contiene asuntos de correos académicos formales (solicitud de tutoría, entrega de tarea, duda sobre evaluación, agradecimiento a docente, etc.). La columna Palabras contiene números enteros entre 40 y 180 que representan la extensión del correo. La columna Adjuntos contiene números enteros entre 0 y 3. La columna Categoria contiene únicamente los valores: Académico, Laboral o Personal. Entrega SOLO la tabla en formato TSV con exactamente 10 filas de datos más 1 fila de encabezados, sin explicaciones, sin markdown, sin código, sin comillas. Usa tabulaciones reales como separador.
+                    </div>
+                    <p class="mt-3 text-sm text-yellow-300">⚠️ Copia el resultado y pégalo en la celda <strong>A1</strong> de Excel. Verifica tener datos hasta la fila 11.</p>
+                </div>
+
+                <!-- Paso 2 -->
+                <div class="bg-slate-800/40 p-5 rounded-xl border border-slate-600 hover:bg-slate-800/60 transition-all">
+                    <h3 class="text-xl font-bold text-white mb-2">📊 Paso 2: Da formato profesional a tu tabla</h3>
+                    <p>Selecciona el rango <code class="text-purple-300">A1:F11</code>:</p>
+                    <ul class="list-disc list-inside space-y-1 mt-2 text-sm">
+                        <li>Fila 1 (Encabezados): Relleno azul oscuro, fuente blanca en negrita, tamaño 11.</li>
+                        <li>Columnas <em>Palabras</em> y <em>Adjuntos</em>: Formato de número centrado.</li>
+                        <li>Alinea el texto de la columna <em>Asunto</em> a la izquierda y aplica bordes finos a todo el rango.</li>
+                    </ul>
+                </div>
+
+                <!-- Paso 3 -->
+                <div class="bg-slate-800/40 p-5 rounded-xl border border-slate-600 hover:bg-slate-800/60 transition-all">
+                    <h3 class="text-xl font-bold text-white mb-2">⚙️ Paso 3: Analiza los correos con fórmulas</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li>En <strong>H1</strong> escribe "Análisis" y en <strong>H2</strong> ingresa: <code class="bg-slate-900 px-2 py-1 rounded text-cyan-300">=PROMEDIO(D2:D11)</code></li>
+                        <li>En <strong>H3</strong> ingresa: <code class="bg-slate-900 px-2 py-1 rounded text-cyan-300">=CONTAR.SI(F2:F11;"Académico")</code></li>
+                        <li>En <strong>H4</strong> ingresa: <code class="bg-slate-900 px-2 py-1 rounded text-cyan-300">=SUMAR.SI(F2:F11;"Académico";D2:D11)</code></li>
+                        <li>En <strong>H5</strong> ingresa: <code class="bg-slate-900 px-2 py-1 rounded text-cyan-300">=BUSCARV("COR005";A2:F11;3;FALSO)</code></li>
+                    </ul>
+                </div>
+
+                <!-- Paso 4 -->
+                <div class="bg-slate-800/40 p-5 rounded-xl border border-slate-600 hover:bg-slate-800/60 transition-all">
+                    <h3 class="text-xl font-bold text-white mb-2">💾 Paso final: Guarda el archivo</h3>
+                    <p class="text-sm">Nomenclatura obligatoria: <code class="text-emerald-400">9_correo_formal_200926_tu_nombre.xlsx</code></p>
+                    <div class="mt-3 bg-yellow-900/30 border border-yellow-600 p-3 rounded text-yellow-200 text-sm">
+                        <strong>✨ Reto avanzado:</strong> Agrega una columna G llamada <em>Formalidad</em> usando la fórmula <code class="bg-black/50 px-2 py-0.5 rounded">=SI(Y(D2>=50;D2<=150);"Alto";"Bajo")</code> en G2 y arrastra hasta G11.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BLOQUE: INVESTIGACIÓN & HOJA SUELTA -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            
+            <!-- INVESTIGACIÓN -->
+            <section class="glass-card p-6 border-t-4 border-t-pink-500 relative">
+                <div class="absolute top-4 right-4">
+                    <span class="bg-pink-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide shadow-md">
+                        🔍 INVESTIGACIÓN
+                    </span>
+                </div>
+                <h2 class="text-2xl font-bold text-pink-400 mb-4 mt-8">Análisis de Estilos</h2>
+                <div class="bg-slate-800/50 p-4 rounded-lg space-y-3">
+                    <p class="text-slate-200 text-sm">Reflexiona y responde en tu cuaderno:</p>
+                    <p class="text-lg font-bold text-white bg-black/40 p-3 rounded border-l-4 border-pink-500 italic">
+                        "Imagina que tienes un documento o un correo muy extenso. ¿Por qué es fundamental organizar la información en párrafos claros y directos en lugar de enviar bloques gigantes sin estructura?"
+                    </p>
+                </div>
+            </section>
+
+            <!-- TAREA HOJA SUELTA -->
+            <section class="glass-card p-6 border-t-4 border-t-yellow-500 relative overflow-visible">
+                <div class="absolute top-4 right-4">
+                    <span class="bg-yellow-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide shadow-md">
+                        📄 TAREA EN HOJA SUELTA
+                    </span>
+                </div>
+                
+                <h2 class="text-2xl font-bold text-yellow-400 mb-4 mt-8">Esquema Estructural</h2>
+                
+                <div class="flex items-center gap-4 bg-slate-900/60 p-5 rounded-xl border border-yellow-500/30">
+                    <div class="flex-1 text-slate-200 text-sm space-y-3">
+                        <p class="font-bold text-white border-b border-slate-700 pb-2">Entregable para el profesor:</p>
+                        <p><strong>¡A dibujar!</strong> Dibuja cómo se vería el "esqueleto" (la estructura) de un correo electrónico formal ordenado usando rectángulos de diferentes tamaños para representar:</p>
+                        <ul class="list-disc list-inside text-xs space-y-1 text-yellow-300">
+                            <li>El Destinatario y Asunto</li>
+                            <li>El Saludo</li>
+                            <li>El Cuerpo del mensaje</li>
+                            <li>El Cierre y la Firma</li>
+                        </ul>
+                    </div>
+                    <!-- FLECHA ANIMADA HACIA LA IZQUIERDA REQUERIDA -->
+                    <div class="text-6xl animate-bounce-x text-yellow-400 drop-shadow-[0_0_15px_rgba(250,204,21,0.6)] shrink-0">
+                        ⬅️
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- SECCIÓN DE GAMIFICACIÓN -->
+        <section class="glass-card p-8 border-t-4 border-t-cyan-500">
+            <h2 class="text-3xl font-bold text-cyan-400 mb-6 text-center">🎮 Micro-Quiz: Experto en Redacción Académica</h2>
+            <div id="quiz-container" class="max-w-2xl mx-auto">
+                
+                <!-- Pregunta 1 -->
+                <div class="quiz-question mb-6" id="q1">
+                    <p class="text-lg font-bold text-white mb-3">1. ¿Cuál de los siguientes elementos NUNCA debe faltar en un correo académico?</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <button class="quiz-option bg-slate-800 p-3 rounded-lg border border-slate-600 hover:bg-slate-700 transition text-left" onclick="selectAnswer(1, this, false)">A. Emojis coloridos para expresar alegría.</button>
+                        <button class="quiz-option bg-slate-800 p-3 rounded-lg border border-slate-600 hover:bg-slate-700 transition text-left" onclick="selectAnswer(1, this, true)">B. Un asunto claro y descriptivo.</button>
+                    </div>
+                </div>
+
+                <!-- Pregunta 2 -->
+                <div class="quiz-question mb-6 hidden" id="q2">
+                    <p class="text-lg font-bold text-white mb-3">2. ¿Qué extensión en palabras se considera ideal para un correo académico conciso y directo?</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <button class="quiz-option bg-slate-800 p-3 rounded-lg border border-slate-600 hover:bg-slate-700 transition text-left" onclick="selectAnswer(2, this, true)">A. Entre 50 y 150 palabras.</button>
+                        <button class="quiz-option bg-slate-800 p-3 rounded-lg border border-slate-600 hover:bg-slate-700 transition text-left" onclick="selectAnswer(2, false, false)">B. Más de 1000 palabras.</button>
+                    </div>
+                </div>
+
+                <!-- Pregunta 3 -->
+                <div class="quiz-question mb-6 hidden" id="q3">
+                    <p class="text-lg font-bold text-white mb-3">3. ¿Qué función de Excel permite calcular la extensión promedio de palabras en un rango?</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <button class="quiz-option bg-slate-800 p-3 rounded-lg border border-slate-600 hover:bg-slate-700 transition text-left" onclick="selectAnswer(3, this, false)">A. SUMAR.SI</button>
+                        <button class="quiz-option bg-slate-800 p-3 rounded-lg border border-slate-600 hover:bg-slate-700 transition text-left" onclick="selectAnswer(3, this, true)">B. PROMEDIO</button>
+                    </div>
+                </div>
+
+                <div class="text-center mt-6">
+                    <button id="next-btn" class="hidden bg-cyan-600 hover:bg-cyan-500 text-white px-8 py-3 rounded-full font-bold shadow-lg transition-all" onclick="nextQuestion()">Siguiente Pregunta</button>
+                    <div id="quiz-result" class="hidden text-2xl font-bold text-emerald-400 mt-4 p-4 bg-emerald-900/30 rounded-xl border border-emerald-500"></div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER REGLA DE ORO -->
+    <footer class="mt-16 py-6 bg-black/60 border-t border-slate-800 text-center backdrop-blur-md w-full">
+        <p class="text-slate-400 font-semibold tracking-wide text-sm">
+            © 2026 | Prof. William Fdo Bernal - Área de Tecnología e Informática
+        </p>
+    </footer>
+
+    <!-- LÓGICA JS INTEGRADA -->
+    <script>
+        // ==========================================
+        // 1. REGLA OBLIGATORIA: Copiar Enlace
+        // ==========================================
+        function copiarEnlace() {
+            const url = window.location.href;
+            navigator.clipboard.writeText(url).then(() => {
+                const toast = document.getElementById('toastCopiado');
+                if (toast) {
+                    toast.classList.remove('hidden');
+                    toast.animate([
+                        { opacity: 0, transform: 'translateY(-20px)' },
+                        { opacity: 1, transform: 'translateY(0)' }
+                    ], { duration: 300, fill: 'forwards' });
+                    
+                    setTimeout(() => {
+                        toast.animate([
+                            { opacity: 1, transform: 'translateY(0)' },
+                            { opacity: 0, transform: 'translateY(-20px)' }
+                        ], { duration: 300, fill: 'forwards' }).onfinish = () => toast.classList.add('hidden');
+                    }, 2500);
+                } else {
+                    alert("Enlace copiado ✅");
+                }
+            }).catch(() => {
+                alert("No se pudo copiar automáticamente. Copia el enlace manualmente desde la barra del navegador.");
+            });
+        }
+
+        // ==========================================
+        // 2. MÓDULO INTERACTIVO: Data Lab (Chart.js)
+        // ==========================================
+        const ctx = document.getElementById('emailChart').getContext('2d');
+        
+        const labels = ['Correo 1', 'Correo 2', 'Correo 3', 'Correo 4', 'Correo 5', 'Correo 6', 'Correo 7', 'Correo 8', 'Correo 9', 'Correo 10'];
+        const dataTodos = [45, 90, 120, 65, 180, 110, 85, 140, 55, 95];
+        const dataAcademicos = [0, 90, 120, 65, 0, 110, 85, 140, 55, 95]; // Simulando filtro
+
+        let emailChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Cantidad de Palabras por Correo',
+                    data: dataTodos,
+                    backgroundColor: 'rgba(56, 189, 248, 0.7)',
+                    borderColor: 'rgba(56, 189, 248, 1)',
+                    borderWidth: 2,
+                    borderRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                color: '#e2e8f0',
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 200,
+                        grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                        ticks: { color: '#94a3b8' },
+                        title: { display: true, text: 'Número de Palabras', color: '#93c5fd' }
+                    },
+                    x: {
+                        grid: { display: false },
+                        ticks: { color: '#94a3b8', font: { size: 12 } }
+                    }
+                },
+                plugins: {
+                    legend: { labels: { color: '#e2e8f0', font: { size: 14 } } },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.parsed.y + ' palabras (Ideal académico: 50-150)';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        function updateChart(mode) {
+            if (mode === 'academicos') {
+                emailChart.data.datasets[0].data = dataAcademicos;
+                emailChart.data.datasets[0].backgroundColor = 'rgba(16, 185, 129, 0.7)';
+                emailChart.data.datasets[0].borderColor = 'rgba(16, 185, 129, 1)';
+            } else {
+                emailChart.data.datasets[0].data = dataTodos;
+                emailChart.data.datasets[0].backgroundColor = 'rgba(56, 189, 248, 0.7)';
+                emailChart.data.datasets[0].borderColor = 'rgba(56, 189, 248, 1)';
+            }
+            emailChart.update();
+        }
+
+        // ==========================================
+        // 3. GAMIFICACIÓN: Lógica del Micro-Quiz
+        // ==========================================
+        let currentQuestion = 1;
+        let score = 0;
+        let answeredCurrent = false;
+
+        function selectAnswer(qNum, btn, isCorrect) {
+            if (answeredCurrent) return;
+            answeredCurrent = true;
+            
+            const siblings = btn.parentElement.children;
+            for(let el of siblings) {
+                el.classList.remove('selected', 'border-emerald-500', 'border-red-500');
+            }
+
+            btn.classList.add('selected');
+
+            if (isCorrect) {
+                score++;
+                btn.style.backgroundColor = 'rgba(16, 185, 129, 0.5)';
+                btn.style.borderColor = '#34d399';
+                btn.animate([{transform:'scale(1)'},{transform:'scale(1.03)'},{transform:'scale(1)'}], 300);
+            } else {
+                btn.style.backgroundColor = 'rgba(239, 68, 68, 0.5)';
+                btn.style.borderColor = '#f87171';
+                btn.animate([{transform:'translateX(-5px)'},{transform:'translateX(5px)'},{transform:'translateX(0)'}], 300);
+            }
+
+            document.getElementById('next-btn').classList.remove('hidden');
+        }
+
+        function nextQuestion() {
+            document.getElementById(`q${currentQuestion}`).classList.add('hidden');
+            document.getElementById('next-btn').classList.add('hidden');
+            answeredCurrent = false;
+            currentQuestion++;
+            
+            if (currentQuestion <= 3) {
+                document.getElementById(`q${currentQuestion}`).classList.remove('hidden');
+            } else {
+                mostrarResultado();
+            }
+        }
+
+        function mostrarResultado() {
+            const resDiv = document.getElementById('quiz-result');
+            resDiv.classList.remove('hidden');
+            
+            if (score === 3) {
+                resDiv.innerHTML = "¡Excelente! 🏆 Eres un profesional de la comunicación académica.";
+            } else if (score === 2) {
+                resDiv.innerHTML = "¡Muy bien! 🥈 Tienes claros los conceptos principales del correo formal.";
+                resDiv.classList.replace('text-emerald-400', 'text-yellow-400');
+                resDiv.classList.replace('bg-emerald-900/30', 'bg-yellow-900/30');
+                resDiv.classList.replace('border-emerald-500', 'border-yellow-500');
+            } else {
+                resDiv.innerHTML = "¡Buen intento! 💪 Repasa los componentes de la estructura formal.";
+                resDiv.classList.replace('text-emerald-400', 'text-blue-400');
+                resDiv.classList.replace('bg-emerald-900/30', 'bg-blue-900/30');
+                resDiv.classList.replace('border-emerald-500', 'border-blue-500');
+            }
+        }
+    </script>
+</body>
+</html>
