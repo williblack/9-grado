@@ -1,1 +1,254 @@
-hola
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Protección de Datos y Seguridad Digital | Grado 9°</title>
+</head>
+<body>
+<script>
+const CLASE = {
+  grado: 9,
+  edad: 14,
+  periodo: 1,
+  semana: 3,
+  tema: "Protección de Datos y Seguridad Digital",
+  temaAnterior: "La Web 2.0 y sus herramientas",
+  video: "",
+  estilo: "coral",
+  emoji: "🛡️🔒",
+  objetivo: "Reconocer los principales riesgos de seguridad digital en la red y aplicar medidas prácticas básicas para proteger la información personal y las cuentas.",
+  competencia: "Ciudadanía digital, análisis crítico de riesgos informáticos y aplicación de protocolos de seguridad en entornos virtuales.",
+  preguntaGancho: "¿Sabías que la mayoría de los hackeos a estudiantes no ocurren por programas complejos de virus, sino porque ellos mismos entregan la clave por engaños sencillos?",
+  agenda: [
+    { min: 5, titulo: "Conexión e Introducción", texto: "Revisión de aprendizajes sobre la Web 2.0 y la necesidad de protegernos en plataformas colaborativas." },
+    { min: 15, titulo: "Conceptualización en Cuaderno", texto: "Registro guiado de conceptos de seguridad digital, riesgos comunes, contraseñas e identificación de phishing." },
+    { min: 15, titulo: "Reto Práctico con IA y Excel", texto: "Generación de tabla sobre ciberamenazas mediante prompt estructurado y maquetación en Microsoft Excel." },
+    { min: 10, titulo: "Evaluación y Cierre", texto: "Resolución del quiz interactivo de verificación y registro de reflexiones en la hoja de trabajo digital." }
+  ],
+  cuaderno: {
+    conexion: "En la lección anterior exploramos cómo la Web 2.0 nos convirtió en creadores de contenido activo mediante blogs, wikis y redes sociales. Sin embargo, al compartir tanta información en línea, abrimos puertas virtuales que requieren candados digitales. Pasar de ser un usuario activo a un ciudadano digital responsable exige aprender a defender nuestra identidad e información personal.",
+    bloques: [
+      {
+        icono: "🛡️",
+        titulo: "1. Concepto e Información Sensible",
+        puntos: [
+          { icono: "💻", termino: "Seguridad Digital", texto: "Conjunto de políticas, hábitos y herramientas técnicas diseñadas para resguardar dispositivos, redes e información personal de accesos no autorizados o ataques en Internet." },
+          { icono: "🚫", termino: "Información Sensible", texto: "Datos privados que jamás se deben publicar abiertamente: nombres completos, documentos de identidad, ubicación GPS en tiempo real, dirección, teléfonos, fotos con uniforme escolar o rutinas diarias." }
+        ],
+        ampliacion: "La información personal funciona como las llaves de tu casa. Si publicas en redes sociales una foto con tu documento de identidad o mostrando el uniforme del Colegio Santa Mariana de Jesús con la ubicación activada, le estás entregando a personas desconocidas un mapa exacto de tu vida diaria. Un ciberdelincuente puede armar un perfil completo combinando pequeños datos que publicas de forma inocente en distintas plataformas."
+      },
+      {
+        icono: "⚠️",
+        titulo: "2. Principales Ciberamenazas",
+        puntos: [
+          { icono: "🎣", termino: "Phishing", texto: "Técnica de ingeniería social donde los atacantes se pasan por entidades confiables (bancos, colegios, plataformas) mediante mensajes falsos para engañarte y robar tus credenciales." },
+          { icono: "🦠", termino: "Malware", texto: "Programas maliciosos (virus, troyanos, spyware) diseñados para dañar tu sistema o espiar tus archivos tras descargar adjuntos dudosos." },
+          { icono: "🎭", termino: "Robo de Identidad", texto: "Uso no autorizado de tus datos personales e imágenes para crear perfiles falsos, cometer fraudes o acosar a otras personas a tu nombre." }
+        ],
+        ampliacion: "Para detectar un mensaje malicioso busca cuatro señales clave: errores de ortografía o redacción extraña, un lenguaje alarmista que exige acción en pocos minutos («¡Tu cuenta se cerrará hoy!»), enlaces web con dominios extraños o no oficiales, y ofertas irreales como diamantes o juegos gratis. Si un mensaje parece demasiado bueno para ser verdad, con seguridad es una trampa."
+      },
+      {
+        icono: "🔑",
+        titulo: "3. Mecanismos de Protección Efectiva",
+        puntos: [
+          { icono: "🔐", termino: "Contraseña Robusta", texto: "Clave de acceso con más de 12 caracteres que combina letras mayúsculas, minúsculas, números y símbolos especiales, evitando datos obvios." },
+          { icono: "📲", termino: "Autenticación 2FA", texto: "Segundo factor de verificación que solicita un código temporal enviado a tu teléfono o aplicación para confirmar tu identidad antes de iniciar sesión." }
+        ],
+        ampliacion: "Crear una contraseña segura no significa memorizar algo imposible. Puedes usar una frase larga que solo tú recuerdes y sustituir letras por caracteres o números, por ejemplo: «#Sol*Verde2026!». Usar la misma clave en TikTok, el correo institucional y los videojuegos es un error crítico: si vulneran una plataforma, vulnerarán automáticamente toda tu vida digital. El 2FA actúa como una segunda cerradura inviolable."
+      },
+      {
+        icono: "📜",
+        titulo: "4. Decálogo de Seguridad Digital (Reglas de Oro)",
+        puntos: [
+          { icono: "1️⃣", termino: "Claves únicas", texto: "Utiliza una contraseña totalmente diferente para cada cuenta importante." },
+          { icono: "2️⃣", termino: "Activa 2FA", texto: "Habilita la doble verificación en tus redes sociales y correo institucional." },
+          { icono: "3️⃣", termino: "Pausa el clic", texto: "No abras enlaces ni descargues archivos adjuntos de usuarios desconocidos." },
+          { icono: "4️⃣", termino: "Verifica URL", texto: "Revisa siempre la barra de direcciones del navegador antes de digitar claves." },
+          { icono: "5️⃣", termino: "Ajusta privacidad", texto: "Configura tus perfiles en redes sociales como privados y restringe extraños." },
+          { icono: "6️⃣", termino: "Sesiones cerradas", texto: "Cierra sesión al usar computadores compartidos en salas de sistemas o cibercafés." },
+          { icono: "7️⃣", termino: "Redes seguras", texto: "Evita realizar transacciones o ingresar claves conectado a Wi-Fi públicas." },
+          { icono: "8️⃣", termino: "Actualización", texto: "Mantén actualizado el sistema operativo y las aplicaciones de tus equipos." },
+          { icono: "9️⃣", termino: "Datos resguardados", texto: "Jamás compartas fotos de tu documento, tarjetas o ubicación exacta." },
+          { icono: "🔟", termino: "Reporta abusos", texto: "Si sufres acoso o detectas un perfil falso, bloquéalo e informa a un adulto." }
+        ],
+        ampliacion: "El decálogo de seguridad digital debe convertirse en un hábito cotidiano. Aplicar estas diez normas reduce en un 95% la probabilidad de ser víctima de ataques cibernéticos comunes. Recuerda que en la seguridad informática el eslabón más débil siempre es el factor humano, no las máquinas."
+      }
+    ]
+  },
+  glosario: [
+    { termino: "Ciberseguridad", definicion: "Práctica de proteger sistemas, redes y programas de ataques digitales." },
+    { termino: "Phishing", definicion: "Estafa digital que busca engañar al usuario para que revele información confidencial." },
+    { termino: "2FA (Autenticación de dos factores)", definicion: "Capa adicional de seguridad que requiere dos tipos de pruebas para permitir el acceso." },
+    { termino: "Engañosa URL", definicion: "Dirección web creada de forma fraudulenta imitando la apariencia de una marca legítima." }
+  ],
+  sabiasQue: [
+    "Más del 80% de las violaciones de seguridad cibernética reportadas a nivel global ocurren por contraseñas débiles, robadas o reutilizadas.",
+    "El concepto de 'Phishing' se acuñó en 1996 por hackers que usaban anzuelos digitales para 'pescar' cuentas y claves de usuarios en la plataforma AOL."
+  ],
+  modulos: {
+    tarjetas: {
+      titulo: "Conceptos Clave de Seguridad",
+      items: [
+        { icono: "🎣", frente: "¿Qué es Phishing?", reverso: "Un engaño digital mediante mensajes falsos para robar contraseñas o datos personales." },
+        { icono: "🔑", frente: "¿Qué es una clave segura?", reverso: "Una combinación de más de 12 caracteres con mayúsculas, minúsculas, números y símbolos." },
+        { icono: "📱", frente: "¿Qué es el factor 2FA?", reverso: "Un segundo paso de verificación (como un código al celular) obligatorio para iniciar sesión." },
+        { icono: "🌐", frente: "Señal de alerta en sitios web", reverso: "Errores ortográficos, ofertas exageradas y direcciones URL que no corresponden a la empresa oficial." }
+      ]
+    },
+    explorador: {
+      titulo: "Anatomía de las Amenazas Digitales",
+      items: [
+        {
+          icono: "📩",
+          nombre: "Mensajes Falsos",
+          secciones: [
+            { titulo: "Características", items: ["Urgencia extrema en el mensaje", "Promesas de premios o amenazas de bloqueo", "Remitentes con correos no oficiales"] },
+            { titulo: "Prevención", items: ["No hacer clic en los enlaces", "Verificar directamente en la página web oficial", "Eliminar y reportar la cuenta"] }
+          ]
+        },
+        {
+          icono: "🔐",
+          nombre: "Gestión de Accesos",
+          secciones: [
+            { titulo: "Errores Comunes", items: ["Usar fechas de nacimiento o nombres", "Repetir la misma clave en todo sitio", "Anotar contraseñas en papeles visibles"] },
+            { titulo: "Buenas Prácticas", items: ["Cambiar claves periódicamente", "Usar gestores de contraseñas", "Nunca compartir contraseñas con amigos"] }
+          ]
+        }
+      ]
+    },
+    clasificador: {
+      titulo: "Clasificador de Mensajes: ¿Seguro o Sospechoso?",
+      categorias: ["Mensaje Seguro / Confiable", "Ataque de Phishing / Riesgo"],
+      items: [
+        { texto: "Notificación de Google solicitando código 2FA que tú acabas de pedir.", categoria: 0 },
+        { texto: "Mensaje de WhatsApp: «Ganaste un iPhone gratis, entra a este link y da tu clave».", categoria: 1 },
+        { texto: "Correo institucional informando sobre la fecha de evaluaciones sin enlaces extraños.", categoria: 0 },
+        { texto: "SMS diciendo: «Tu cuenta bancaria ha sido bloqueada, ingresa a banco-seguro12.tk».", categoria: 1 },
+        { texto: "Aviso de actualización oficial de tu sistema operativo en la ventana de ajustes.", categoria: 0 },
+        { texto: "Oferta en chat de juego: «Dame tu contraseña y te recargo 1000 diamantes gratis».", categoria: 1 }
+      ]
+    }
+  },
+  reto: {
+    titulo: "Matriz de Ciberamenazas con IA y Microsoft Excel",
+    descripcion: "Aprenderás a interactuar con una Inteligencia Artificial para generar información estructurada y luego organizarla profesionalmente en una hoja de cálculo en Excel.",
+    pasos: [
+      "Abre en una pestaña del navegador la herramienta de IA (ChatGPT o Gemini).",
+      "Copia de forma exacta el prompt proporcionado a continuación y pégalo en el chat de la IA.",
+      "Copia la tabla de texto que generó la IA asegurándote de seleccionar todos los datos.",
+      "Abre Microsoft Excel, crea un libro en blanco y pega los datos en la celda A1.",
+      "Ajusta el ancho de las columnas, coloca bordes a todas las celdas y aplica un color de relleno a los encabezados.",
+      "Guarda el archivo en tu equipo con el nombre 'Ciberseguridad_TuNombre_Grado9'."
+    ],
+    prompt: "Genera una tabla en formato de texto tabulado con 5 amenazas comunes de seguridad digital (Phishing, Malware, Contraseña débil, Wi-Fi pública, Robo de identidad). La tabla debe contener exactamente 4 columnas: 1. Amenaza 2. Descripción corta 3. Nivel de Riesgo (Alto, Medio, Crítico) 4. Medida de Prevención. Asegúrate de que la salida sea directamente una tabla limpia para copiar y pegar en Excel.",
+    herramientas: [
+      { nombre: "Gemini AI", url: "https://gemini.google.com" },
+      { nombre: "ChatGPT", url: "https://chatgpt.com" }
+    ],
+    requisitos: [
+      "La tabla debe tener 4 columnas correctamente alineadas en Excel.",
+      "Los encabezados deben destacar con formato en negrita y color de relleno.",
+      "Toda la información debe tener bordes visibles aplicados.",
+      "El ancho de las columnas debe estar ajustado para que el texto sea legible."
+    ]
+  },
+  quiz: [
+    {
+      pregunta: "¿Cuál de los siguientes elementos NUNCA debe publicarse en una red social abierta?",
+      opciones: [
+        "Un dibujo o ilustración hecho por ti.",
+        "Tu opinión sobre una película de cine.",
+        "Foto de tu documento de identidad o carné escolar.",
+        "El nombre de tu equipo de fútbol favorito."
+      ],
+      correcta: 2,
+      explicacion: "Los documentos personales e identificaciones escolares contienen datos sensibles que facilitan el robo de identidad."
+    },
+    {
+      pregunta: "¿En qué consiste la técnica de 'Phishing'?",
+      opciones: [
+        "En acelerar la velocidad de descarga de la conexión a Internet.",
+        "En engañar al usuario mediante mensajes falsos para robar sus claves o datos.",
+        "En actualizar los componentes físicos de un computador.",
+        "En crear una copia de respaldo automática en la nube."
+      ],
+      correcta: 1,
+      explicacion: "El Phishing suplanta la identidad de empresas o instituciones para engañar a las víctimas y robar su información."
+    },
+    {
+      pregunta: "¿Qué combinación representa una contraseña realmente segura?",
+      opciones: [
+        "123456789012",
+        "Mascota2026",
+        "#Sol*Verde2026!",
+        "contraseñasegura"
+      ],
+      correcta: 2,
+      explicacion: "Una clave robusta combina más de 12 caracteres mezclando mayúsculas, minúsculas, números y símbolos."
+    },
+    {
+      pregunta: "¿Cuál es la función principal de la Autenticación en Dos Pasos (2FA)?",
+      opciones: [
+        "Hacer que la computadora encienda el doble de rápido.",
+        "Agregar una capa extra de verificación requerida además de la contraseña.",
+        "Permitir que dos personas usen la misma cuenta simultáneamente.",
+        "Guardar copias de fotos en dos carpetas distintas."
+      ],
+      correcta: 1,
+      explicacion: "El 2FA exige un segundo factor (como un código a tu celular) para confirmar la identidad antes de ingresar."
+    },
+    {
+      pregunta: "¿Qué debes hacer si recibes un mensaje diciendo que ganaste un premio pero debes ingresar tu clave para reclamarlo?",
+      opciones: [
+        "Ingresar la clave rápidamente antes de que venza el tiempo.",
+        "Reenviar el mensaje a todos tus compañeros de clase.",
+        "Ignorar el mensaje, no abrir el enlace y bloquear al remitente.",
+        "Cambiar tu clave y luego entregársela al remitente."
+      ],
+      correcta: 2,
+      explicacion: "Los mensajes que ofrecen premios a cambio de claves son fraudes directos; debes ignorarlos y reportarlos."
+    },
+    {
+      pregunta: "¿Por qué es riesgoso utilizar redes Wi-Fi públicas para ingresar a tus cuentas personales?",
+      opciones: [
+        "Porque consumen la batería de tu dispositivo mucho más rápido.",
+        "Porque la conexión suele ser demasiado lenta para ver videos.",
+        "Porque personas malintencionadas en la misma red podrían interceptar tu tráfico de datos.",
+        "Porque las redes públicas borran tus aplicaciones automáticamente."
+      ],
+      correcta: 2,
+      explicacion: "En redes abiertas sin cifrado, los datos transmitidos pueden ser capturados por terceros conectados a la misma red."
+    }
+  ],
+  investigacion: {
+    titulo: "Búsqueda Rápida de Conceptos Avanzados",
+    instruccion: "Responde en tu cuaderno las siguientes preguntas tras realizar una búsqueda rápida en la Web:",
+    preguntas: [
+      "¿Qué es un Gestor de Contraseñas? Nombra dos ejemplos de programas o aplicaciones que cumplan esta función.",
+      "¿Qué significa que un sitio web empiece por 'https://' y tenga un candado en la barra de dirección?",
+      "Investiga qué es la 'Ingeniería Social' (Social Engineering) en la ciberseguridad y redacta un ejemplo breve en tres renglones."
+    ],
+    fuentes: [
+      "https://www.incibe.es (Instituto Nacional de Ciberseguridad)",
+      "https://www.internetsegura.gob.es"
+    ]
+  },
+  hoja: {
+    preguntas: [
+      { id: "r1", texto: "Analiza: ¿Por qué crees que los ciberdelincuentes usan mensajes de 'URGENCIA' para engañar a las personas?", lineas: 3 },
+      { id: "r2", texto: "Seguridad personal: Revisa mentalmente tus claves actuales. ¿Cumplen con los requisitos de seguridad explicados hoy? ¿Qué cambios debes hacerles?", lineas: 3 },
+      { id: "r3", texto: "Aplicación del reto: ¿Qué ventajas descubriste al generar una tabla estructurada mediante IA y pasarla a Microsoft Excel?", lineas: 3 },
+      { id: "r4", texto: "¿Qué aprendí hoy sobre el valor de mi información personal en la red y cómo protegerla cotidianamente?", lineas: 3 }
+    ]
+  },
+  notasDocente: [
+    "Verificar que los estudiantes usen las funciones de pegado directo en Excel para que mantengan el formato tabular.",
+    "Recordar el uso responsable de la IA y hacer énfasis en que el prompt debe copiarse minuciosamente.",
+    "Enfatizar en la prohibición estricta de compartir claves reales durante el desarrollo de las actividades en clase."
+  ]
+};
+</script>
+<script src="../../motor-bernal-v5.js"></script>
+</body>
+</html>
