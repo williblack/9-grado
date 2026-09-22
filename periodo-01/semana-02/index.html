@@ -1,1 +1,282 @@
-hola
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Web 2.0 y sus herramientas | Grado 9°</title>
+</head>
+<body>
+<script>
+const CLASE = {
+  grado: 9,
+  edad: 14,
+  periodo: 1,
+  semana: 2,
+  tema: "La Web 2.0 y sus herramientas",
+  temaAnterior: "Introducción a la Hoja de Cálculo (Excel)",
+  video: "",
+  estilo: "oceano",
+  emoji: "🌐🌐",
+  objetivo: "Comprender las características fundamentales de la Web 2.0, diferenciar la interacción en línea del consumo pasivo y manipular tablas estructuradas de herramientas digitales en Microsoft Excel.",
+  competencia: "Reconozco e integro herramientas interactivas Web 2.0 en mis procesos de aprendizaje y gestión de información, automatizando la organización de datos en hojas de cálculo.",
+  preguntaGancho: "Si mañana desaparecieran las redes sociales, los comentarios y los botones de «compartir», ¿Internet seguiría siendo útil para ti o parecería una biblioteca vieja?",
+  agenda: [
+    { min: 5, titulo: "Conexión e Introducción", texto: "Revisión del tema de Excel previo y reflexión sobre la evolución interactiva de la Web." },
+    { min: 15, titulo: "Conceptos Fundamentales", texto: "Registro en el cuaderno sobre la Web 2.0, pilares, herramientas educativas y clasificación." },
+    { min: 15, titulo: "Reto Práctico con IA y Excel", texto: "Generación prompt con IA de una matriz TSV e importación directa a celdas de Excel." },
+    { min: 10, titulo: "Evaluación y Cierre", texto: "Quiz interactivo de comprobación de lectura y socialización de hallazgos." }
+  ],
+  cuaderno: {
+    conexion: "En la sesión anterior exploramos las celdas, filas y columnas de Microsoft Excel. Hoy utilizaremos esa estructura matricial para organizar y clasificar el ecosistema de la Web 2.0.",
+    bloques: [
+      {
+        icono: "🌐",
+        titulo: "1. Concepto y Características de la Web 2.0",
+        puntos: [
+          { icono: "🚀", termino: "Web Participativa", texto: "Evolución de Internet donde los usuarios pasan de ser simples lectores a creadores activos de contenido." },
+          { icono: "🔄", termino: "Interactividad Bidireccional", texto: "Permite la retroalimentación inmediata mediante comentarios, valoraciones y ediciones compartidas." },
+          { icono: "👥", termino: "Inteligencia Colectiva", texto: "Aprovecha el conocimiento acumulado de millones de personas colaborando en tiempo real." }
+        ],
+        ampliacion: "A diferencia de la Web 1.0 —donde las páginas eran estáticas y solo se podían leer como si fueran un periódico de papel—, la **Web 2.0 es dinámica y conversacional**. Cuando subes un video a YouTube, editas una entrada en Wikipedia o comentas una foto en Instagram, estás activando el principio de la Web 2.0: la información deja de ser estática para convertirse en un flujo colaborativo."
+      },
+      {
+        icono: "⚖️",
+        titulo: "2. Páginas Informativas vs. Herramientas Interactivas",
+        puntos: [
+          { icono: "📰", termino: "Páginas Informativas (Web 1.0)", texto: "Sitios de solo lectura (carteleras virtuales, enciclopedias tradicionales en CD-ROM, blogs estáticos sin comentarios)." },
+          { icono: "⚡", termino: "Herramientas Interactivas (Web 2.0)", texto: "Plataformas web que reaccionan a las entradas del usuario (editores online, foros, redes de trabajo colaborativo)." }
+        ],
+        ampliacion: "La diferencia fundamental radica en el **rol del usuario**. En una página informativa actúas como un consumidor pasivo. En una herramienta interactiva te conviertes en **prosumidor** (productor + consumidor). Por ejemplo, leer las noticias en un portal cerrado es Web 1.0, pero debates sobre esa misma noticia en un foro interactivo utilizando etiquetas es Web 2.0."
+      },
+      {
+        icono: "🎓",
+        titulo: "3. Herramientas Web 2.0 en la Educación",
+        puntos: [
+          { icono: "🎨", termino: "Diseño y Presentaciones", texto: "Plataformas como Canva o Genially para crear afiches y diapositivas interactivas." },
+          { icono: "📄", termino: "Procesadores de Texto en la Nube", texto: "Google Docs para redactar investigaciones grupales simultáneas." },
+          { icono: "🎮", termino: "Gamificación", texto: "Kahoot! y Quizizz para afianzar conceptos mediante cuestionarios en tiempo real." }
+        ],
+        ampliacion: "En el aula moderna, las herramientas Web 2.0 transforman la clase tradicional en un entorno **colaborativo y transparente**. Ya no necesitas guardar un trabajo en una memoria USB para pasárselo a tu compañero; ahora puedes editar el mismo documento en tiempo real mientras chateas sobre los cambios."
+      },
+      {
+        icono: "🏛️",
+        titulo: "4. Los 3 Pilares y Clasificación de la Web 2.0",
+        puntos: [
+          { icono: "🤝", termino: "Pilares Fundamentales", texto: "Participación (expresar opiniones), Colaboración (construir juntos) y Creación (generar contenido)." },
+          { icono: "📂", termino: "Redes y Comunidades", texto: "Plataformas enfocadas en conectar personas con intereses comunes (WhatsApp, LinkedIn, Instagram)." },
+          { icono: "🛠️", termino: "Almacenamiento y Producción", texto: "Servicios para guardar y publicar archivos multimediales (Google Drive, Spotify, YouTube)." }
+        ],
+        ampliacion: "Cada herramienta que usas en Internet cumple una función específica según su arquitectura. Clasificar estas herramientas nos ayuda a **escoger la plataforma adecuada** para cada reto académico o profesional, optimizando nuestro tiempo y la calidad de nuestras entregas."
+      }
+    ]
+  },
+  glosario: [
+    { termino: "Prosumidor", definicion: "Usuario de la Web 2.0 que no solo consume contenidos sino que también los produce y comparte." },
+    { termino: "TSV (Tab-Separated Values)", definicion: "Formato de texto simple donde los datos se separan por pestañas o tabulaciones, ideal para pegar directo en hojas de cálculo como Excel." },
+    { termino: "Gamificación", definicion: "Técnica de aprendizaje que traslada la mecánica de los juegos al ámbito educativo para mejorar los resultados." },
+    { termino: "Interactividad", definicion: "Capacidad de un sistema informático para responder a las acciones y comandos de un usuario de forma inmediata." }
+  ],
+  sabiasQue: [
+    "El término «Web 2.0» fue acuñado por Darcy DiNucci en 1999, pero se popularizó masivamente en 2004 gracias a Tim O'Reilly durante la Conferencia Web 2.0.",
+    "Wikipedia, uno de los mayores exponentes de la Web 2.0, cuenta con más de 60 millones de artículos creados y editados voluntariamente por usuarios de todo el mundo."
+  ],
+  modulos: {
+    tarjetas: {
+      titulo: "Analogías para Comprender la Web 2.0",
+      items: [
+        { icono: "📺", frente: "Web 1.0 (Página Informativa)", reverso: "Como la televisión tradicional: te sientas frente a la pantalla y solo miras la programación que transmiten sin poder cambiar el contenido." },
+        { icono: "🗣️", frente: "Web 2.0 (Herramienta Interactiva)", reverso: "Como una mesa redonda de debate: todos los asistentes tienen un micrófono, pueden opinar, mostrar sus trabajos y votar ideas." },
+        { icono: "📚", frente: "Enciclopedia de Biblioteca", reverso: "Un libro impreso donde la información no cambia en años y solo una persona lo consulta a la vez (Web 1.0)." },
+        { icono: "🌐", frente: "Wikipedia Colaborativa", reverso: "Un mural infinito donde miles de personas agregan datos, corrigen información y actualizan contenidos a diario (Web 2.0)." }
+      ]
+    },
+    explorador: {
+      titulo: "Ecosistema de Categorías Web 2.0",
+      items: [
+        {
+          icono: "💬",
+          nombre: "Comunicación y Redes",
+          secciones: [
+            { titulo: "Características", items: ["Interacción instantánea", "Creación de perfiles", "Difusión de mensajes en red"] },
+            { titulo: "Ejemplos Destacados", items: ["WhatsApp", "Instagram", "Discord", "X (Twitter)"] }
+          ]
+        },
+        {
+          icono: "🛠️",
+          nombre: "Producción Colaborativa",
+          secciones: [
+            { titulo: "Características", items: ["Edición multiusuario simultánea", "Historial de versiones", "Acceso desde la nube"] },
+            { titulo: "Ejemplos Destacados", items: ["Google Docs", "Notion", "Canva", "Miro"] }
+          ]
+        },
+        {
+          icono: "🎬",
+          nombre: "Plataformas Multimedia",
+          secciones: [
+            { titulo: "Características", items: ["Alojamiento de audio y video", "Listas de reproducción", "Canales de transmisión"] },
+            { titulo: "Ejemplos Destacados", items: ["YouTube", "Spotify", "TikTok", "SoundCloud"] }
+          ]
+        }
+      ]
+    },
+    clasificador: {
+      titulo: "Clasifica los Sitios Web según su Generación",
+      categorias: ["Web 1.0 (Informativa/Estática)", "Web 2.0 (Interactiva/Colaborativa)"],
+      items: [
+        { texto: "Enciclopedia Encarta en CD-ROM", categoria: 0 },
+        { texto: "Documento editable en Google Docs", categoria: 1 },
+        { texto: "Periódico digital en HTML sin comentarios", categoria: 0 },
+        { texto: "Muro interactivo de Padlet", categoria: 1 },
+        { texto: "Cuestionario en vivo en Kahoot!", categoria: 1 },
+        { texto: "Página institucional estática en TXT", categoria: 0 },
+        { texto: "Video compartido en TikTok con comentarios", categoria: 1 },
+        { texto: "Cartelera escolar digital sin interacción", categoria: 0 }
+      ]
+    }
+  },
+  reto: {
+    titulo: "Reto en Sala: Importación Matrix de la Web 2.0 a Excel",
+    descripcion: "Aprenderás a interactuar con una Inteligencia Artificial para solicitar tablas en formato matricial limpio e importarlas directamente a Microsoft Excel conservando celdas, filas y columnas intactas.",
+    pasos: [
+      "Abre el asistente de IA disponible (ChatGPT, Claude o Copilot).",
+      "Copia el prompt estructurado que aparece en el cuadro inferior.",
+      "Pega el prompt en la IA y presiona Enter para generar la tabla.",
+      "Copia la tabla generada por la IA desde el encabezado «Herramienta Web 2.0».",
+      "Abre un libro en blanco de Microsoft Excel y ubícate en la celda A1.",
+      "Presiona la combinación de teclas Ctrl + V para verificar que cada dato ocupe su celda correspondiente."
+    ],
+    prompt: "Genera una tabla simple de 2 columnas y 4 filas sobre la Web 2.0. Columna 1: Nombre de la herramienta Web 2.0. Columna 2: Su uso educativo. No uses texto adicional, solo la tabla limpia en formato TSV o matriz para copiar y pegar fácilmente.",
+    herramientas: [
+      { nombre: "ChatGPT", url: "https://chatgpt.com" },
+      { nombre: "Microsoft Copilot", url: "https://copilot.microsoft.com" }
+    ],
+    requisitos: [
+      "La tabla debe pegar exactamente en 2 columnas y 5 filas (incluyendo encabezado) en Excel.",
+      "La fila de encabezados debe estar formateada con fondo azul y texto en negrita.",
+      "Aplicar bordes a todas las celdas ocupadas.",
+      "Ajustar el ancho de las columnas para que ningún texto quede oculto."
+    ]
+  },
+  quiz: [
+    {
+      pregunta: "¿Cuál es la característica principal que define a la Web 2.0?",
+      opciones: [
+        "Permite ver sitios web solo en computadores grandes.",
+        "Transforma al usuario en un participante activo que crea y comparte contenido.",
+        "Obliga a pagar suscripciones para leer artículos informativos.",
+        "Elimina por completo la necesidad de conectarse a Internet."
+      ],
+      correcta: 1,
+      explicacion: "La Web 2.0 se diferencia de la 1.0 porque sustituye la lectura pasiva por la interacción, colaboración y creación bidireccional."
+    },
+    {
+      pregunta: "Un ejemplo de página informativa estilo Web 1.0 es:",
+      opciones: [
+        "Un documento interactivo en Google Docs.",
+        "Un tablero colaborativo en Padlet.",
+        "Una cartelera digital estática que solo permite leer un aviso.",
+        "Una sala de debate en vivo en Discord."
+      ],
+      correcta: 2,
+      explicacion: "Las páginas de la Web 1.0 no permiten la interacción del usuario ni la edición de contenidos; funcionan como carteleras de lectura única."
+    },
+    {
+      pregunta: "¿Qué término describe mejor al usuario moderno de la Web 2.0?",
+      opciones: [
+        "Espectador pasivo.",
+        "Prosumidor (Productor y Consumidor).",
+        "Programador de hardware.",
+        "Administrador de servidores."
+      ],
+      correcta: 1,
+      explicacion: "En la Web 2.0 el usuario es prosumidor porque consume información y al mismo tiempo produce datos mediante comentarios, videos o publicaciones."
+    },
+    {
+      pregunta: "Al presionar Ctrl + V sobre la celda A1 en Excel tras copiar una tabla TSV de la IA, ¿qué sucede?",
+      opciones: [
+        "Todo el texto se amontona en una sola celda.",
+        "Se borra el programa de Microsoft Excel.",
+        "La tabla se distribuye automáticamente respetando filas y columnas.",
+        "Se abre una ventana flotante pidiendo código HTML."
+      ],
+      correcta: 2,
+      explicacion: "El formato de datos separados por tabulaciones (TSV) es interpretado por Excel reconociendo filas y columnas sin amontonar la información."
+    },
+    {
+      pregunta: "¿Cuál de las siguientes herramientas Web 2.0 está enfocada principalmente en la gamificación educativa?",
+      opciones: [
+        "Blogger",
+        "Kahoot!",
+        "Dropbox",
+        "Excel"
+      ],
+      correcta: 1,
+      explicacion: "Kahoot! utiliza cuestionarios y dinámicas de juego para afianzar el aprendizaje en el aula de clases."
+    },
+    {
+      pregunta: "Son los 3 pilares fundamentales de la cultura Web 2.0:",
+      opciones: [
+        "Impresión, Escaneo y Copiado.",
+        "Lectura, Almacenamiento local y Bloqueo.",
+        "Participación, Colaboración y Creación.",
+        "Programación, Cableado y Electrónica."
+      ],
+      correcta: 2,
+      explicacion: "La Web 2.0 se apoya en que los usuarios puedan participar con opiniones, colaborar en grupo y crear contenidos originales."
+    }
+  ],
+  investigacion: {
+    titulo: "Investigación Corta de Campo (Cuaderno)",
+    instruccion: "Responde brevemente en tu cuaderno las siguientes 3 preguntas con tus palabras:",
+    preguntas: [
+      "¿Cuál es la diferencia principal entre un creador de contenido y un consumidor de contenido en la Web 2.0?",
+      "Menciona 2 riesgos de seguridad al compartir información en herramientas Web 2.0.",
+      "Investiga y escribe el nombre de una herramienta Web 2.0 que sirva para crear mapas mentales en línea."
+    ],
+    fuentes: [
+      "Buscadores académicos o portales educativos de tecnología.",
+      "Apuntes del cuaderno sobre herramientas Web 2.0."
+    ]
+  },
+  tarea: {
+    titulo: "Tarea Entregable: Entrevista sobre la Evolución Web",
+    instruccion: "En una hoja suelta debidamente marcada con tu nombre, grado y fecha, realiza una entrevista a un adulto (padre, familiar o docente) y responde las siguientes preguntas:",
+    renglones: 5,
+    indicacion: "Escríbela en la hoja de la IZQUIERDA",
+    criterios: [
+      "Entrevista completa realizada a un adulto real.",
+      "Mención clara de páginas/aplicaciones antiguas (Web 1.0 o inicios de Internet).",
+      "Identificación de herramientas Web 2.0 actuales utilizadas por el adulto.",
+      "Reflexión personal redactada de forma coherente con un mínimo de 5 renglones."
+    ],
+    entrega: "Próxima clase de Tecnología"
+  },
+  hoja: {
+    preguntas: [
+      {
+        id: "r1",
+        texto: "¿Por qué crees que trabajar de forma colaborativa en herramientas de la nube es más eficiente que enviar archivos adjuntos por correo electrónico?",
+        lineas: 3
+      },
+      {
+        id: "r2",
+        texto: "Explica con tus palabras el resultado del ejercicio práctico: ¿Qué ventajas representa generar datos estructurados con IA para llevarlos a Excel?",
+        lineas: 3
+      },
+      {
+        id: "r3",
+        texto: "¿Qué aprendí hoy sobre la Web 2.0 y cómo influye en la forma en que interactúo en Internet diario?",
+        lineas: 3
+      }
+    ]
+  },
+  notasDocente: [
+    "Monitorear la correcta copia del prompt en la IA y asegurar que los estudiantes usen las teclas de acceso rápido (Ctrl+C y Ctrl+V) en Excel.",
+    "Verificar que los estudiantes de grado 9° diferencien con claridad el concepto de prosumidor dentro de las dinámicas de la Web 2.0.",
+    "Revisar la ortografía y el uso de renglones en la tarea entregable para garantizar calidad en la redacción."
+  ]
+};
+</script>
+<script src="../../motor-bernal-v5.js"></script>
+</body>
+</html>
