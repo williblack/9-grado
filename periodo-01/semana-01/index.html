@@ -1,1 +1,230 @@
-hola
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Introducción a la Hoja de Cálculo (Excel) | Grado 9°</title>
+</head>
+<body>
+<script>
+const CLASE = {
+  grado: 9,
+  edad: 14,
+  periodo: 1,
+  semana: 1,
+  tema: "Introducción a la Hoja de Cálculo (Excel)",
+  temaAnterior: "no hay tema anterior , primera clase",
+  video: "",
+  estilo: "hojacalculo",
+  emoji: "📊",
+  objetivo: "Identificar los elementos básicos de una hoja de cálculo (filas, columnas, celdas, rangos y encabezados) para registrar y organizar información de forma clara.",
+  competencia: "Paso a paso, el estudiante organiza datos en Excel aplicando formatos básicos y combinando herramientas informáticas para resolver problemas de gestión de información.",
+  preguntaGancho: "¿Cómo hacen las grandes empresas o un colegio como el nuestro para organizar miles de datos sin volverse locos ni cometer errores?",
+  agenda: [
+    { min: 5, titulo: "Bienvenida y Acuerdos", texto: "Presentación del periodo y acuerdos para el uso adecuado de la sala de sistemas." },
+    { min: 10, titulo: "Exploración Teórica", texto: "Reconocimiento de la interfaz de Excel, filas, columnas, celdas y referencias en el cuaderno." },
+    { min: 15, titulo: "Reto Práctico con IA", texto: "Generación de datos estructurados con Inteligencia Artificial y pegado en Excel." },
+    { min: 10, titulo: "Formato y Organización", texto: "Aplicación de bordes, relleno y ajuste de columnas en la hoja de cálculo." },
+    { min: 5, titulo: "Evaluación y Cierre", texto: "Revisión de evidencias y síntesis de los aprendizajes alcanzados." }
+  ],
+  cuaderno: {
+    conexion: "Al ser nuestra primera clase del periodo, iniciamos explorando las herramientas digitales fundamentales para el manejo de información y bases de datos que usaremos durante todo el año.",
+    bloques: [
+      {
+        icono: "💡",
+        titulo: "1. ¿Qué es Excel y para qué sirve?",
+        puntos: [
+          { icono: "🖥️", termino: "Hoja de cálculo", texto: "Un programa diseñado para organizar, procesar y analizar información mediante tablas numéricas y de texto." },
+          { icono: "📂", termino: "Utilidad cotidiana", texto: "Permite desde llevar el control de gastos personales hasta gestionar el boletín de notas de un colegio." }
+        ],
+        ampliacion: "Imagina un cuaderno de contabilidad digital gigante. Excel no solo guarda palabras y números, sino que comprende la estructura de la información. Su principal fortaleza radica en que nos evita hacer cálculos manuales y nos permite ordenar miles de registros en segundos, siendo una habilidad clave para el entorno académico y laboral actual."
+      },
+      {
+        icono: "🧩",
+        titulo: "2. Partes principales de la interfaz",
+        puntos: [
+          { icono: "⬇️", termino: "Columna", texto: "Agrupación vertical de casillas nombradas con letras (A, B, C...)." },
+          { icono: "➡️", termino: "Fila", texto: "Agrupación horizontal de casillas identificadas con números (1, 2, 3...)." },
+          { icono: "🎯", termino: "Celda y Referencia", texto: "Intersección entre columna y fila. Su nombre combina la letra y el número (Ej: B4)." },
+          { icono: "📦", termino: "Rango", texto: "Grupo de dos o más celdas seleccionadas (Ej: A1:C5 representa desde A1 hasta C5)." },
+          { icono: "🏷️", termino: "Encabezados y Hojas", texto: "Los encabezados son las etiquetas superiores de categoría; las hojas son páginas dentro del mismo archivo." }
+        ],
+        ampliacion: "La ubicación en Excel funciona exactamente igual que el juego de la Batalla Naval o las coordenadas en un mapa de Buga. La referencia de celda **B4** nos indica con precisión milimétrica dónde reside un dato específico. Comprender esta coordenada es indispensable, ya que más adelante la usaremos para crear fórmulas matemáticas."
+      },
+      {
+        icono: "🎨",
+        titulo: "3. Pasos para organizar una tabla básica",
+        puntos: [
+          { icono: "1️⃣", termino: "Definir encabezados", texto: "Escribir las categorías fijas en la primera fila (Fila 1)." },
+          { icono: "2️⃣", termino: "Ingresar datos", texto: "Registrar la información ordenada en las filas inferiores." },
+          { icono: "3️⃣", termino: "Aplicar formato", texto: "Asignar bordes, alineación de texto y color de relleno para hacer legible la tabla." }
+        ],
+        ampliacion: "Una tabla sin formato es difícil de leer y prolija a errores visuales. Al aplicar **bordes todos**, resaltado en negrita y alineación correcta (texto a la izquierda, números a la derecha), transformamos una lista caótica de palabras en una base de datos profesional y comprensible a primera vista."
+      }
+    ]
+  },
+  glosario: [
+    { termino: "Celda", definicion: "Unidad básica de almacenamiento en Excel formada por la intersección de una fila y una columna." },
+    { termino: "Rango", definicion: "Conjunto continuo de celdas seleccionadas identificadas por su celda inicial y final separadas por dos puntos." },
+    { termino: "Encabezado", definicion: "Fila superior de una tabla que identifica el contenido de cada columna." },
+    { termino: "Interfaz", definicion: "Conjunto de elementos visuales que permiten la interacción entre el usuario y el programa." }
+  ],
+  sabiasQue: [
+    "La primera hoja de cálculo electrónica se llamó VisiCalc y fue creada en 1979, impulsando las ventas de los computadores personales en el mundo.",
+    "Una sola hoja de trabajo en Excel moderno tiene 1.048.576 filas y 16.384 columnas, sumando más de 17 mil millones de celdas disponibles."
+  ],
+  modulos: {
+    tarjetas: {
+      titulo: "Analogías para comprender la interfaz",
+      items: [
+        { icono: "🏢", frente: "Las Columnas", reverso: "Son como las columnas o paredes verticales de un edificio (van de arriba a abajo y llevan letras)." },
+        { icono: "🥞", frente: "Las Filas", reverso: "Son como un piso de un edificio o los niveles de un pastel (van de izquierda a derecha y llevan números)." },
+        { icono: "🔲", frente: "Una Celda", reverso: "Es como la casilla de un casillero escolar: tiene una etiqueta única (ej. C3) para guardar un objeto o dato." },
+        { icono: "🗺️", frente: "Un Rango", reverso: "Es como seleccionar un terreno completo en un mapa, abarcando desde una esquina inicial hasta la opuesta." }
+      ]
+    },
+    explorador: {
+      titulo: "Componentes clave de la cuadrícula",
+      items: [
+        {
+          icono: "📌",
+          nombre: "Celdas y Coordenadas",
+          secciones: [
+            { titulo: "Identificación", items: ["Combinan Letra + Número", "Ejemplo: D10 significa columna D, fila 10", "No se deben nombrar al revés (no 10D)"] },
+            { titulo: "Uso", items: ["Almacenan texto, números o fórmulas", "Muestran el contenido activo en la barra de fórmulas"] }
+          ]
+        },
+        {
+          icono: "📊",
+          nombre: "Rangos de Selección",
+          secciones: [
+            { titulo: "Sintaxis", items: ["Se escriben con dos puntos (:)", "Ejemplo: A1:B10", "Se lee: Desde A1 hasta B10"] },
+            { titulo: "Aplicación", items: ["Permite dar formato a varios datos a la vez", "Facilita la creación de gráficos y fórmulas de suma"] }
+          ]
+        },
+        {
+          icono: "🖌️",
+          nombre: "Formato de Tabla",
+          secciones: [
+            { titulo: "Estética visual", items: ["Bordes para definir la rejilla al imprimir", "Relleno para diferenciar títulos de datos", "Ajuste de texto para evitar cortes de palabras"] }
+          ]
+        }
+      ]
+    },
+    clasificador: {
+      titulo: "Clasificación de Elementos de Excel",
+      categorias: ["Identificadores Visuales", "Agrupaciones de Celdas"],
+      items: [
+        { texto: "Letras (A, B, C...)", categoria: 0 },
+        { texto: "Números (1, 2, 3...)", categoria: 0 },
+        { texto: "Rango A1:D5", categoria: 1 },
+        { texto: "Columna completa", categoria: 1 },
+        { texto: "Fila completa", categoria: 1 },
+        { texto: "Referencia de Celda C8", categoria: 0 }
+      ]
+    }
+  },
+  reto: {
+    titulo: "Reto: Generador de Base de Datos Escolar con IA",
+    descripcion: "Aprenderás a interactuar con una Inteligencia Artificial para que construya una tabla estructurada de datos y la exportarás correctamente hacia Microsoft Excel.",
+    pasos: [
+      "Abre la herramienta de Inteligencia Artificial (ChatGPT o Gemini) disponible en el computador de la sala.",
+      "Copia el prompt exacto suministrado en la casilla de abajo y pégalo en la IA.",
+      "Copia el texto plano que genera la IA utilizando la combinación de teclas Ctrl + C.",
+      "Abre Microsoft Excel, crea un libro en blanco y haz clic en la celda A1.",
+      "Pega la información presionando Ctrl + V y verifica que se distribuya ordenadamente en columnas.",
+      "Aplica formato completo: selecciona la tabla, coloca 'Todos los bordes', pon la primera fila en negrita con relleno azul claro y ajusta el ancho de las columnas."
+    ],
+    prompt: "Genera una tabla simple de 5 filas y 4 columnas sobre un inventario de útiles escolares. Utiliza únicamente el carácter barra vertical (|) para separar las columnas, sin incluir formato Markdown ni líneas decorativas. Encabezados: Artículo, Cantidad, Asignatura y Estado.",
+    herramientas: [
+      { nombre: "Gemini", url: "https://gemini.google.com" },
+      { nombre: "ChatGPT", url: "https://chatgpt.com" }
+    ],
+    requisitos: [
+      "Los datos deben estar ubicados a partir de la celda A1.",
+      "La tabla debe contener exactamente 4 columnas y 5 filas de datos más la fila de encabezado.",
+      "La primera fila debe tener color de relleno y texto en negrita.",
+      "Todas las celdas de la tabla deben tener bordes visibles activados.",
+      "Ningún texto debe verse recortado u oculto por el ancho de la columna."
+    ]
+  },
+  quiz: [
+    {
+      pregunta: "¿Cómo se identifica correctamente la referencia de una celda en Excel?",
+      opciones: ["Con un número y luego una letra (ej. 4B)", "Con una letra y luego un número (ej. B4)", "Únicamente con letras (ej. BB)", "Con el color de la celda"],
+      correcta: 1,
+      explicacion: "Las referencias de celda se nombran siempre combinando primero la letra de la columna y luego el número de la fila."
+    },
+    {
+      pregunta: "¿Qué representa la notación 'A1:C5' en una hoja de cálculo?",
+      opciones: ["La división entre la celda A1 y la C5", "Un rango que abarca desde la celda A1 hasta la C5", "Una resta de celdas", "Un error de escritura en Excel"],
+      correcta: 1,
+      explicacion: "Los dos puntos (:) en Excel indican un rango continuo de celdas desde el extremo superior izquierdo al inferior derecho."
+    },
+    {
+      pregunta: "Las columnas en Excel están organizadas de forma:",
+      opciones: ["Horizontal y se identifican con números", "Vertical y se identifican con letras", "Diagonal y se identifican con colores", "Horizontal y se identifican con letras"],
+      correcta: 1,
+      explicacion: "Las columnas van en sentido vertical (de arriba a abajo) y se nombran con el alfabeto."
+    },
+    {
+      pregunta: "¿Cuál es la función principal de los encabezados en una tabla?",
+      opciones: ["Hacer que la hoja se vea colorida", "Indicar el tipo de información que contiene cada columna", "Sumar automáticamente los datos", "Crear hojas de cálculo nuevas"],
+      correcta: 1,
+      explicacion: "Los encabezados le dan contexto e identifican la categoría de datos presente en cada columna."
+    },
+    {
+      pregunta: "Si deseas seleccionar un grupo contiguo de casillas, estás creando un:",
+      opciones: ["Archivo", "Rango", "Atajo", "Grafico"],
+      correcta: 1,
+      explicacion: "Cualquier conjunto de dos o más celdas seleccionadas recibe el nombre técnico de rango."
+    },
+    {
+      pregunta: "Al presionar las teclas Ctrl + V en Excel estamos ejecutando la acción de:",
+      opciones: ["Copiar texto", "Cortar un rango", "Pegar la información almacenada en el portapapeles", "Guardar el archivo"],
+      correcta: 2,
+      explicacion: "Ctrl + V es el comando universal para pegar datos previamente copiados (Ctrl + C)."
+    }
+  ],
+  investigacion: {
+    titulo: "Investigación Breve en el Cuaderno",
+    instruccion: "Investiga y escribe en tu cuaderno las siguientes respuestas (máximo 3 renglones por respuesta):",
+    preguntas: [
+      "¿Qué diferencia existe entre una celda y un rango en Excel?",
+      "¿Por qué es importante asignar un color o formato diferente a la fila de encabezados?",
+      "Menciona dos ejemplos de la vida real donde sea útil organizar datos en una hoja de cálculo."
+    ],
+    fuentes: ["Apuntes de la clase", "Documentación oficial de Microsoft Support"]
+  },
+  tarea: {
+    titulo: "Tarea Entregable: Planeador Personal de Tareas Escolares",
+    instruccion: "Diseña y dibuja a mano en una hoja suelta la estructura de una tabla clara para hacer seguimiento a tus compromisos académicos de la semana.",
+    renglones: 8,
+    indicacion: "Escríbela en una hoja suelta de block para entregar al docente al inicio de la siguiente clase.",
+    criterios: [
+      "Uso obligatorio de regla para trazar líneas rectas y ordenadas.",
+      "Inclusión de los 4 encabezados solicitados: Actividad, Materia, Fecha de entrega y Estado.",
+      "Registro de 5 actividades escolares completas (reales o hipotéticas).",
+      "Indicación explícita al pie de la hoja indicando la celda de inicio y el rango total ocupado (ej. Rango A1:D6)."
+    ],
+    entrega: "Próxima clase de tecnología"
+  },
+  hoja: {
+    preguntas: [
+      { id: "r1", texto: "Escribe la referencia de celda de la celda ubicada en la quinta columna y la tercera fila:", lineas: 1 },
+      { id: "r2", texto: "¿Qué sucedió cuando pegaste en Excel el texto generado por la Inteligencia Artificial? Explica cómo se organizó.", lineas: 3 },
+      { id: "r3", texto: "¿Por qué es útil aplicar el formato de 'Todos los bordes' antes de entregar una tabla impresa o digital?", lineas: 2 },
+      { id: "r4", texto: "Aplica lo aprendido: Si deseas seleccionar las celdas desde la columna B fila 2 hasta la columna E fila 8, ¿cómo escribirías ese rango?", lineas: 1 },
+      { id: "r5", texto: "¿Qué aprendí hoy sobre el uso ordenado de hojas de cálculo y cómo me ayuda en el colegio?", lineas: 2 }
+    ]
+  },
+  notasDocente: [
+    "Verificar previamente que el acceso a ChatGPT o Gemini esté habilitado en la red del colegio o preparar una alternativa local en caso de caídas de conectividad.",
+    "Monitorear la combinación de teclas Ctrl+C y Ctrl+V durante el ejercicio práctico, ya que algunos estudiantes tienden a arrastrar el texto manualmente.",
+    "Recordar a los estudiantes guardar el archivo de Excel en la carpeta personal de la sala con el formato Nombre_Apellido_Grado9.xlsx."
+  ]
+};
+</script>
+<script src="../../motor-bernal-v5.js"></script>
+</body>
+</html>
