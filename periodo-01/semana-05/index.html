@@ -1,1 +1,294 @@
-hola
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Google Docs y Trabajo Colaborativo en la Nube | Grado 9°</title>
+</head>
+<body>
+<script>
+const CLASE = {
+  grado: 9,
+  edad: 14,
+  periodo: 1,
+  semana: 5,
+  tema: "Google Docs y Trabajo Colaborativo en la Nube",
+  temaAnterior: "Comunicación Académica mediante Correo Electrónico",
+  video: "",
+  estilo: "cuaderno",
+  emoji: "📝",
+  objetivo: "Utilizar las herramientas básicas de Google Docs para elaborar y compartir documentos académicos de manera colaborativa en la nube, y transferir tablas estructuradas generadas por IA a Microsoft Excel.",
+  competencia: "Reconoce y aplica las funcionalidades de Google Docs, gestiona los roles de permisos en la nube y realiza transferencia de datos tabulados hacia hojas de cálculo para la producción académica colaborativa.",
+  preguntaGancho: "¿Te imaginas escribir un trabajo en grupo con 5 compañeros al mismo tiempo en la misma pantalla sin perder ningún cambio?",
+  agenda: [
+    { min: 5, titulo: "Conexión y Pregunta Gancho", texto: "Recordamos el correo electrónico institucional y debatimos sobre los retos de enviar archivos adjuntos v.s. trabajar en la nube." },
+    { min: 15, titulo: "Conceptualización en el Cuaderno", texto: "Transcripción y explicación guiada de los conceptos clave de Google Docs, permisos de acceso y guardado automático." },
+    { min: 15, titulo: "Reto con IA y Práctica en Excel", texto: "Generación de tabla estructurada con IA mediante prompt especializado y pegado limpio en Microsoft Excel." },
+    { min: 10, titulo: "Cierre, Quiz y Taller Entregable", texto: "Resolución del quiz interactivo de verificación y explicación del taller entregable en hoja suelta." }
+  ],
+  cuaderno: {
+    conexion: "En la semana anterior aprendimos a utilizar el Correo Electrónico Académico para enviar mensajes informativos y adjuntar archivos. Hoy daremos un paso adelante: en lugar de estar enviando archivos de ida y vuelta por correo, utilizaremos Google Docs para redactar sobre un mismo documento central alojado en la nube.",
+    bloques: [
+      {
+        icono: "☁️",
+        titulo: "1. ¿Qué es Google Docs y la Nube?",
+        puntos: [
+          { icono: "💻", termino: "Procesador en Línea", texto: "Herramienta web gratuita que permite crear, redactar y dar formato a textos desde cualquier dispositivo con internet." },
+          { icono: "💾", termino: "Guardado Automático", texto: "No requiere presionar un botón de guardar. Cada cambio se almacena de inmediato en Google Drive." }
+        ],
+        ampliacion: "Google Docs transforma la manera de redactar trabajos escolares en Buga y en todo el mundo. A diferencia de las aplicaciones tradicionales instaladas en el disco duro del computador, Docs almacena la información en servidores remotos de Google. Esto evita pérdidas de información por cortes de energía o fallas en memorias USB, garantizando que el avance esté disponible en todo momento desde tu celular, tablet o computador. **La computación en la nube elimina la dependencia de un dispositivo físico específico para realizar tus tareas.**"
+      },
+      {
+        icono: "🛠️",
+        titulo: "2. Herramientas de Edición y Formato",
+        puntos: [
+          { icono: "📌", termino: "Nombramiento Claro", texto: "Asignación de un título identificable en la esquina superior izquierda (ejemplo: Tarea_Tecnologia_Juan_91)." },
+          { icono: "🎨", termino: "Estructura Visual", texto: "Uso de títulos, subtítulos, alineación (izquierda, centrado, justificado) y listas con viñetas para documentos académicos." }
+        ],
+        ampliacion: "Para presentar un trabajo académico impecable a tus profesores del Colegio Santa Mariana de Jesús, la estructura visual es fundamental. Aplicar **títulos y subtítulos con estilos predefinidos** no solo organiza la información, sino que genera automáticamente un índice o tabla de contenido. Además, la alineación **justificada** otorga sobriedad al texto, mientras que la inserción de imágenes desde la web o el equipo complementa conceptualmente las explicaciones escritas."
+      },
+      {
+        icono: "👥",
+        titulo: "3. Permisos de Acceso y Colaboración",
+        puntos: [
+          { icono: "👁️", termino: "Lector", texto: "El usuario solo puede revisar el contenido sin realizar modificaciones ni dejar notas." },
+          { icono: "💬", termino: "Comentador", texto: "Permite agregar observaciones al margen y sugerencias de cambio sin alterar el texto original." },
+          { icono: "✏️", termino: "Editor", texto: "Concede control total para redactar, modificar, formatear o eliminar contenido del documento." }
+        ],
+        ampliacion: "El verdadero poder de la nube radica en el trabajo colaborativo. Mediante el botón azul de compartir, puedes invitar a tus compañeros asignando el nivel de permiso adecuado. Además, la herramienta **Historial de versiones** registra cada edición con nombre, fecha y hora exacta. Si un integrante del grupo borra una sección por accidente, se puede restaurar cualquier versión anterior en segundos. **El trabajo colaborativo exige ética, respeto por el trabajo ajeno y comunicación clara.**"
+      }
+    ]
+  },
+  glosario: [
+    { termino: "Google Docs", definicion: "Procesador de texto basado en la web que permite redactar y dar formato a documentos en tiempo real." },
+    { termino: "Historial de Versiones", definicion: "Registro cronológico que almacena todos los cambios realizados en un documento, indicando autor y fecha." },
+    { termino: "Combinación de Correspondencia", definicion: "Proceso que vincula un documento plantilla con una base de datos para generar múltiples cartas personalizadas." },
+    { termino: "Tabulación", definicion: "Formato de texto estructurado con separadores invisibles que permite pegar datos directamente en columnas de Excel." }
+  ],
+  sabiasQue: [
+    "Google Docs fue lanzado originalmente en 2006 tras la combinación de dos productos independientes: Writely y Google Spreadsheets.",
+    "El Historial de versiones de Google Docs conserva los registros de cambios de forma indefinida sin consumir espacio extra de tu cuota personal de Google Drive.",
+    "Cuando copias una tabla formateada desde una IA con tabulaciones, los caracteres especiales de salto de columna son interpretados automáticamente por los bordes de celda en Microsoft Excel."
+  ],
+  modulos: {
+    tarjetas: {
+      titulo: "Roles de Acceso y Funciones Colaborativas",
+      items: [
+        { icono: "👁️", frente: "Permiso Lector", reverso: "Permite únicamente visualizar el documento. Es ideal para entregar la versión final de una tarea al docente." },
+        { icono: "💬", frente: "Permiso Comentador", reverso: "Permite hacer anotaciones al margen y sugerencias. Es perfecto para correcciones y revisiones de ortografía." },
+        { icono: "✏️", frente: "Permiso Editor", reverso: "Otorga libertad total para modificar, escribir y borrar contenido. Se asigna a los miembros del equipo de trabajo." },
+        { icono: "📜", frente: "Historial de Versiones", reverso: "Registra quién escribió qué y a qué hora. Permite recuperar texto borrado por error en cualquier momento." },
+        { icono: "🔄", frente: "Combinación de Correspondencia", reverso: "Técnica que combina una carta plantilla con una lista de Excel para crear circulares personalizadas masivas." }
+      ]
+    },
+    explorador: {
+      titulo: "Fases de la Combinación de Correspondencia",
+      items: [
+        {
+          icono: "📊",
+          nombre: "1. Base de Datos en Excel",
+          secciones: [
+            {
+              titulo: "Estructura de Filas y Columnas",
+              items: [
+                "Crear encabezados claros: Nombre, Curso, Fecha, Actividad.",
+                "Asegurar que cada fila contenga la información completa de un estudiante.",
+                "Eliminar filas vacías o datos duplicados antes de hacer la vinculación."
+              ]
+            }
+          ]
+        },
+        {
+          icono: "📝",
+          nombre: "2. Documento Principal",
+          secciones: [
+            {
+              titulo: "Redacción de la Carta Modelo",
+              items: [
+                "Escribir el texto fijo que recibirán todos los acudientes.",
+                "Insertar los marcadores de posición entre corchetes como «[Nombre]» o «[Fecha]».",
+                "Mantener el tono formal institucional para las comunicaciones."
+              ]
+            }
+          ]
+        },
+        {
+          icono: "🔗",
+          nombre: "3. Vinculación y Generación",
+          secciones: [
+            {
+              titulo: "Fusionar Datos con la Plantilla",
+              items: [
+                "Reemplazar cada campo dinámico con la columna correspondiente de Excel.",
+                "Previsualizar las cartas individuales para verificar coincidencias.",
+                "Generar e imprimir o enviar los documentos resultantes."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    clasificador: {
+      titulo: "Clasificación de Herramientas y Permisos en Google Docs",
+      categorias: ["Permisos de Usuario", "Herramientas de Formato", "Gestión de Archivo"],
+      items: [
+        { texto: "Lector (Ver sin cambiar)", categoria: 0 },
+        { texto: "Comentador (Notas al margen)", categoria: 0 },
+        { texto: "Editor (Control total de edición)", categoria: 0 },
+        { texto: "Alineación Justificada de párrafos", categoria: 1 },
+        { texto: "Listas con viñetas y numeración", categoria: 1 },
+        { texto: "Aplicación de estilos Título y Subtítulo", categoria: 1 },
+        { texto: "Historial de versiones", categoria: 2 },
+        { texto: "Guardado automático en Google Drive", categoria: 2 },
+        { texto: "Cambiar nombre en la esquina superior izquierda", categoria: 2 }
+      ]
+    },
+    linea: {
+      titulo: "Evolución de la Edición de Documentos y la Nube",
+      hitos: [
+        { anio: "1979", titulo: "WordStar", texto: "Nace uno de los primeros procesadores de texto masivos para computadores personales." },
+        { anio: "1983", titulo: "Microsoft Word", texto: "Lanzamiento inicial de Word, popularizando la interfaz visual y el formato WYSIWYG." },
+        { anio: "2006", titulo: "Google Docs", texto: "Google presenta Docs, revolucionando la edición colaborativa simultánea en tiempo real dentro del navegador." },
+        { anio: "2012", titulo: "Google Drive", texto: "Google Docs se integra nativamente con Google Drive para ofrecer almacenamiento unificado en la nube." },
+        { anio: "2023", titulo: "Asistentes de IA", texto: "Inclusión de inteligencia artificial generativa para redactar, resumir y organizar tablas en tiempo real." }
+      ]
+    }
+  },
+  reto: {
+    titulo: "Generador de Tablas Conceptuales para Excel con IA",
+    descripcion: "Utilizarás una Inteligencia Artificial (ChatGPT, Gemini o Copilot) para generar una tabla estructurada de conceptos sobre Google Docs, de modo que al copiarla y pegarla en Microsoft Excel, respete exactamente las filas y columnas.",
+    pasos: [
+      "Abre el asistente de IA en tu navegador (ChatGPT, Gemini o Copilot).",
+      "Copia y pega el prompt exacto en la casilla de chat de la IA.",
+      "Envía el mensaje y espera a que la IA genere la tabla conceptual.",
+      "Selecciona toda la tabla generada por la IA y presiona Ctrl + C (Copiar).",
+      "Abre un archivo en blanco en Microsoft Excel, ubícate en la celda A1 y presiona Ctrl + V (Pegar).",
+      "Verificación: Ajusta el ancho de las columnas en Excel, aplica un color de fondo al encabezado y ponle bordes a la tabla."
+    ],
+    prompt: "Actúa como un profesor de tecnología. Crea una tabla comparativa de 5 filas y 3 columnas sobre Google Docs y Trabajo Colaborativo. Las columnas deben ser: 1) Concepto / Herramienta, 2) Definición Sencilla, 3) Ejemplo de Uso Escolar. Entrégame el resultado ÚNICAMENTE en formato de tabla de texto separado por tabulaciones o formato de tabla limpia para que pueda copiarla y pegarla directamente en Microsoft Excel sin que se desconfiguren las celdas.",
+    herramientas: [
+      { nombre: "Google Gemini", url: "https://gemini.google.com" },
+      { nombre: "ChatGPT", url: "https://chatgpt.com" },
+      { nombre: "Microsoft Copilot", url: "https://copilot.microsoft.com" }
+    ],
+    requisitos: [
+      "Prompt enviado correctamente a la Inteligencia Artificial.",
+      "Tabla copiada y pegada en Excel respetando filas y columnas independientes.",
+      "Ajuste de ancho de columnas realizado para leer todo el texto.",
+      "Color de relleno aplicado al encabezado de la tabla.",
+      "Bordes aplicados a todas las celdas en Microsoft Excel."
+    ]
+  },
+  quiz: [
+    {
+      pregunta: "¿Cuál es la ventaja principal de Google Docs frente a un procesador de texto tradicional instalado en el equipo?",
+      opciones: [
+        "No requiere conexión a internet bajo ninguna circunstancia.",
+        "Permite la edición colaborativa en tiempo real en la nube y guarda automáticamente los cambios.",
+        "Imprime los documentos automáticamente sin necesidad de impresora.",
+        "Solo funciona en computadores de escritorio con procesadores avanzados."
+      ],
+      correcta: 1,
+      explicacion: "Google Docs almacena la información en la nube, permitiendo trabajo simultáneo y guardado automático sin botón manual."
+    },
+    {
+      pregunta: "Si deseas compartir un archivo para que un compañero haga correcciones al margen sin borrar tu texto original, ¿qué rol de acceso debes asignarle?",
+      opciones: [
+        "Lector",
+        "Administrador",
+        "Comentador",
+        "Editor"
+      ],
+      correcta: 2,
+      explicacion: "El rol Comentador permite agregar sugerencias y observaciones sin modificar el contenido principal."
+    },
+    {
+      pregunta: "¿Qué función de Google Docs te permite recuperar un párrafo borrado por error por un integrante del grupo?",
+      opciones: [
+        "Descargar como PDF",
+        "Historial de versiones",
+        "Alineación justificada",
+        "Combinación de correspondencia"
+      ],
+      correcta: 1,
+      explicacion: "El Historial de versiones registra cada cambio cronológicamente e identifica quién lo hizo, permitiendo restaurar versiones previas."
+    },
+    {
+      pregunta: "Al copiar una tabla generada por IA con tabulaciones y pegarla en Excel en la celda A1, ¿qué sucede con los datos?",
+      opciones: [
+        "Se pegan todos amontonados dentro de una sola celda.",
+        "Se organizan automáticamente en filas y columnas separadas y ordenadas.",
+        "Se borra todo el contenido por incompatibilidad del programa.",
+        "Se crea un archivo PDF en la carpeta de descargas."
+      ],
+      correcta: 1,
+      explicacion: "Excel interpreta las tabulaciones como separadores de columna y distribuye los datos limpiamente."
+    },
+    {
+      pregunta: "¿En qué consiste la técnica de Combinación de Correspondencia?",
+      opciones: [
+        "Enviar el mismo correo manualmente uno por uno a cada estudiante.",
+        "Vincular un documento plantilla con una base de datos de Excel para generar múltiples cartas personalizadas.",
+        "Eliminar todas las filas duplicadas de una hoja de cálculo automáticamente.",
+        "Convertir un documento de texto a una presentación de diapositivas animadas."
+      ],
+      correcta: 1,
+      explicacion: "La combinación de correspondencia fusiona los campos de una base de datos con una plantilla común."
+    },
+    {
+      pregunta: "Dentro del trabajo colaborativo en la nube, ¿cuál de las siguientes conductas demuestra responsabilidad y ética digital?",
+      opciones: [
+        "Borrar el trabajo de los compañeros para imponer las ideas propias.",
+        "Cambiar la contraseña del documento para que nadie más pueda ingresar.",
+        "Usar los comentarios para acordar cambios y respetar las secciones asignadas a cada integrante.",
+        "Esperar a la última hora para realizar todas las modificaciones sin avisar al equipo."
+      ],
+      correcta: 2,
+      explicacion: "La ética digital colaborativa exige comunicación, respeto por el trabajo mutuo y uso adecuado de los comentarios."
+    }
+  ],
+  investigacion: {
+    titulo: "Investigación en el Cuaderno: Nube, Correspondencia y Bases de Datos",
+    instruccion: "Responde las siguientes 3 preguntas breves en tu cuaderno consultando en Internet o en la explicación de clase:",
+    preguntas: [
+      "¿Qué es la nube (Cloud Computing)? Explica con tus palabras la diferencia entre guardar un archivo en una memoria USB y guardarlo en la nube.",
+      "¿Qué es la «Combinación de Correspondencia»? ¿Para qué sirve esta herramienta cuando una institución o empresa necesita enviar muchas cartas personalizadas a diferentes personas?",
+      "¿Qué es una Base de Datos en Excel? Menciona 3 ejemplos de campos de información que debería tener la lista de estudiantes de tu colegio (ejemplo: Nombre, Grado, etc.)."
+    ],
+    fuentes: [
+      "Documentación oficial de Google Workspace (Docs y Drive)",
+      "Soporte de Microsoft Excel: Estructura de tablas y bases de datos",
+      "Material conceptual desarrollado en la clase de Tecnología e Informática"
+    ]
+  },
+  tarea: {
+    titulo: "TALLER PRÁCTICO: EXCEL Y DOCUMENTOS",
+    instruccion: "Tienes los datos de 5 estudiantes que recibirán una citación escolar desorganizados. Tu misión es organizarlos en un dibujo como tabla de Excel con las columnas: Nombre, Curso, Fecha y Actividad.\n\nDatos desorganizados:\n1. Mateo Gómez, 9-1, 15 de Octubre, Entrega de Boletines\n2. Sofia Lopez, 9-1, 16 de Octubre, Torneo Interclases\n3. Carlos Ruiz, 9-2, 15 de Octubre, Entrega de Boletines\n4. Mariana Torres, 9-2, 17 de Octubre, Citación a Acudiente\n5. Camilo Morales, 9-1, 16 de Octubre, Torneo Interclases",
+    renglones: 5,
+    indicacion: "Escríbela en la hoja suelta para entregar al profesor",
+    criterios: [
+      "10 puntos → Tabla ordenada y con buena presentación gráfica",
+      "10 puntos → Los 5 estudiantes en los campos correctos (Nombre, Curso, Fecha, Actividad)",
+      "10 puntos → Todos los datos completos, sin faltas de ortografía"
+    ],
+    entrega: "Próxima clase de Tecnología e Informática"
+  },
+  hoja: {
+    preguntas: [
+      { id: "r1", texto: "Explica con tus palabras la diferencia entre los permisos de Lector, Comentador y Editor en Google Docs.", lineas: 3 },
+      { id: "r2", texto: "¿Por qué el Historial de versiones es una herramienta fundamental cuando se trabaja en grupo dentro de la nube?", lineas: 3 },
+      { id: "r3", texto: "Describe el procedimiento paso a paso para copiar la tabla de la IA y pegarla correctamente en Microsoft Excel.", lineas: 3 },
+      { id: "r4", texto: "¿Qué ventajas ofrece la Combinación de Correspondencia al Colegio Santa Mariana de Jesús al emitir boletines o citaciones a padres?", lineas: 3 },
+      { id: "r5", texto: "¿Qué aprendí hoy sobre Google Docs, Inteligencia Artificial y trabajo colaborativo?", lineas: 3 }
+    ]
+  },
+  notasDocente: [
+    "Verificar previamente que el acceso a herramientas de IA (Gemini, ChatGPT o Copilot) esté habilitado en la sala de sistemas.",
+    "Asegurar que los estudiantes practiquen la combinación de teclas Ctrl+C y Ctrl+V al transferir texto tabulado hacia Excel.",
+    "Supervisar el uso ético del botón Compartir en Google Docs para evitar que se borren contenidos entre compañeros durante el ejercicio."
+  ]
+};
+</script>
+<script src="../../motor-bernal-v5.js"></script>
+</body>
+</html>
