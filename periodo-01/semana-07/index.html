@@ -1,1 +1,401 @@
-hola
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Organización jerárquica y representación visual de la información | Grado 9°</title>
+</head>
+<body>
+<script>
+const CLASE = {
+  // ========== ✏️ DATOS RÁPIDOS (lo único que podrías querer cambiar) ==========
+  grado: 9,
+  edad: 14,
+  periodo: 1,
+  semana: 7,
+  tema: "Organización jerárquica y representación visual de la información",
+  temaAnterior: "Elaboración de documentos personalizados con bases de datos",
+  video: "",            // ← enlace de YouTube, Vimeo, Drive o Canva (opcional)
+  estilo: "galaxia",
+
+  // ========== 🤖 CONTENIDO GENERADO POR LA IA (no hace falta tocarlo) ==========
+  "emoji": "🗺️",
+  "objetivo": "Construir mapas conceptuales digitales utilizando conceptos, jerarquías, conectores y relaciones coherentes, apoyándonos en IA y Excel.",
+  "competencia": "Estructuro jerárquicamente la información técnica y utilizo inteligencia artificial para generar datos compatibles con hojas de cálculo.",
+  "preguntaGancho": "¿Alguna vez has intentado explicarle a un amigo el final de una serie súper enredada y terminas haciendo dibujos en el aire? Los mapas conceptuales hacen exactamente eso, pero para que tu cerebro entienda temas complejos.",
+  "agenda": [
+    {
+      "min": 10,
+      "titulo": "Estructura Visual",
+      "texto": "Copia en el cuaderno los elementos de un mapa conceptual."
+    },
+    {
+      "min": 15,
+      "titulo": "Reto con IA",
+      "texto": "Generación de datos estructurados para Excel."
+    },
+    {
+      "min": 10,
+      "titulo": "Investigación",
+      "texto": "Consultar sobre herramientas de mapeo y la nube."
+    },
+    {
+      "min": 10,
+      "titulo": "Evaluación",
+      "texto": "Quiz y preguntas de análisis en la hoja de trabajo."
+    }
+  ],
+  "cuaderno": {
+    "conexion": "La semana pasada aprendimos a usar bases de datos para organizar contactos y crear cartas masivas. Ahora aprenderemos a organizar ideas y conceptos, creando representaciones visuales que nuestro cerebro procesa mucho más rápido.",
+    "bloques": [
+      {
+        "icono": "🧠",
+        "titulo": "1. ¿Qué es un Mapa Conceptual?",
+        "puntos": [
+          {
+            "icono": "📌",
+            "termino": "Definición",
+            "texto": "Esquema visual para organizar y resumir información de forma ordenada."
+          },
+          {
+            "icono": "📊",
+            "termino": "Estructura",
+            "texto": "Jerárquica. Se lee de arriba hacia abajo."
+          },
+          {
+            "icono": "🎯",
+            "termino": "Diferencia con Mapa Mental",
+            "texto": "El conceptual usa conectores lógicos y es jerárquico. El mental es radial (desde el centro hacia afuera) y usa muchas imágenes."
+          }
+        ],
+        "ampliacion": "Imagina que el colegio Santa Mariana de Jesús es el tema central. Debajo estarían las coordinaciones, luego los profesores y al final los estudiantes de Buga. Esa es una **jerarquía visual**: vamos del concepto más grande al más pequeño y específico."
+      },
+      {
+        "icono": "🔗",
+        "titulo": "2. Elementos Principales",
+        "puntos": [
+          {
+            "icono": "👑",
+            "termino": "Tema Central",
+            "texto": "La idea principal que va en la parte superior."
+          },
+          {
+            "icono": "🔲",
+            "termino": "Conceptos",
+            "texto": "Palabras clave encerradas en cuadros o nodos."
+          },
+          {
+            "icono": "📏",
+            "termino": "Líneas de Enlace",
+            "texto": "Líneas que unen los conceptos relacionados."
+          }
+        ],
+        "ampliacion": "A diferencia de un simple resumen, aquí la ubicación importa. Lo más importante siempre va arriba. Si pones un concepto secundario al mismo nivel que el tema central, **el mapa pierde su lógica estructural**."
+      },
+      {
+        "icono": "💬",
+        "titulo": "3. Conectores y Proposiciones",
+        "puntos": [
+          {
+            "icono": "🔤",
+            "termino": "Palabras de Enlace",
+            "texto": "Verbos o preposiciones sobre las líneas (ej: 'se clasifica en', 'permite')."
+          },
+          {
+            "icono": "🧩",
+            "termino": "Proposición",
+            "texto": "La frase lógica que se forma al leer: Concepto + Enlace + Concepto."
+          }
+        ],
+        "ampliacion": "Una proposición es como una fórmula matemática pero con palabras. Por ejemplo: [Internet] -> (utiliza) -> [La Nube]. Si omites el conector '(utiliza)', la persona que lee el mapa no sabrá **qué relación** hay entre Internet y la Nube."
+      }
+    ]
+  },
+  "glosario": [
+    {
+      "termino": "Jerarquía",
+      "definicion": "Organización de elementos en orden de importancia o tamaño."
+    },
+    {
+      "termino": "Nodo",
+      "definicion": "Cada uno de los recuadros o figuras geométricas que encierra un concepto."
+    },
+    {
+      "termino": "Proposición",
+      "definicion": "Unidad semántica formada por dos conceptos unidos por una palabra de enlace."
+    },
+    {
+      "termino": "Web 2.0",
+      "definicion": "Herramientas de internet que permiten a los usuarios interactuar y crear contenido."
+    }
+  ],
+  "sabiasQue": [
+    "Los mapas conceptuales fueron inventados en 1972 por el investigador Joseph Novak en la Universidad de Cornell.",
+    "El cerebro humano procesa las imágenes hasta 60,000 veces más rápido que el texto puro, por eso estos mapas son la mejor herramienta de estudio.",
+    "Al usar 'tabulaciones' (la tecla Tab), le estamos diciendo a Excel secretamente dónde termina una columna y empieza la siguiente."
+  ],
+  "modulos": {
+    "tarjetas": {
+      "titulo": "Conceptual vs Mental",
+      "items": [
+        {
+          "icono": "⬇️",
+          "frente": "Mapa Conceptual",
+          "reverso": "Se lee de arriba hacia abajo (Jerárquico)."
+        },
+        {
+          "icono": "☀️",
+          "frente": "Mapa Mental",
+          "reverso": "Se lee desde el centro hacia afuera (Radial)."
+        },
+        {
+          "icono": "🔤",
+          "frente": "Líneas en Conceptual",
+          "reverso": "Son rectas y OBLIGATORIAMENTE llevan palabras de enlace."
+        },
+        {
+          "icono": "🎨",
+          "frente": "Líneas en Mental",
+          "reverso": "Son curvas, gruesas y suelen tener dibujos o colores llamativos."
+        }
+      ]
+    },
+    "explorador": {
+      "titulo": "Anatomía de una Proposición",
+      "items": [
+        {
+          "icono": "1️⃣",
+          "nombre": "Concepto 1",
+          "secciones": [
+            {
+              "titulo": "Punto de partida",
+              "items": [
+                "Es el concepto principal o sujeto.",
+                "Va en un recuadro superior.",
+                "Ejemplo: [Seguridad Digital]"
+              ]
+            }
+          ]
+        },
+        {
+          "icono": "2️⃣",
+          "nombre": "Palabra de Enlace",
+          "secciones": [
+            {
+              "titulo": "El puente",
+              "items": [
+                "Verbo o conector corto.",
+                "NO va en recuadro.",
+                "Ejemplo: (sirve para)"
+              ]
+            }
+          ]
+        },
+        {
+          "icono": "3️⃣",
+          "nombre": "Concepto 2",
+          "secciones": [
+            {
+              "titulo": "Punto de llegada",
+              "items": [
+                "Concepto secundario o resultado.",
+                "Va en un recuadro inferior.",
+                "Ejemplo: [Proteger Datos]"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "clasificador": {
+      "titulo": "Clasifica los términos",
+      "categorias": [
+        "Elementos del Mapa",
+        "Tema de Tecnología"
+      ],
+      "items": [
+        {
+          "texto": "Proposición",
+          "categoria": 0
+        },
+        {
+          "texto": "La Nube",
+          "categoria": 1
+        },
+        {
+          "texto": "Línea de Enlace",
+          "categoria": 0
+        },
+        {
+          "texto": "Seguridad Digital",
+          "categoria": 1
+        },
+        {
+          "texto": "Herramientas Web 2.0",
+          "categoria": 1
+        },
+        {
+          "texto": "Nodo Central",
+          "categoria": 0
+        },
+        {
+          "texto": "Jerarquía",
+          "categoria": 0
+        },
+        {
+          "texto": "Contraseña Segura",
+          "categoria": 1
+        }
+      ]
+    }
+  },
+  "reto": {
+    "titulo": "IA y Excel: Generador Jerárquico",
+    "descripcion": "Objetivo: Usar Inteligencia Artificial para generar una estructura jerárquica de datos y llevarla a Microsoft Excel respetando filas y columnas.",
+    "pasos": [
+      "Abre la herramienta de IA (ChatGPT, Gemini o Copilot).",
+      "Escribe el siguiente Prompt exacto (cópialo de abajo).",
+      "Copia el texto generado por la IA (debe verse como una tabla de texto).",
+      "Abre Microsoft Excel y selecciona la celda A1.",
+      "Presiona Ctrl + V (Pegar). Comprueba que cada dato se ubique automáticamente en su columna y fila correspondiente.",
+      "Aplica negrita y color de relleno a los encabezados (Fila 1).",
+      "Ajusta el ancho de las columnas haciendo doble clic en el borde entre las letras de las columnas (A, B, C)."
+    ],
+    "prompt": "Genera una tabla en formato de texto separado por tabulaciones con 3 columnas: 'Categoría Principal', 'Concepto Clave' y 'Palabra de Enlace Sugerida'. Incluye 6 filas con información sobre: Herramientas Web 2.0, La Nube y Seguridad Digital. Entrega únicamente la tabla, sin textos de introducción ni explicación.",
+    "herramientas": [
+      {
+        "nombre": "Gemini",
+        "url": "[https://gemini.google.com](https://gemini.google.com)"
+      },
+      {
+        "nombre": "Copilot",
+        "url": "[https://copilot.microsoft.com](https://copilot.microsoft.com)"
+      }
+    ],
+    "requisitos": [
+      "La tabla debe empezar en la celda A1 de Excel.",
+      "Los encabezados tienen color de fondo y negrita.",
+      "La tabla tiene exactamente 3 columnas y 7 filas en total (incluyendo el encabezado).",
+      "Las columnas se ajustaron para que el texto no se corte."
+    ]
+  },
+  "quiz": [
+    {
+      "pregunta": "¿Cuál es la principal diferencia visual entre un mapa conceptual y un mapa mental?",
+      "opciones": [
+        "El conceptual tiene dibujos y el mental no.",
+        "El conceptual es jerárquico (arriba-abajo) y el mental es radial.",
+        "El conceptual no tiene texto, solo colores.",
+        "El conceptual se hace a mano y el mental en computadora."
+      ],
+      "correcta": 1,
+      "explicacion": "Los mapas conceptuales estructuran la información de lo más general (arriba) a lo específico (abajo)."
+    },
+    {
+      "pregunta": "¿Qué elemento es fundamental para unir dos conceptos y darle sentido al mapa?",
+      "opciones": [
+        "Las palabras de enlace",
+        "Los colores llamativos",
+        "Las imágenes 3D",
+        "El título del documento"
+      ],
+      "correcta": 0,
+      "explicacion": "Sin las palabras de enlace, solo tendríamos recuadros desconectados sin una lógica clara."
+    },
+    {
+      "pregunta": "¿Qué es una 'Proposición' en un mapa conceptual?",
+      "opciones": [
+        "Un recuadro de color rojo.",
+        "El programa usado para hacer el mapa.",
+        "La unión de dos conceptos mediante una palabra de enlace.",
+        "La idea central que va en la parte superior."
+      ],
+      "correcta": 2,
+      "explicacion": "Concepto + Enlace + Concepto forman una frase con sentido completo llamada proposición."
+    },
+    {
+      "pregunta": "En el nivel jerárquico superior (la parte más alta del mapa) siempre debe ir:",
+      "opciones": [
+        "El ejemplo más pequeño.",
+        "El tema central o concepto principal.",
+        "La fecha de entrega de la tarea.",
+        "Una palabra de enlace."
+      ],
+      "correcta": 1,
+      "explicacion": "La jerarquía empieza siempre con el concepto más amplio y abarcador en la parte superior."
+    },
+    {
+      "pregunta": "En nuestro reto de IA, ¿por qué le pedimos a la IA que separe el texto 'por tabulaciones'?",
+      "opciones": [
+        "Porque así se ve más bonito en Word.",
+        "Para que la IA no escriba tanto texto.",
+        "Para que Excel lo reconozca automáticamente como columnas diferentes al pegarlo.",
+        "Para que la tabla tenga bordes de colores."
+      ],
+      "correcta": 2,
+      "explicacion": "Excel entiende el carácter 'tabulación' como un salto automático a la siguiente columna."
+    },
+    {
+      "pregunta": "¿Qué ocurre si colocamos todos los conceptos de un mapa conceptual en el mismo nivel horizontal?",
+      "opciones": [
+        "Queda perfecto.",
+        "Se pierde la estructura jerárquica y el orden de importancia.",
+        "Se convierte automáticamente en un cuadro sinóptico.",
+        "La IA no puede leerlo."
+      ],
+      "correcta": 1,
+      "explicacion": "Si no hay niveles (arriba y abajo), no hay jerarquía, que es la esencia del mapa conceptual."
+    }
+  ],
+  "investigacion": {
+    "titulo": "Herramientas de Mapeo y Almacenamiento",
+    "instruccion": "Investiga en internet y responde en tu cuaderno de forma breve y clara:",
+    "preguntas": [
+      "1. ¿Qué es CmapTools o Lucidchart y menciona dos ventajas de usar estas herramientas digitales frente a hacer un mapa en papel?",
+      "2. ¿Cuál es la diferencia técnica entre guardar un archivo en el disco duro físico de tu computador y guardarlo en 'la Nube' (como Google Drive)?"
+    ],
+    "fuentes": [
+      "Búsqueda web",
+      "Wikipedia",
+      "Foros de tecnología"
+    ]
+  },
+  "hoja": {
+    "preguntas": [
+      {
+        "id": "r1",
+        "texto": "Al leer la tabla que generó la IA sobre 'Seguridad Digital', ¿qué proposición (Concepto + enlace + Concepto) te llamó más la atención y por qué?",
+        "lineas": 3
+      },
+      {
+        "id": "r2",
+        "texto": "¿Qué ventaja le ves a usar la IA para estructurar datos antes de pasarlos a Excel, en lugar de escribirlos tú mismo celda por celda?",
+        "lineas": 3
+      },
+      {
+        "id": "r3",
+        "texto": "Si tuvieras que hacer un mapa conceptual sobre tu vida escolar en grado 9, ¿qué concepto pondrías en la jerarquía superior y cuáles serían 3 conceptos del siguiente nivel?",
+        "lineas": 3
+      },
+      {
+        "id": "r4",
+        "texto": "¿Por qué crees que es importante usar 'Palabras de enlace' precisas? Da un ejemplo de lo que pasaría si usas una palabra equivocada.",
+        "lineas": 3
+      },
+      {
+        "id": "r5",
+        "texto": "¿Qué fue lo que más se te dificultó al pasar los datos de la IA a Excel y cómo lo solucionaste?",
+        "lineas": 3
+      }
+    ]
+  },
+  "notasDocente": [
+    "Verifica que los estudiantes copien y peguen el prompt EXACTO; si omiten la parte de 'separado por tabulaciones', Excel pegará todo en una sola celda.",
+    "Para estudiantes que terminen muy rápido el reto, pídeles que añadan una columna extra manualmente en Excel llamada 'Ejemplo' y la llenen.",
+    "Insiste en la diferencia entre mapa mental y conceptual, a esta edad suelen confundirlos y omitir siempre las palabras de enlace."
+  ]
+};
+</script>
+<script src="../../motor-bernal-v5.js"></script>
+</body>
+</html>
