@@ -1,1 +1,395 @@
-hola
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elaboración de documentos personalizados con bases de datos | Grado 9°</title>
+</head>
+<body>
+<script>
+const CLASE = {
+  // ========== ✏️ DATOS RÁPIDOS (lo único que podrías querer cambiar) ==========
+  grado: 9,
+  edad: 14,
+  periodo: 1,
+  semana: 6,
+  tema: "Elaboración de documentos personalizados con bases de datos",
+  temaAnterior: "Google Docs y Trabajo Colaborativo en la Nube",
+  video: "",            // ← enlace de YouTube, Vimeo, Drive o Canva (opcional)
+  estilo: "atardecer",
+
+  // ========== 🤖 CONTENIDO GENERADO POR LA IA (no hace falta tocarlo) ==========
+  "emoji": "✉️📊",
+  "objetivo": "Comprender el funcionamiento de la combinación de correspondencia y utilizarla para producir documentos personalizados.",
+  "competencia": "Aplica herramientas ofimáticas (procesador de texto y hoja de cálculo) para automatizar la creación masiva de documentos.",
+  "preguntaGancho": "¿Te imaginas tener que escribir a mano 300 circulares para todos los padres del colegio? ¿Cómo crees que lo hace la secretaria en minutos?",
+  "agenda": [
+    {
+      "min": 10,
+      "titulo": "Conceptos y partes clave",
+      "texto": "Explicación de la combinación de correspondencia y sus dos archivos vitales."
+    },
+    {
+      "min": 10,
+      "titulo": "Reglas de oro en Excel",
+      "texto": "Cómo estructurar una base de datos limpia y ordenada."
+    },
+    {
+      "min": 20,
+      "titulo": "Reto IA y Excel",
+      "texto": "Generación de datos con IA y pegado correcto en columnas de Excel."
+    },
+    {
+      "min": 5,
+      "titulo": "Cierre y reflexión",
+      "texto": "Evaluación de aprendizajes y preguntas de la hoja."
+    }
+  ],
+  "cuaderno": {
+    "conexion": "La semana pasada trabajamos colaborativamente en la nube con Google Docs. Ahora, pasaremos a la automatización: aprenderemos a conectar un archivo de texto con una tabla de datos de Excel para generar cientos de documentos en segundos.",
+    "bloques": [
+      {
+        "icono": "⚙️",
+        "titulo": "1. ¿Qué es la Combinación de Correspondencia?",
+        "puntos": [
+          {
+            "icono": "📄",
+            "termino": "Definición",
+            "texto": "Es una herramienta que permite crear varios documentos personalizados (cartas, diplomas, circulares) automáticamente."
+          },
+          {
+            "icono": "🚀",
+            "termino": "Utilidad",
+            "texto": "Ahorra horas de trabajo al evitar escribir el mismo documento repetidas veces cambiando solo unos pocos datos."
+          }
+        ],
+        "ampliacion": "Si la rectoría del Colegio Santa Mariana de Jesús necesita enviar una citación a 300 acudientes, no escribe 300 cartas una por una. Escribe una sola carta base y deja **espacios en blanco** donde el programa cambia automáticamente el nombre, curso y fecha según una lista."
+      },
+      {
+        "icono": "🤝",
+        "titulo": "2. Los dos elementos fundamentales",
+        "puntos": [
+          {
+            "icono": "📝",
+            "termino": "Documento Principal",
+            "texto": "Es el modelo o plantilla (ej: archivo de Word). Contiene el texto fijo y los 'Campos de combinación' como <<Nombre>>."
+          },
+          {
+            "icono": "📊",
+            "termino": "Base de Datos",
+            "texto": "Es la tabla organizada (ej: archivo de Excel) que contiene la información individual de cada persona."
+          }
+        ],
+        "ampliacion": "Para que esto funcione, los dos archivos deben trabajar en equipo. El documento de texto es como el **molde** del pastel, y la base de datos de Excel son los **ingredientes** exactos que rellenan ese molde."
+      },
+      {
+        "icono": "🧹",
+        "titulo": "3. Reglas para la Base de Datos (Excel)",
+        "puntos": [
+          {
+            "icono": "🏷️",
+            "termino": "Encabezados claros",
+            "texto": "La primera fila de la tabla debe llevar el nombre del dato (Nombre, Curso, Fecha)."
+          },
+          {
+            "icono": "✨",
+            "termino": "Limpieza de datos",
+            "texto": "Cada fila es una persona. No deben quedar filas vacías, incompletas ni nombres repetidos."
+          }
+        ],
+        "ampliacion": "Una base de datos con errores arruina todo el trabajo final. Si en Buga envían los recibos del agua combinados con una base de datos desordenada, ¡el recibo de tu casa le podría llegar al vecino! **El orden en Excel es vital.**"
+      }
+    ]
+  },
+  "glosario": [
+    {
+      "termino": "Campo de combinación",
+      "definicion": "Marcador o espacio reservado en el documento principal (ej. <<Nombre>>) que será reemplazado por los datos de Excel."
+    },
+    {
+      "termino": "Registro",
+      "definicion": "Es una fila completa en la base de datos de Excel que contiene la información de una sola persona."
+    },
+    {
+      "termino": "Automatización",
+      "definicion": "Uso de la tecnología para realizar tareas repetitivas con mínima intervención humana."
+    },
+    {
+      "termino": "Documento Principal",
+      "definicion": "El archivo de texto que sirve como molde para todas las copias."
+    }
+  ],
+  "sabiasQue": [
+    "La primera versión comercial de combinación de correspondencia apareció en la década de 1980 en un programa llamado WordStar.",
+    "Empresas como Netflix o Spotify usan principios similares a la combinación de correspondencia para enviarte correos que dicen 'Hola, [Tu Nombre], aquí tienes tus recomendaciones'."
+  ],
+  "modulos": {
+    "tarjetas": {
+      "titulo": "Analogías de la Combinación",
+      "items": [
+        {
+          "icono": "🧠",
+          "frente": "Base de Datos (Excel)",
+          "reverso": "Es la memoria. Sabe quién es cada persona, en qué curso está y qué fecha le corresponde."
+        },
+        {
+          "icono": "🩻",
+          "frente": "Documento Principal",
+          "reverso": "Es el esqueleto o molde. Tiene la estructura fija, pero le falta la 'carne' (los datos) para estar completo."
+        },
+        {
+          "icono": "🕳️",
+          "frente": "Campos (Ej: <<Nombre>>)",
+          "reverso": "Son los espacios vacíos con etiquetas. Le dicen a la computadora exactamente qué dato poner en ese lugar."
+        },
+        {
+          "icono": "🏭",
+          "frente": "Combinar al Finalizar",
+          "reverso": "Es la fábrica funcionando. Toma 1 molde y 100 datos, y escupe 100 documentos terminados al instante."
+        }
+      ]
+    },
+    "explorador": {
+      "titulo": "Pasos para Combinar",
+      "items": [
+        {
+          "icono": "📊",
+          "nombre": "1. La Base",
+          "secciones": [
+            {
+              "titulo": "Crear en Excel",
+              "items": [
+                "Escribir los encabezados en la fila 1.",
+                "Llenar los datos sin dejar filas en blanco.",
+                "Guardar el archivo y saber dónde quedó."
+              ]
+            }
+          ]
+        },
+        {
+          "icono": "📝",
+          "nombre": "2. El Molde",
+          "secciones": [
+            {
+              "titulo": "Redactar la carta",
+              "items": [
+                "Abrir el procesador de texto.",
+                "Escribir la circular completa.",
+                "Dejar espacios para los datos personales."
+              ]
+            }
+          ]
+        },
+        {
+          "icono": "🔗",
+          "nombre": "3. Vincular",
+          "secciones": [
+            {
+              "titulo": "Conectar archivos",
+              "items": [
+                "Ir a la pestaña de Correspondencia.",
+                "Elegir 'Seleccionar destinatarios'.",
+                "Buscar y abrir el archivo de Excel guardado."
+              ]
+            }
+          ]
+        },
+        {
+          "icono": "📌",
+          "nombre": "4. Insertar",
+          "secciones": [
+            {
+              "titulo": "Poner los campos",
+              "items": [
+                "Ubicar el cursor en los espacios en blanco.",
+                "Insertar el campo correspondiente (ej: <<Nombre>>).",
+                "Revisar la Vista Previa para ver la magia."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "clasificador": {
+      "titulo": "Auditoría de Datos en Excel",
+      "categorias": [
+        "Dato Correcto",
+        "Dato Incorrecto o Sucio"
+      ],
+      "items": [
+        {
+          "texto": "Fila 1: Nombre | Curso | Fecha",
+          "categoria": 0
+        },
+        {
+          "texto": "Juan Pérez (sin fila vacía antes)",
+          "categoria": 0
+        },
+        {
+          "texto": "9-1",
+          "categoria": 0
+        },
+        {
+          "texto": "Columna sin título en la fila 1",
+          "categoria": 1
+        },
+        {
+          "texto": "Tres celdas combinadas para poner un título bonito",
+          "categoria": 1
+        },
+        {
+          "texto": "Fila completamente en blanco entre estudiantes",
+          "categoria": 1
+        },
+        {
+          "texto": "El nombre 'María' repetido en 4 filas por error",
+          "categoria": 1
+        },
+        {
+          "texto": "15/10/2026",
+          "categoria": 0
+        }
+      ]
+    }
+  },
+  "reto": {
+    "titulo": "Reto IA: Generando nuestra Base de Datos",
+    "descripcion": "Vas a interactuar con una Inteligencia Artificial para generar una base de datos limpia y pegarla correctamente en Excel sin perder la estructura de columnas.",
+    "pasos": [
+      "Abre tu asistente de IA de preferencia.",
+      "Copia y pega el prompt (instrucción) exacto que aparece abajo y envíalo.",
+      "Copia la tabla que la IA te acaba de generar.",
+      "Abre Microsoft Excel o Google Sheets y selecciona la primera celda (A1).",
+      "Pega la tabla usando el atajo (Ctrl + V).",
+      "Verifica que cada dato haya quedado dentro de su propia celda y columna, no todo amontonado."
+    ],
+    "prompt": "Genera una tabla simple de 5 filas con encabezados de columna: Nombre, Curso, Fecha y Actividad. Usa nombres y actividades escolares ficticias para grado 9. Presenta el resultado como una tabla simple para copiar y pegar en Excel.",
+    "herramientas": [
+      {
+        "nombre": "ChatGPT",
+        "url": "https://chatgpt.com/"
+      },
+      {
+        "nombre": "Gemini",
+        "url": "https://gemini.google.com/"
+      },
+      {
+        "nombre": "Excel Web",
+        "url": "https://www.office.com/launch/excel"
+      }
+    ],
+    "requisitos": [
+      "La tabla empieza exactamente en la celda A1.",
+      "Todos los estudiantes tienen nombre y apellido.",
+      "La columna 'Fecha' tiene un formato coherente (ej. DD/MM/AAAA).",
+      "No hay filas vacías ni datos incompletos.",
+      "Cada dato está en su respectiva columna (no hay texto mezclado en una sola celda)."
+    ]
+  },
+  "quiz": [
+    {
+      "pregunta": "¿Cuáles son los dos archivos indispensables para realizar una combinación de correspondencia?",
+      "opciones": [
+        "Dos archivos de Excel",
+        "Una presentación y un video",
+        "Un documento principal (texto) y una base de datos (tabla)",
+        "Un archivo de Word y una imagen PDF"
+      ],
+      "correcta": 2,
+      "explicacion": "Siempre necesitas un modelo de texto y una tabla de datos que lo alimente."
+    },
+    {
+      "pregunta": "¿Qué es un 'Registro' en la base de datos?",
+      "opciones": [
+        "El título del documento",
+        "Una fila completa con la información de una sola persona",
+        "El botón para imprimir las cartas",
+        "La primera columna de Excel"
+      ],
+      "correcta": 1,
+      "explicacion": "Cada fila de la tabla representa un registro individual."
+    },
+    {
+      "pregunta": "¿Qué regla de oro debes seguir en la fila 1 de tu Excel?",
+      "opciones": [
+        "Dejarla en blanco para que se vea mejor",
+        "Combinar todas sus celdas para un título grande",
+        "Poner los encabezados claros de cada campo (Nombre, Curso, etc.)",
+        "Poner la fecha del día de hoy"
+      ],
+      "correcta": 2,
+      "explicacion": "La primera fila define el nombre de los campos de combinación."
+    },
+    {
+      "pregunta": "¿Qué sucede si en Excel dejas filas en blanco entre los datos de los estudiantes?",
+      "opciones": [
+        "El programa genera cartas en blanco",
+        "El programa corrige el error automáticamente",
+        "La carta sale con colores",
+        "Se borra el documento de Word"
+      ],
+      "correcta": 0,
+      "explicacion": "El procesador lee las filas vacías y generará documentos sin información."
+    },
+    {
+      "pregunta": "¿Qué representan los marcadores como <<Nombre>> en el documento principal?",
+      "opciones": [
+        "Errores de ortografía",
+        "Los campos de combinación donde se insertarán los datos",
+        "Fórmulas matemáticas complejas",
+        "Decoraciones del texto"
+      ],
+      "correcta": 1,
+      "explicacion": "Son los espacios reservados que serán reemplazados por los datos de Excel."
+    },
+    {
+      "pregunta": "Al pegar una tabla desde la IA a Excel, ¿qué debes verificar de inmediato?",
+      "opciones": [
+        "Que el texto sea de color azul",
+        "Que cada dato quede en su propia celda y columna",
+        "Que se cambie la fuente a Arial",
+        "Que la IA haya firmado el trabajo"
+      ],
+      "correcta": 1,
+      "explicacion": "Si los datos quedan amontonados en una sola celda, la combinación de correspondencia fallará."
+    }
+  ],
+  "investigacion": {
+    "titulo": "Reflexión en el Cuaderno",
+    "instruccion": "Responde brevemente las siguientes preguntas en tu cuaderno basándote en lo visto hoy:",
+    "preguntas": [
+      "Menciona 3 trámites o documentos de la vida cotidiana que utilicen combinación de correspondencia masiva (Ejemplo: recibos de servicios públicos).",
+      "¿Qué sucede si en la base de datos de Excel falta el nombre de un estudiante en un registro? Explica qué problema tendría la carta final generada."
+    ],
+    "fuentes": []
+  },
+  "hoja": {
+    "preguntas": [
+      {
+        "id": "r1",
+        "texto": "¿Por qué es fundamental que la primera fila de Excel tenga los encabezados (Nombre, Curso, etc.) y no datos de una persona?",
+        "lineas": 3
+      },
+      {
+        "id": "r2",
+        "texto": "Al realizar el reto con IA, ¿cómo garantizaste que al pegar en Excel no se quedara todo el texto amontonado en una sola celda?",
+        "lineas": 3
+      },
+      {
+        "id": "r3",
+        "texto": "Piensa en un proyecto o actividad del colegio en el que podrías usar esta herramienta para ahorrarte tiempo. Descríbelo.",
+        "lineas": 3
+      }
+    ]
+  },
+  "notasDocente": [
+    "Monitoree de cerca el momento en que los estudiantes copian de la IA y pegan en Excel. Dependiendo del navegador, a veces Excel Web pega todo en una sola celda. Enséñeles a usar 'Pegado especial' o a rehacer el prompt si esto ocurre.",
+    "Insista en el concepto de 'Limpieza de datos'. Puede dañar intencionalmente una fila en un ejemplo en proyector para mostrarles cómo sale el error en Word.",
+    "Asegúrese de que comprendan que Excel y Word deben guardarse en la misma carpeta o ubicación fácil de encontrar (ej. Escritorio) para la próxima clase.",
+    "Si algunos terminan el reto muy rápido, pídales que agreguen a la IA la instrucción de crear dos columnas más: 'Promedio' y 'Nombre del Acudiente'."
+  ]
+};
+</script>
+<script src="../../motor-bernal-v5.js"></script>
+</body>
+</html>
