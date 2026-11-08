@@ -1,1 +1,239 @@
-hola
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¿Qué es un Plan de Negocio y para qué sirve? | Grado 9°</title>
+</head>
+<body>
+<script>
+const CLASE = {
+  grado: 9,
+  edad: 14,
+  periodo: 2,
+  semana: 1,
+  tema: "¿Qué es un Plan de Negocio y para qué sirve?",
+  temaAnterior: "Organización jerárquica y representación visual de la información",
+  video: "",
+  estilo: "cuaderno",
+  emoji: "💼",
+  objetivo: "Definir qué es un plan de negocio y reconocer su importancia antes de emprender, utilizando Inteligencia Artificial y Excel para estructurar ideas de forma práctica.",
+  competencia: "Comprende la estructura básica de un plan de negocio y emplea herramientas digitales (IA y hojas de cálculo) para organizar información comercial.",
+  preguntaGancho: "¿Te lanzarías a un viaje por todo Colombia sin mapa, sin GPS y sin saber cuánto dinero tienes en el bolsillo? ¡Lo mismo pasa al crear una empresa sin planear!",
+  agenda: [
+    { min: 10, titulo: "Explicación del concepto", texto: "Definición y utilidad del plan de negocio." },
+    { min: 10, titulo: "Mapa conceptual", texto: "Construcción visual del esquema en el cuaderno." },
+    { min: 20, titulo: "Reto en sala", texto: "Uso de IA para generar ideas y formato en Excel." },
+    { min: 5, titulo: "Cierre", texto: "Revisión rápida de tablas y dudas finales." }
+  ],
+  cuaderno: {
+    conexion: "La clase pasada aprendimos a organizar información de manera visual y jerárquica. Hoy usaremos ese orden mental para estructurar ideas que pueden convertirse en empresas reales, paso a paso.",
+    bloques: [
+      {
+        icono: "🗺️",
+        titulo: "1. ¿Qué es un Plan de Negocio?",
+        puntos: [
+          { icono: "📍", termino: "Guía de instrucciones", texto: "Es el mapa detallado de un emprendedor." },
+          { icono: "📝", termino: "Documento escrito", texto: "Explica de qué trata la idea, cómo funcionará y qué se necesita." }
+        ],
+        ampliacion: "Imagina que vas a construir un set de Lego gigante. No unes las piezas sin ver las instrucciones. Un **plan de negocio** es exactamente eso: te dice por dónde empezar, qué piezas (recursos) necesitas y cómo debe verse al final."
+      },
+      {
+        icono: "🛡️",
+        titulo: "2. ¿Para qué sirve?",
+        puntos: [
+          { icono: "💰", termino: "No perder dinero", texto: "Calcula los costos iniciales para no gastar a ciegas." },
+          { icono: "🎯", termino: "Conocer al cliente", texto: "Define a quién se le va a vender el producto o servicio." },
+          { icono: "🤝", termino: "Convencer a otros", texto: "Demuestra a bancos o socios que la idea es seria." }
+        ],
+        ampliacion: "Tener todo por escrito es como un simulacro. Si descubres que **tu idea es muy costosa** o que nadie en tu ciudad la compraría, es mejor darte cuenta en el papel y corregirlo, antes de gastar tus ahorros reales."
+      },
+      {
+        icono: "🚀",
+        titulo: "3. Ejemplos de emprendimientos",
+        puntos: [
+          { icono: "📱", termino: "Comercio digital", texto: "Una tienda virtual de ropa deportiva en Instagram." },
+          { icono: "🧁", termino: "Gastronomía local", texto: "Venta de postres y dulces típicos (ej. manjar blanco)." },
+          { icono: "🛵", termino: "Servicios", texto: "Aplicación móvil para pedir domicilios en la ciudad." }
+        ],
+        ampliacion: "Cualquier idea, por sencilla que parezca, necesita un plan. Desde vender dulces en el colegio hasta crear la próxima red social, **la planificación es lo que separa a un pasatiempo de un verdadero negocio**."
+      }
+    ]
+  },
+  glosario: [
+    { termino: "Emprendimiento", definicion: "Acción de crear un negocio o proyecto asumiendo ciertos riesgos económicos." },
+    { termino: "Plan de negocio", definicion: "Documento que describe los objetivos de una empresa y cómo planea alcanzarlos." },
+    { termino: "Inversionista", definicion: "Persona o empresa que aporta dinero a un negocio esperando obtener ganancias en el futuro." },
+    { termino: "Cliente ideal", definicion: "El perfil exacto de la persona que más necesita o quiere comprar tu producto." }
+  ],
+  sabiasQue: [
+    "Según estudios, cerca del 70% de los nuevos negocios fracasan en sus primeros años por no tener un plan de negocio claro desde el principio.",
+    "El primer plan de negocio formal de la historia moderna fue escrito a mediados del siglo XX por pioneros de Silicon Valley para conseguir financiamiento."
+  ],
+  modulos: {
+    tarjetas: {
+      titulo: "El plan de negocio en la vida real",
+      items: [
+        { icono: "🗺️", frente: "El Mapa", reverso: "Es el documento del plan de negocio. Te muestra la ruta y los obstáculos." },
+        { icono: "🎯", frente: "El Destino", reverso: "Es tu cliente ideal. Si no sabes a dónde vas, te perderás." },
+        { icono: "⛽", frente: "La Gasolina", reverso: "Es el presupuesto. Sin dinero calculado, el negocio no avanza." },
+        { icono: "🚗", frente: "El Vehículo", reverso: "Es tu producto o servicio. Lo que usas para llegar al mercado." }
+      ]
+    },
+    explorador: {
+      titulo: "Partes clave del documento",
+      items: [
+        {
+          icono: "💡",
+          nombre: "La Idea",
+          secciones: [
+            { titulo: "El problema", items: ["¿Qué necesidad de la gente vas a resolver?"] },
+            { titulo: "La solución", items: ["¿Qué producto ofreces para arreglar ese problema?"] }
+          ]
+        },
+        {
+          icono: "👥",
+          nombre: "El Mercado",
+          secciones: [
+            { titulo: "Clientes", items: ["Edad, gustos y ubicación de las personas que comprarán."] },
+            { titulo: "Competencia", items: ["¿Quién más hace lo mismo y cómo puedes ser mejor?"] }
+          ]
+        },
+        {
+          icono: "💵",
+          nombre: "Finanzas",
+          secciones: [
+            { titulo: "Costos", items: ["¿Cuánto vale fabricar o comprar lo que vas a vender?"] },
+            { titulo: "Precios", items: ["¿A cuánto lo vas a vender para ganar dinero?"] }
+          ]
+        }
+      ]
+    },
+    clasificador: {
+      titulo: "Organiza: ¿Es planificación o improvisación?",
+      categorias: ["Improvisación (Riesgo)", "Planificación (Seguridad)"],
+      items: [
+        { texto: "Comprar materiales sin saber si el producto gusta.", categoria: 0 },
+        { texto: "Empezar a vender sin calcular el precio real.", categoria: 0 },
+        { texto: "Contratar 5 empleados el primer día sin ventas.", categoria: 0 },
+        { texto: "Estudiar cuántas panaderías hay en el barrio.", categoria: 1 },
+        { texto: "Hacer un presupuesto de gastos mensuales.", categoria: 1 },
+        { texto: "Definir quién es el cliente ideal.", categoria: 1 },
+        { texto: "Escribir un documento para buscar un inversionista.", categoria: 1 },
+        { texto: "Esperar a que los clientes lleguen mágicamente.", categoria: 0 }
+      ]
+    }
+  },
+  reto: {
+    titulo: "Estructurando ideas con IA y Excel",
+    descripcion: "Vamos a usar Inteligencia Artificial para generar ejemplos de emprendimientos que funcionarían en Buga, y luego organizaremos esa información en una tabla de Excel con un formato profesional.",
+    pasos: [
+      "Abre la herramienta de Inteligencia Artificial (ChatGPT, Gemini o la indicada por el profesor).",
+      "Copia exactamente el prompt que aparece abajo y pégalo en el chat de la IA.",
+      "Copia la tabla que la IA genere como respuesta.",
+      "Abre Microsoft Excel y pega la tabla asegurándote de usar la opción «Coincidir con formato de destino» para que se respeten filas y columnas.",
+      "Selecciona toda tu tabla en Excel y aplícale la opción «Todos los bordes».",
+      "Ajusta el ancho de las columnas (doble clic en la separación superior) para que el texto se lea completo y no quede oculto.",
+      "Dale un color de fondo y pon el texto en negrita a la primera fila (los encabezados)."
+    ],
+    prompt: "Actúa como un experto en negocios. Crea una tabla con 5 ejemplos de emprendimientos innovadores que podrían funcionar muy bien en Buga. La tabla debe tener exactamente 3 columnas: 'Nombre del Emprendimiento', '¿Qué producto o servicio vende?' y '¿Quién es su cliente ideal?'.",
+    herramientas: [
+      { nombre: "ChatGPT", url: "[https://chatgpt.com/](https://chatgpt.com/)" },
+      { nombre: "Gemini", url: "[https://gemini.google.com/](https://gemini.google.com/)" },
+      { nombre: "Excel", url: "[https://www.office.com/](https://www.office.com/)" }
+    ],
+    requisitos: [
+      "La tabla en Excel tiene exactamente 3 columnas y 5 emprendimientos.",
+      "El contenido de los emprendimientos está relacionado con Buga.",
+      "Los bordes de las celdas están marcados correctamente.",
+      "La fila de títulos tiene color de fondo y negrita.",
+      "El texto se puede leer completo en todas las columnas."
+    ]
+  },
+  quiz: [
+    {
+      pregunta: "¿Qué es un plan de negocio?",
+      opciones: [
+        "Un documento que despide a los empleados.",
+        "Una guía o mapa escrito que explica cómo funcionará una empresa.",
+        "Un préstamo que da el banco a los jóvenes.",
+        "El nombre que se le pone a una marca en Instagram."
+      ],
+      correcta: 1,
+      explicacion: "El plan de negocio es el documento base que guía todas las decisiones del emprendimiento."
+    },
+    {
+      pregunta: "¿Cuál de los siguientes es un beneficio clave de hacer un plan de negocio?",
+      opciones: [
+        "Evita perder dinero y tiempo gastando a ciegas.",
+        "Garantiza que te harás millonario en un mes.",
+        "Te permite evadir impuestos legalmente.",
+        "Hace que la empresa funcione sola sin que tú trabajes."
+      ],
+      correcta: 0,
+      explicacion: "Al calcular costos y estudiar el mercado, reduces el riesgo de perder tu inversión inicial."
+    },
+    {
+      pregunta: "Si vas a pedir dinero a un inversionista o banco, ¿qué te pedirán primero?",
+      opciones: [
+        "Tus redes sociales personales.",
+        "Una muestra gratis del producto.",
+        "El plan de negocio por escrito.",
+        "El recibo de la luz del local."
+      ],
+      correcta: 2,
+      explicacion: "Los inversionistas necesitan ver el plan por escrito para saber que tu idea es seria y organizada."
+    },
+    {
+      pregunta: "¿Qué significa definir a tu 'cliente ideal'?",
+      opciones: [
+        "Venderle a todas las personas del mundo al mismo tiempo.",
+        "Cobrarle más caro a los que tienen más dinero.",
+        "Saber exactamente a quién va dirigido tu producto (edad, gustos, necesidades).",
+        "Obligar a tus amigos y familiares a que te compren."
+      ],
+      correcta: 2,
+      explicacion: "El cliente ideal es el perfil específico de la persona que más necesita lo que tú vendes."
+    },
+    {
+      pregunta: "En la actividad práctica de hoy usamos Excel principalmente para:",
+      opciones: [
+        "Crear un logotipo animado para la empresa.",
+        "Escribir un ensayo de 5 páginas sobre negocios.",
+        "Organizar en filas y columnas la información de las ideas de negocio.",
+        "Navegar por internet buscando proveedores."
+      ],
+      correcta: 2,
+      explicacion: "Excel es una herramienta de hojas de cálculo ideal para estructurar datos y tablas ordenadamente."
+    },
+    {
+      pregunta: "Empezar a vender un producto sin haber investigado si a la gente le gusta, es un ejemplo de:",
+      opciones: [
+        "Planificación estratégica.",
+        "Estudio de mercado avanzado.",
+        "Improvisación riesgosa.",
+        "Uso de Inteligencia Artificial."
+      ],
+      correcta: 2,
+      explicacion: "Lanzar un producto sin investigar es improvisar y aumenta mucho el riesgo de fracaso comercial."
+    }
+  ],
+  hoja: {
+    preguntas: [
+      { id: "r1", texto: "¿Por qué crees que muchas personas deciden crear negocios sin hacer un plan primero?", lineas: 3 },
+      { id: "r2", texto: "De los 5 emprendimientos que te generó la IA, ¿cuál te pareció más interesante para Buga y por qué?", lineas: 3 },
+      { id: "r3", texto: "Menciona 1 herramienta de formato en Excel que usaste hoy para que tu tabla se viera más ordenada.", lineas: 2 },
+      { id: "r4", texto: "Si fueras a montar un negocio real con dos compañeros del salón, ¿cuál sería el primer paso que darían?", lineas: 3 },
+      { id: "r5", texto: "¿Qué aprendiste hoy sobre la relación entre planear y tener éxito en un emprendimiento?", lineas: 2 }
+    ]
+  },
+  notasDocente: [
+    "Verifique que los estudiantes utilicen correctamente el portapapeles y las opciones de pegado en Excel ('Coincidir con formato de destino' para no desconfigurar la hoja).",
+    "Aclare que la IA es una herramienta para inspirar ideas (lluvia de ideas), pero que el formato y la organización dependen de ellos en Excel.",
+    "Guíe la atención al ajustar las columnas en Excel (hacer doble clic en la separación superior de las columnas para autoajustar y permitir la lectura)."
+  ]
+};
+</script>
+<script src="../../motor-bernal-v5.js"></script>
+</body>
+</html>
